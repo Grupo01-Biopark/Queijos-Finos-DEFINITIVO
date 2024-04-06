@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleUsers.css">
+
+</head>
+
+<body>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
+                    <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
+                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
+                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>configurar usuário</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section class="sectionForms sectionList">
+
+                <h4>novo usuário</h4>
+
+                <form class=" flexContainerRowBetween" action="">
+
+                    <div>
+                        <label for="nome">nome:</label>
+                        <input id="nome" type="text" placeholder="Digite o nome" required>
+
+                        <label for="email">email:</label>
+                        <input id="email" type="text" placeholder="ex: exemplo@emal.com" required>
+                    </div>
+
+                    <div>
+                        <label for="senha">senha:</label>
+                        <input id="senha" type="password" placeholder="Digite a senha" required>
+
+                        <label for="confirmeSenha">confirme a senha:</label>
+                        <input id="confirmeSenha" type="text" placeholder="Digite a senha novamente">
+                    </div>
+
+                    <div>
+                        <label for="perfil">perfil usuário</label>
+                        <select id="perfil" required>
+                            <option value="1">Administrador</option>
+                            <option value="2">Operador</option>
+                            <option value="3">Observador</option>
+                        </select>
+
+                        <button>&times; cancelar</button>
+                        <button>salvar</button>
+                    </div>
+                </form>
+
+            </section>
+
+            <section class="sectionList">
+
+
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Usuários</p>
+                    <button>&#43; Adicionar</button>
+                </section>
+
+                <!-- Tabela de usuários -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data último acesso</th>
+                            <th>Permissão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.nameUser}">Nome do Usuário</td>
+                            <td th:text="${user.email}">Email do Usuário</td>
+                            <td>Data de Último Acesso</td>
+                            <td th:text="${user.tipoUserPermission}">Permissão</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+    </main>
+</body>
+
+
+</html>
