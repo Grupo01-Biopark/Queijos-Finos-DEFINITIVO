@@ -37,6 +37,22 @@ public class User {
     private TipoUserPermission tipoUserPermission;
 
     
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setTipoUserPermission(TipoUserPermission tipoUserPermission) {
+        this.tipoUserPermission = tipoUserPermission;
+    }
+
     public String getNameUser() {
         return nameUser;
     }
@@ -56,46 +72,21 @@ public class User {
     public TipoUserPermission getTipoUserPermission() {
         return tipoUserPermission;
     }
-    // Método Builder
 
-    public static class Builder {
-        private final User user;
-
-        public Builder() {
-            this.user = new User();
-        }
-
-        public Builder id(Long id) {
-            this.user.id = id;
-            return this;
-        }
-
-        public Builder nameUser(String nameUser) {
-            this.user.nameUser = nameUser;
-            return this;
-        }
-
-        public Builder email(String email) {
-            this.user.email = email;
-            return this;
-        }
-
-        public Builder password(String password) {
-            this.user.password = password;
-            return this;
-        }
-
-        public Builder tipoUserPermission(TipoUserPermission tipoUserPermission){
-            this.user.tipoUserPermission = tipoUserPermission;
-            return this;
-        }
-
-        public User build() {
-            return user;
-        }
+    public User(){
+        
+    }
+    
+    public User(Long id, String nameUser, 
+                String email, String password,
+                TipoUserPermission tipoUserPermission) { 
+        this.id = id; 
+        this.nameUser = nameUser;
+        this.email = email;
+        this.password = password;
+        this.tipoUserPermission = tipoUserPermission;
     }
 
-    
     @Override
     public int hashCode() {
         final int prime = 31;
