@@ -26,8 +26,7 @@ public class Address {
     @JoinColumn(name = "producer_id")
     private Producer producer;
 
-   
-   
+  
    
     public Long getId() {
         return id;
