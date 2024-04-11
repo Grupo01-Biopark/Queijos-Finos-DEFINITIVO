@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+	<link rel ="stylesheet" href="css/TelaDeLogin.css">
+</head>
+<body>
+    
+	
+    <div class="content">
+        <h1 class="titulo1">QUEIJOS</h1>
+        <h1 class="titulo2">FINOS</h1>
+        
+        <form id="form">
+            <div>
+                <input type="text" placeholder="E-mail de acesso" class="inputs required" oninput="emailValidadte()">
+                <span class="span-required">Informe um E-mail valido</span>
+            </div>
+
+            <div>
+                <input type="password" placeholder="Senha de acesso" class="inputs required">
+                <span class="span-required">Senha de acesso</span>
+            </div>
+
+            <div class="box-slect">
+                <input type="checkbox" id="conectado" value="conectado">
+                <label for="conectado">Manter conectado</label>
+                <p><a href="TelaRecuperacaoSenha.html">Esqueceu a Senha ?</a> </p>
+            </div>
+
+            
+
+            <button type="submit">
+                Entrar
+            </button>
+
+        </form>
+    
+	<script src="js/TelaDeLogin.js"></script>
+	
+    </div>
+
+</body>
+
+
+</html>
