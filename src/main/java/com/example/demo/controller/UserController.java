@@ -26,18 +26,17 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+    
 
     @GetMapping("/cadastro")
     public ModelAndView seuMetodo() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("cadastroUsuario"); // Defina o nome da visualização que você deseja retornar
-
-        // Obter a lista de usuários do serviço UserService
-        List<User> users = userService.getListUser();
         User user = new User();
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("cadastroUsuario"); // Define o nome da visualização que você deseja retornar
         modelAndView.addObject("user", user);
         // Adicionar a lista de usuários ao modelo
-        modelAndView.addObject("users", users);
+        modelAndView.addObject("users", getAllUsers());
 
         return modelAndView;
     }
@@ -53,10 +52,10 @@ public class UserController {
         return new RedirectView("/cadastro");
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    
+    public List<User> getAllUsers() {
         List<User> users = userService.getListUser();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return users;
     }
 
     @DeleteMapping("/users/{userId}")
