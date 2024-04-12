@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
 import java.util.Objects;
+
+import org.dom4j.io.DocumentResult;
+import org.dom4j.io.DocumentSource;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +28,7 @@ public class Documents {
 	
 	@ManyToOne
 	@JoinColumn(name = "documents_id")
-	private documents documents;
+	private DocumentResult documents;
 
 	public Long getId() {
 		return id;
@@ -63,7 +66,7 @@ public class Documents {
 		return documents;
 	}
 
-	public void setdocuments(documents documents) {
+	public void setdocuments(DocumentResult documents) {
 		this.documents = documents;
 	}
 
