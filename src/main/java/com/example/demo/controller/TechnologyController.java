@@ -21,6 +21,7 @@ import com.example.demo.service.TechnologyService;
 
 @RestController
 public class TechnologyController {
+    
     @Autowired
     private TechnologyService technologyService;
 
@@ -30,7 +31,7 @@ public class TechnologyController {
         Technology technology = new Technology();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTecnologias");
-        modelAndView.addObject("technologys", technology);
+        modelAndView.addObject("technology", technology);
 
         return modelAndView;
     }
@@ -46,9 +47,5 @@ public class TechnologyController {
         return new RedirectView("/tecnologias");
     }
 
-    @GetMapping
-    public ResponseEntity<List<Technology>> getAllTechnology() {
-        List<Technology> technology = technologyService.getListTechnology();
-        return new ResponseEntity<>(technology, HttpStatus.OK);
-    }
+  
 }
