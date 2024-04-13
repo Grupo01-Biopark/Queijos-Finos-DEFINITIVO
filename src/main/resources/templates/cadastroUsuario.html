@@ -129,6 +129,7 @@
                             <td th:text="${user.tipoUserPermission}">Permissão</td>
                             <td>
                                 <button><img src="images/icons/iconEdit.svg" alt="">
+                                    
                                 <button type="button" class="delete-btn" th:data-id='${user.id}'>
                                     <img src="images/icons/iconDelete.svg" alt="">
                                 </button>
@@ -140,12 +141,10 @@
             </section>
 
         </section>
-        <!--div especifica para exibir popup de execoes-->
-        <div id="nome" th:text="${mensagem}" style="display: none;"></div>
-
+        
     </main>
 
-    <script src="script/exceptionHandling.js"></script>
+    <script id="nome" th:data-mensage ="${mensagem}" src="script/exceptionHandling.js"></script>
 
     <script src="script/opemForm.js"></script>
 

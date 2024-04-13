@@ -1,11 +1,13 @@
-// pesquisar uma outra forma de excultar a funcao para exibir as execoes
-document.addEventListener('DOMContentLoaded', ()=> {
-           
-    // Obtem a mensagem passada do controlador
-    const mensagem = document.getElementById("nome").innerText;
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const scriptElement = document.getElementById('nome');
 
-    // Se houver uma mensagem, exibir o popup
-    if (mensagem) {
-        alert(mensagem);
+    if (scriptElement) {
+    
+        const mensagem = scriptElement.getAttribute('data-mensage');
+
+        if (mensagem) {
+            alert(mensagem);
+        }
     }
 });
