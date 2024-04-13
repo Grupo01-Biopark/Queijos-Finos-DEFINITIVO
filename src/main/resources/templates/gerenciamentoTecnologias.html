@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Gerenciamento de Tecnologias</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleTechnology.css">
+
+   
+</head>
+
+<body>
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
+                    <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
+                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
+                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>TRANSFERÊNCIAS DE TECNOLOGIA</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section id="sectionForm" class="sectionForms sectionList">
+                <h4>TECNOLOGIAS</h4>
+                
+                <form th:action="@{/tecnologias/cadastrar}" th:object="${technology}" method="post">
+                   
+                    <div>
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" th:field="*{name}" placeholder="Digite o nome da tecnologia">
+                    </div>
+
+                    <div class="formButtons flexContainerRowBetween">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
+                                alt="">Salvar</button>
+                    </div>
+                    
+                    
+                </form>
+            </section>
+
+            <section class="sectionList">
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Tecnologias</p>
+                    <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data de criação</th>
+                            <th>Produzindo</th>
+                            <th>Complementação</th>
+                            <th>Abortado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.nameUser}">Nome</td>
+                            <td th:text="${user.email}">Email do Usuário</td>
+                            <td th:text="${user.tipoUserPermission}">Permissão</td>
+                            <td>
+                                <button><img src="images/icons/iconEdit.svg" alt="">
+                                <button type="button" class="delete-btn" th:data-id='${user.id}'>
+                                    <img src="images/icons/iconDelete.svg" alt="">
+                                </button>
+                            </td>  
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+           
+
+            
+</body>
+</html>
