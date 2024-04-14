@@ -63,10 +63,10 @@
                         
 
                         
-                            <label for="senha">Senha:</label>
-                            <input id="senha" name="password" type="password" placeholder="Digite a senha"
-                                th:field="*{password}">
-                        
+                            <label for="password">Senha:</label>
+                            <input id="password" name="password" type="password" placeholder="Digite a senha"
+                                th:field="*{password}" th:required = "true">
+                            <p id="feedbackPassword"  ></p>
 
                         <div class="formSelect">
                             <label for="perfil">Perfil Usuário:</label>
@@ -87,13 +87,14 @@
                         
                         
                         
-                            <label for="confimeSenha">Confirme a senha</label>
-                            <input type="password" placeholder="confirme a senha">
+                            <label for="confirmPassword">Confirme a senha</label>
+                            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="confirme a senha" th:required = "true">
+                            <p id="feedbackConfirmPassword"></p>
                         
 
                         <div class="formButtons flexContainerRowBetween">
                             <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                            <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
+                            <button id="buttonSave" class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
                                     alt="">Salvar</button>
                         </div>
 
@@ -147,6 +148,7 @@
     <script id="nome" th:data-mensage ="${mensagem}" src="script/exceptionHandling.js"></script>
 
     <script src="script/opemForm.js"></script>
+    <script src="script/validatePassword.js" ></script>
 
     <script src="script/deleteUser.js">
 
