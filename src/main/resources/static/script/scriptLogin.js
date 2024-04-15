@@ -25,5 +25,4 @@ const form = document.getElementById('form');
 
                 removeError(0);
             }
-
         }
