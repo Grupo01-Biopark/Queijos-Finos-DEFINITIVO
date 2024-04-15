@@ -1,0 +1,40 @@
+
+    
+    .sectionPopupSave{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 9999; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .popupSave{
+
+        width: 30%;
+        max-width: 500px;
+        border-radius: 20px;
+        background-color:white;
+        text-align: center;
+        padding: 30px;
+        box-shadow: 3px 4px 20px 7px rgba(0,0,0,0.75);
+        
+    }
+
+    .popupSave p{
+        padding-top: 20px;
+    }
+
+    .popupSave button{
+
+        border-radius: 5px;
+        color: white;
+        text-transform: uppercase;
+        margin-top: 20px;
+        padding: 5px;
+        width: 20%;
+        cursor: pointer;
+
+        
+    }
