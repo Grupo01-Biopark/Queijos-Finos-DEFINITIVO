@@ -13,7 +13,7 @@
 body{
     font-family: "Nunito", sans-serif;
     color: var(--collor-white);
-    background-image: url('img/queijosTop1.jpg');
+    background-image: url('../images/queijosTop1.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -24,13 +24,9 @@ body{
 
 .content{
     background-color: var(--color-blue);
-    padding-top: 3rem; 
-    padding-bottom: 5rem; 
-    padding-left: 3rem; 
-    padding-right: 3rem; 
+    padding: 3rem;
     border-radius: 20px;
-    min-width: 30%;
-    overflow: auto;
+    width: 30%;
     
 }
 
@@ -47,7 +43,7 @@ h1{
 .titulo2{
     text-align: center;
     font-size: 50px;
-    margin-bottom: 10rem;
+    margin-bottom: 15rem;
 }
 
 .content form{
@@ -56,22 +52,13 @@ h1{
     gap: 1rem;
 }
 
-.span-required{
-    display: none;
-    font-size: 17px ;
-    margin: 3px 0 0 1px;
-    color: red;
-}
-
 .inputs{
     padding: 8px 5px;
-    outline: none;
     margin-top: 1rem;
     background-color: var(--color-blue);
     border: 2px solid var(--color-gray);
     color: var(--collor-white);
     width: 100%;
-    box-sizing: border-box;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -79,31 +66,20 @@ h1{
     font-size: 18px;
 }
 
-input:focus::placeholder {
-    color: var(--collor-white);
-    transition: .5s;
-}
-
-.inputs:focus{
-    border-color:var(--collor-white);
-    transition: .5s;
-}
-
-input:not(:focus) {
-    color: var(--color-gray);
-    
-}
-
-.box-slect {
-    display: flex; 
-    gap: 5px;
-    margin-top: 1rem;
+.box-select{
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    font-size: 20px;
 }
 
-.box-slect p{
-    margin-left:auto;
+.checkbox-container {
+    display: flex;
+    align-items: center; 
+}
+
+.box-select p {
+    margin: 0; 
 }
 
 a{
@@ -115,10 +91,9 @@ button[type="submit"] {
     color: var(--color-blue);
     font-weight: bold;
     width: 30%;
-    margin: 0 auto; 
+    margin: auto; 
     padding: 1rem;
     font-size: 20px;
-    outline: none;
     border: none;
     border-radius: 10px;
     margin-top: 1rem;
@@ -128,9 +103,31 @@ button[type="submit"] {
     transition: .3s;
 }
 
+.span-required{
+    display: none;
+    font-size: 18px ;
+    color: red;
+}
+
 button[type="submit"]:hover{
     font: var(--collor-white);
     background-color: gray;
     font-weight: bold;
     font-size: 20px;
+}
+
+input:focus::placeholder {
+    color: var(--collor-white);
+    transition: .5s;
+}
+
+.inputs:focus{
+    border-color:var(--collor-white);
+    transition: .5s;
+    outline: none; /* remove a borda ao focar no input */
+}
+
+input:not(:focus) {
+    color: var(--color-gray);
+    
 }
