@@ -12,7 +12,7 @@
     
     .popupSave{
 
-        width: 30%;
+        width: 25%;
         max-width: 500px;
         border-radius: 20px;
         background-color:white;
@@ -24,17 +24,29 @@
 
     .popupSave p{
         padding-top: 20px;
+        padding-bottom: 10px;
     }
 
-    .popupSave button{
+   .popupSave div{
+        justify-content: space-around;
+   }
 
-        border-radius: 5px;
-        color: white;
-        text-transform: uppercase;
-        margin-top: 20px;
-        padding: 5px;
-        width: 20%;
-        cursor: pointer;
+   .popupSave button{
+    width: 35%;
+   }
 
-        
-    }
+   .buttonPopupAlertCancel{
+     background-color: var(--backgroundBottonCancelPopup);
+   }
+
+   .buttonPopupAlertCancel:hover{
+    background-color: var( --backgroundBottonCancelPopupHover );
+   }
+
+   .buttonPopupAlertExit{
+    background-color: var(--backgroundBottonCancelHover);
+   }
+
+   .buttonPopupAlertExit:hover{
+    background-color: var(--backgroundBottonExitHover);
+   }
