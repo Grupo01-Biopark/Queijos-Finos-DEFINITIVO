@@ -7,6 +7,9 @@
     --backgroudBottonSave: #06744D;
     --backgroudBottonSaveHover:#02412b;
     --backgroundBottonCancelHover:#ff0000;
+    --backgroundBottonExitHover:#c20808;
+    --backgroundBottonCancelPopup : #1865FA;
+    --backgroundBottonCancelPopupHover : #1a4bac;
     --backgroudLListItem: #EBEBEB;
     --colorAdmim: #0BCA87;
 }

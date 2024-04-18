@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +44,7 @@ public class UserController {
     public RedirectView createUser(@ModelAttribute("user") User user, RedirectAttributes attributes) {
         try {
             userService.creatUser(user);
-            attributes.addFlashAttribute("mensagem", "Usuario salvo com sucesso");
+            attributes.addFlashAttribute("condition", "condition");
         } catch (DataIntegrityViolationException e) {
             attributes.addFlashAttribute("mensagem", "Email ja cadastardo no sistema "+e.getMessage());
         }
