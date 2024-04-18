@@ -21,7 +21,7 @@
         <h1 class="titulo1">QUEIJOS</h1>
         <h1 class="titulo2">FINOS</h1>
         
-        <form id="form">
+        <form id="form" action="/login" method="post">
 
             <div>
                 <input type="text" placeholder="E-mail de acesso" class="inputs required" oninput="emailValidadte()">
@@ -50,6 +50,10 @@
 
         </form>
     
+        <div th:if="${param.error}">
+            <p class="error-message" style="color: red;">Credenciais inválidas. Por favor, tente novamente.</p>
+        </div>
+
 	    <script src="script/scriptLogin.js"></script>
 	
     </main>
