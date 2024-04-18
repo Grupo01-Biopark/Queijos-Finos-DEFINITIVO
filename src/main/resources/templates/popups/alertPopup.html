@@ -1,20 +1,18 @@
 <head>
-    <link rel="stylesheet" href="../../static/style/reset.css">
-    <link rel="stylesheet" href="../../static/style/style.css">
-    <link rel="stylesheet" href="../../static/style/popups/stylePopups.css">
+    <link rel="stylesheet" href="style/popups/stylePopups.css">
 </head>
 
-<section id="popup" th:fragment= "popupAlert" class="sectionPopupSave">
+<section th:fragment= "popupAlert" id="popup" class="sectionPopupSave">
 
     <div class="popupSave">
-        <img src="../../static/images/icons/iconInterrogation.svg" alt="icone salvar">
+        <img src="images/icons/iconInterrogation.svg" alt="icone salvar">
         <p>Deseja sair sem salvar? Os dados alterados seram perdidos</p>
         
         <div class="flexContainerRowBetween" >
-            <button id="buttonPopup" class="buttons buttonPopupAlert buttonPopupAlertCancel ">Cancelar</button>
-            <button id="buttonPopup" class="buttons buttonPopupAlert buttonPopupAlertExit">Sair</button>
+            <button id="buttonPopupAlertBack" class="buttons buttonPopupAlert buttonPopupAlertCancel ">Cancelar</button>
+            <button  id="buttonPopupAlertExit" class="buttons buttonPopupAlert buttonPopupAlertExit">Sair</button>
         </div>
     </div>
 
-    <script src="script/closePopup.js"></script>
+    <script src="script/closePopupAlert.js"></script>
 </section>

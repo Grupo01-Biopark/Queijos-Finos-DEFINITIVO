@@ -9,11 +9,16 @@ buttonAdd.addEventListener("click", () => {
 
 buttonCancel.addEventListener("click", () => {
     
-    if (confirm("Tem certeza que deseja cancelar o preenchimento do formulário?")) {
+    const alertpopup = document.getElementById("sectionPopupSave");
+    alertpopup.style.display= "block";
+
+    document.getElementById("buttonPopupAlertExit").addEventListener("click", ()=>{
         sectionForm.style.display = "none";
         buttonAdd.style.display = "block";
+        alertpopup.style.display = "none";
         clearFormFields();
-    }
+    })
+    
 
     // Função para limpar os campos do formulário
     function clearFormFields() {

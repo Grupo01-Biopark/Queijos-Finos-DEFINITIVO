@@ -1,6 +1,7 @@
-document.getElementById("buttonPopup").addEventListener("click", ()=>{
-    console.log("funcionol");
-   const popup = document.getElementById("popup");
 
-   popup.style.display = "none";
+document.getElementById("buttonPopup").addEventListener("click", ()=>{
+    const popup = document.getElementById("popup");
+    popup.style.display = "none";
+
 })
+
