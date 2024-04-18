@@ -20,8 +20,8 @@
 
 <body>
     
-    
     <section th:if="${condition}" th:insert= "popups/savePopup"></section>
+    <section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>
 
     <main class="gridContainerBody">
         
@@ -150,6 +150,7 @@
             
         </main>
 
+    
     <script src="script/opemForm.js"></script>
     <script src="script/validatePassword.js" ></script>
     <script src="script/deleteUser.js">
