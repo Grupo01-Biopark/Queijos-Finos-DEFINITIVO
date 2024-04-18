@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/styleTechnology.css">
 
-   
+
 </head>
 
 <body>
@@ -50,21 +50,26 @@
 
             <section id="sectionForm" class="sectionForms sectionList">
                 <h4>TECNOLOGIAS</h4>
-                
+
                 <form th:action="@{/tecnologias/cadastrar}" th:object="${technology}" method="post">
-                   
-                    <div>
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" name="name" th:field="*{name}" placeholder="Digite o nome da tecnologia">
-                    </div>
+
+
+
+
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" th:field="*{name}"
+                        placeholder="Digite o nome da tecnologia">
+
+
+
 
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
                                 alt="">Salvar</button>
                     </div>
-                    
-                    
+
+
                 </form>
             </section>
 
@@ -90,17 +95,18 @@
                             <td th:text="${user.tipoUserPermission}">Permissão</td>
                             <td>
                                 <button><img src="images/icons/iconEdit.svg" alt="">
-                                <button type="button" class="delete-btn" th:data-id='${user.id}'>
-                                    <img src="images/icons/iconDelete.svg" alt="">
-                                </button>
-                            </td>  
+                                    <button type="button" class="delete-btn" th:data-id='${user.id}'>
+                                        <img src="images/icons/iconDelete.svg" alt="">
+                                    </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
-           
 
-            
+
+
 </body>
+
 </html>

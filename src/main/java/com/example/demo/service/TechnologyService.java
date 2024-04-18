@@ -33,4 +33,5 @@ public class TechnologyService {
     public void deleteTechnology(Long technologyId) {
         technologyRepository.deleteById(technologyId);
     }
+
 }
