@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +23,20 @@ public class TechnologyController {
     @Autowired
     private TechnologyService technologyService;
 
+    public TechnologyController(TechnologyService technologyService) {
+        this.technologyService = technologyService;
+    }
+
 
     @GetMapping("/tecnologias")
     public ModelAndView iniciarTela() {
         Technology technology = new Technology();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTecnologias");
         modelAndView.addObject("technology", technology);
+        modelAndView.addObject("users", getAllTechnologies());
+        
 
         return modelAndView;
     }
@@ -45,6 +50,11 @@ public class TechnologyController {
             attributes.addFlashAttribute("mensagem", "Erro ao cadastrar tecnologia: " + e.getMessage());
         }
         return new RedirectView("/tecnologias");
+    }
+
+    public List<Technology> getAllTechnologies() {
+        List<Technology> technologies = TechnologyService.getListTechnology();
+        return technologies;
     }
 
   
