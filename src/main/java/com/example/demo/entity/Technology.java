@@ -37,12 +37,23 @@ public class Technology {
 	public void setObservation(String observation) {
 		this.observation = observation;	
 	}
+
+	public Technology (){
+
+	}
+
+	public Technology (Long id, String name, String observation){
+		this.id = id;
+		this.name = name;
+		this.observation = observation;
+	}
 	
 	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name, observation);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

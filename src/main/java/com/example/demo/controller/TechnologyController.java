@@ -31,14 +31,13 @@ public class TechnologyController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTecnologias");
         modelAndView.addObject("technology", technology);
-        modelAndView.addObject("technologies", getAllTechnologies());
+       // modelAndView.addObject("technologies", getAllTechnologies());
 
         return modelAndView;
     }
 
     @PostMapping("/tecnologias/cadastrar")
-    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology,
-            RedirectAttributes attributes) {
+    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
         try {
             technologyService.createTechnology(technology);
             attributes.addFlashAttribute("mensagem", "Tecnologia cadastrada com sucesso");
@@ -54,7 +53,7 @@ public class TechnologyController {
         
     }
 
-    @DeleteMapping("/technology/{technologyId}")
+    @DeleteMapping("/technologies/{technologyId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long technologyID) {
         technologyService.deleteTechnology(technologyID);
         return ResponseEntity.ok().build();

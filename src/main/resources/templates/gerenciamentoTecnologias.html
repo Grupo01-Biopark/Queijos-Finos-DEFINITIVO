@@ -20,6 +20,10 @@
 </head>
 
 <body>
+
+    <section th:if="${condition}" th:insert= "popups/savePopup"></section>
+    <section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>
+
     <main class="gridContainerBody">
 
         <nav class="navBarLeft">
@@ -28,7 +32,7 @@
                 <ul class="listLinks">
                     <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
                     <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
-                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
+                    <li class="listSelect"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastro Tecnologias</li>
                     <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
                 </ul>
             </section>
@@ -53,14 +57,9 @@
 
                 <form th:action="@{/tecnologias/cadastrar}" th:object="${technology}" method="post">
 
-
-
-
                     <label for="name">Nome:</label>
                     <input type="text" id="name" name="name" th:field="*{name}"
-                        placeholder="Digite o nome da tecnologia">
-
-
+                    placeholder="Digite o nome da tecnologia" th:required = "true">
 
 
                     <div class="formButtons flexContainerRowBetween">
@@ -78,6 +77,7 @@
                     <p>Tecnologias</p>
                     <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
                 </section>
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -89,13 +89,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="user : ${users}">
-                            <td th:text="${user.nameUser}">Nome</td>
-                            <td th:text="${user.email}">Email do Usuário</td>
-                            <td th:text="${user.tipoUserPermission}">Permissão</td>
+                        <tr>
+                            <td>Nome</td>
+                            <td>19/04/2024</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
                             <td>
                                 <button><img src="images/icons/iconEdit.svg" alt="">
-                                    <button type="button" class="delete-btn" th:data-id='${user.id}'>
+                                    <button type="button" class="delete-btn">
                                         <img src="images/icons/iconDelete.svg" alt="">
                                     </button>
                             </td>
@@ -104,6 +106,8 @@
                 </table>
             </section>
 
+            <script src="script/opemForm.js"></script>
+            <script src="script/deleteUser.js"></script>
 
 
 
