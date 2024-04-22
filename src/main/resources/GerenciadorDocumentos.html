@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Documentos do Produtor</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleTechnology.css">
+
+
+</head>
+
+<body>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
+                    <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
+                    <li class="listSelect"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastro de Tecnologia</li>
+                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>DOCUMENTOS DO PRODUTOR</li>
+                    <li>Administrador</li>
+                </ul>
+            </nav>
+
+            <section id="sectionForm" class="sectionForms sectionList">
+                <h4>Documentos</h4>
+
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" th:field="*{name}"
+                    placeholder="Digite o nome do documento" th:required = "true">
+
+                    <div class="formButtons flexContainerRowBetween">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Voltar</button>
+                        <button class="buttons buttonSave" type="submit"><img src=""
+                                alt="">Salvar</button>
+                    </div>
+
+
+                </form>
+            </section>
+
+            <section class="sectionList">
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>Documentos</p>
+                    <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome:</th>
+                            <th>Data de Upload</th>
+                            <select name="Tipo de documento:" id="TipoDocumento">
+                                <option value="option1">Contratos 1</option>
+                                <option value="option2">Laudos Internos</option>
+                                <option value="option3">Laudos Externos</option>
+                                <option value="option2">Certificados</option>
+                                <option value="option3">Documentos Gerais</option>
+                            </select>
+                            <th>Data de Vendcimento</th>
+
+                            <form action="/upload" method="post" enctype="multipart/form-data">
+                                <label for="fileUpload">Choose a document to upload:</label>
+                                <input type="file" id="fileUpload" name="document" required>
+                                <button type="submit">Upload Document</button>
+                            </form>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>19/04/2024</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>
+                                <button><img src="images/icons/iconEdit.svg" alt="">
+                                    <button type="button" class="delete-btn">
+                                        <img src="images/icons/iconDelete.svg" alt="">
+                                    </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+</body>
+
+</html>
