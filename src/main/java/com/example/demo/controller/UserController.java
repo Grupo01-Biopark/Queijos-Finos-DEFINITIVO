@@ -27,20 +27,19 @@ public class UserController {
     }
     
 
-    @GetMapping("/cadastro")
+    @GetMapping("/cadastroUsuario")
     public ModelAndView seuMetodo() {
         User user = new User();
         
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("cadastroUsuario"); // Define o nome da visualização que você deseja retornar
+        modelAndView.setViewName("cadastroUsuario");
         modelAndView.addObject("user", user);
-        // Adicionar a lista de usuários ao modelo
         modelAndView.addObject("users", getAllUsers());
 
         return modelAndView;
     }
 
-    @PostMapping("/cadastro/usuario")
+    @PostMapping("/cadastroUsuario/usuario")
     public RedirectView createUser(@ModelAttribute("user") User user, RedirectAttributes attributes) {
         try {
             userService.creatUser(user);

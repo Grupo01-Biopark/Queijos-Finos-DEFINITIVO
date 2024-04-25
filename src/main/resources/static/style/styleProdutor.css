@@ -1,0 +1,9 @@
+
+.camposFormulario{
+    display:flex;
+    flex-direction: column;
+}
+
+.formularioProdutor{
+    background-color: #222222;
+}
