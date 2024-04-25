@@ -4,7 +4,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.entity.enums.TipoStatusProducer;
+import com.example.demo.entity.enums.TipoStatusProduction;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ public class Producer {
     private String socialReason; 
     private String cnpj;
     private String comments;
-    private TipoStatusProducer tipoStatusProducer;
+    private TipoStatusProduction tipoStatusProducer;
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -76,7 +76,7 @@ public class Producer {
         return certificates;
     }
     
-    public TipoStatusProducer getTipoStatusProducer() {
+    public TipoStatusProduction getTipoStatusProducer() {
         return tipoStatusProducer;
     }
 
@@ -126,7 +126,7 @@ public class Producer {
             return this;
         }
 
-        public Builder tipoStatusProducer(TipoStatusProducer tipoStatusProducer){
+        public Builder tipoStatusProducer(TipoStatusProduction tipoStatusProducer){
             this.producer.tipoStatusProducer = tipoStatusProducer;
             return this;
         }

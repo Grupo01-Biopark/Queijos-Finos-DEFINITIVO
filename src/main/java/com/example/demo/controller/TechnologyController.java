@@ -31,7 +31,7 @@ public class TechnologyController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTecnologias");
         modelAndView.addObject("technology", technology);
-       // modelAndView.addObject("technologies", getAllTechnologies());
+        modelAndView.addObject("report", technologyService.generateReportForAllTechnologies());
 
         return modelAndView;
     }
@@ -40,7 +40,7 @@ public class TechnologyController {
     public RedirectView createTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
         try {
             technologyService.createTechnology(technology);
-            attributes.addFlashAttribute("mensagem", "Tecnologia cadastrada com sucesso");
+            attributes.addFlashAttribute("condition", "condition");
         } catch (DataIntegrityViolationException e) {
             attributes.addFlashAttribute("mensagem", "Erro ao cadastrar tecnologia: " + e.getMessage());
         }

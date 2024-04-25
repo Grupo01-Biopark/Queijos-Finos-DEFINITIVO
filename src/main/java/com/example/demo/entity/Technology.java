@@ -1,11 +1,14 @@
 package com.example.demo.entity;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,41 +20,48 @@ public class Technology {
 	private Long id;
 	private String name;
 	private String observation;
-	
-	
+
+	@OneToMany(mappedBy = "technology", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Transfer> transfers = new ArrayList<>();
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getObservation() {
 		return observation;
 	}
+
 	public void setObservation(String observation) {
-		this.observation = observation;	
-	}
-
-	public Technology (){
-
-	}
-
-	public Technology (Long id, String name, String observation){
-		this.id = id;
-		this.name = name;
 		this.observation = observation;
 	}
-	
-	
+
+	public void setTransfers(List<Transfer> transfers) {
+		this.transfers = transfers;
+	}
+
+	public List<Transfer> getTransfers() {
+		return transfers;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, observation);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -63,10 +73,12 @@ public class Technology {
 		if (getClass() != obj.getClass())
 			return false;
 		Technology other = (Technology) obj;
-		return Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(observation, other.observation);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-	
-	
-	
+
 }

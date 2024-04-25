@@ -82,23 +82,21 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Data de criação</th>
                             <th>Produzindo</th>
                             <th>Complementação</th>
                             <th>Abortado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Nome</td>
-                            <td>19/04/2024</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
+                        <tr th:each="entry : ${report}">
+                            <td th:text="${entry.key}"></td> <!-- ID da Tecnologia -->
+                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
+                            <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
+                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
                             <td>
-                                <button><img src="images/icons/iconEdit.svg" alt="">
-                                    <button type="button" class="delete-btn">
-                                        <img src="images/icons/iconDelete.svg" alt="">
+                                <button>
+                                    <img src="images/icons/iconEdit.svg" alt="">
+        
                                     </button>
                             </td>
                         </tr>
