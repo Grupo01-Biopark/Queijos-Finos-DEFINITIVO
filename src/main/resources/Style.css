@@ -1,0 +1,127 @@
+
+/* variaveis css cores */
+:root{
+
+    --backgroudNavBar: #132F3E;
+    --backgorudBottonAdd: #30363D;
+    --backgroundBottonAddHover:#373b41;
+    --backgroudBottonSave: #06744D;
+    --backgroudBottonSaveHover:#02412b;
+    --backgroundBottonCancelHover:#ff0000;
+    --backgroundBottonExitHover:#c20808;
+    --backgroundBottonCancelPopup : #1865FA;
+    --backgroundBottonCancelPopupHover : #1a4bac;
+    --backgroudLListItem: #EBEBEB;
+    --colorAdmim: #0BCA87;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.gridContainerBody{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.flexContainercolum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexContainerRowBetween{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* configuracao botoes */
+
+.buttons{
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonAdd{
+    background-color: var(--backgorudBottonAdd);  
+}
+
+.buttonAdd:hover{
+    background-color: var(--backgroundBottonAddHover);
+}
+
+.buttonSave{
+    background-color: var(--backgroudBottonSave);
+    border: 2px solid var(--backgroudBottonSave);
+
+}
+
+.buttonSave:hover{
+    background-color: var(--backgroudBottonSaveHover);
+    border: 2px solid var(--backgroudBottonSaveHover);
+}
+
+.buttonSave img{
+    height: 1rem;
+}
+
+.buttonCancel{
+    border: 2px solid var(--backgroundBottonCancelHover);
+    color: var(--backgroundBottonCancelHover);
+}
+
+.buttonCancel:hover{
+    background-color: var(--backgroundBottonCancelHover);
+    color: white;
+}
+
+/* configuracoes tabelas */
+
+.table{
+    width: 100%;
+    padding-top: 5px; 
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.table thead, tr, th{
+    padding-left: 10px;
+}
+
+.table td{
+    padding-left: 10px;
+}
+.table tbody tr{  
+    background-color: var(--backgroudLListItem);
+
+}
+
+.table td:last-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.table td:last-child button{
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.table td:last-child button:hover{
+    opacity: 0.7; 
+}
+
+
+
+
+
