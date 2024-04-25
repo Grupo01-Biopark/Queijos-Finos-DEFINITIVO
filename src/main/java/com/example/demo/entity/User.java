@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
-import com.example.demo.entity.enums.TipoUserPermission;
-
+/*import com.example.demo.entity.enums.TipoUserPermission;*/
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+/*import jakarta.validation.constraints.NotNull;*/
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -33,8 +32,8 @@ public class User {
     @Size(min = 6, max = 100, message = "A senha deve ter entre 6 e 100 caracteres.")
     private String password;
 
-    @NotNull(message = "A permissão do usuário é obrigatória.")
-    private TipoUserPermission tipoUserPermission;
+    /*@NotNull(message = "A permissão do usuário é obrigatória.")
+    private TipoUserPermission tipoUserPermission;*/
 
     
     public String getNameUser() {
@@ -53,9 +52,10 @@ public class User {
         return id;
     }
 
-    public TipoUserPermission getTipoUserPermission() {
+    /*public TipoUserPermission getTipoUserPermission() {
         return tipoUserPermission;
-    }
+    }*/
+
     // Método Builder
 
     public static class Builder {
@@ -85,10 +85,10 @@ public class User {
             return this;
         }
 
-        public Builder tipoUserPermission(TipoUserPermission tipoUserPermission){
+        /*public Builder tipoUserPermission(TipoUserPermission tipoUserPermission){
             this.user.tipoUserPermission = tipoUserPermission;
             return this;
-        }
+        }*/
 
         public User build() {
             return user;

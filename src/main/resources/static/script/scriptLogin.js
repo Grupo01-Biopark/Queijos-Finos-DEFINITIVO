@@ -16,7 +16,7 @@ const form = document.getElementById('form');
         }
         
 
-        function emailValidadte(){
+        function emailValidate(){
 
             if(!emailRegex.test(campos[0].value)){
                 setError(0);
