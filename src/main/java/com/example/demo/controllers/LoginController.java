@@ -19,13 +19,13 @@ public class LoginController {
     @GetMapping("/Login")
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("login/login");
+        mv.setViewName("Login/Login");
         return mv; 
     }
 
     @PostMapping("/logInto")
     public String logar(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
-        User user = repository.login(email, password);
+        User user = repository.findByEmailAndPassword(email, password);
 
         if (user != null) {
             return "redirect:/home";
