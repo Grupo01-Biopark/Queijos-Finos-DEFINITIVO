@@ -22,16 +22,16 @@ import com.example.demo.service.DocumentService;
 public class DocumentController {
 
     @Autowired
-    private DocumentService DocumentService;
+    private Document DocumentService;
 
     @GetMapping("/Documentos")
     public ModelAndView iniciarTela() {
         Document Document = new Document();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("gerenciamentoDocumentos");
+        modelAndView.setViewName("GerenciadorDocumentos");
         modelAndView.addObject("Document", Document);
-       // modelAndView.addObject("technologies", getAllTechnologies());
+       // modelAndView.addObject("Document", getAllDocument());
 
         return modelAndView;
     }
@@ -47,13 +47,13 @@ public class DocumentController {
         return new RedirectView("/Documentos");
     }
 
-    public List<Document> getAllTechnologies() {
-        List<Document> technologies = DocumentService.getListDocument();
-        return technologies;
+    public List<Document> getAllDocument() {
+        List<Document> Document = DocumentService.getListDocument();
+        return Document;
         
     }
 
-    @DeleteMapping("/technologies/{DocumentId}")
+    @DeleteMapping("/Document/{DocumentId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long DocumentID) {
         DocumentService.deleteDocument(DocumentID);
         return ResponseEntity.ok().build();
