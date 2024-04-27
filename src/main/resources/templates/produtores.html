@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet">
+    <title>Cadastro de Produtores</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleUsers.css">
+
+</head>
+
+<body>
+
+<!--<section th:if="${condition}" th:insert= "popups/savePopup"></section>-->
+<!--<section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>-->
+
+<main class="gridContainerBody">
+
+    <nav class="navBarLeft">
+        <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+        <section class="listLinksNav">
+            <ul class="listLinks">
+                <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
+                <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
+                <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
+                <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+            </ul>
+        </section>
+    </nav>
+
+    <section class="sectionPrincipal flexContainercolum">
+
+        <nav class="navBarHeader">
+            <ul class="navBarHeaderList">
+                <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+            </ul>
+
+            <ul class="navBarHeaderList navBarHeaderListLow">
+                <li>Configurar Produtores</li>
+                <li>administrador</li>
+            </ul>
+        </nav>
+        <section class="sectionList">
+            <section class="flexContainerRowBetween sectionListHeader">
+                <p>Produtores</p>
+                <a href="/formularioProdutor"><button class="buttons buttonAdd">&#43; Adicionar</button></a>
+            </section>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Permissão</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producer : ${producers}">
+                    <td th:text="${producer.nome}">Nome do Usuário</td>
+                    <td th:text="${producer.email}">Email do Usuário</td>
+                    <td th:text="${producer.cpf}">Permissão</td>
+                    <td>
+                        <button id="buttonDelete" type="button" th:data-id="${producer.id}">
+                            <img src="images/icons/iconDelete.svg" alt="">
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+    </section>
+
+</main>
+<script>
+    const buttonDelete = document.querySelectorAll("#buttonDelete").forEach(botao => {
+        botao.addEventListener("click", () => {
+            const producerId = botao.getAttribute('data-id');
+            console.log("teste", producerId)
+            deleteProducer(producerId)
+        })
+    })
+
+    function deleteProducer(producerId) {
+        console.log("teste", producerId)
+        if (confirm("Tem certeza de que deseja excluir este usuário?")) {
+            fetch('/produtores/' + producerId, {
+                method: 'GET'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Falha ao excluir o produtor.');
+                }
+            }).catch(error => {
+                console.error('Erro ao excluir o produtor:', error);
+                alert('Erro ao excluir o produtor. Por favor, tente novamente mais tarde.');
+            });
+        }
+    }
+
+</script>
+
+
+<script src="script/opemForm.js"></script>
+<script src="script/validatePassword.js"></script>
+<script src="script/deleteUser.js">
+
+
+</script>
+
+</body>
+
+
+</html>

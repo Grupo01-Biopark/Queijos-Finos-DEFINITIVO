@@ -49,7 +49,6 @@ public class UserController {
         }
         return new RedirectView("/cadastro");
     }
-
     
     public List<User> getAllUsers() {
         List<User> users = userService.getListUser();

@@ -40,6 +40,31 @@ public class ProducerController {
         return modelAndView;
     }
 
+    @GetMapping("/produtores")
+    public ModelAndView seuMetodo2(){
+        Producer producer = new Producer();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("produtores");
+        modelAndView.addObject("producer", producer);
+        modelAndView.addObject("producers", getAllProducers());
+        return modelAndView;
+    }
+
+    @GetMapping("/produtores/{producerId}")
+    public ResponseEntity<Void> deleteProducer(@PathVariable Long producerId){
+
+        System.out.println("Deletar Produtor" + producerId);
+        producerRepository.deleteById(producerId);
+        return ResponseEntity.ok().build();
+    }
+
+//    @DeleteMapping("/users/{userId}")
+//    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+//        userService.deleteUser(userId);
+//        return ResponseEntity.ok().build();
+//    }
+
+
     @PostMapping("/formularioProdutor/produtor")
     public RedirectView createProducer(@ModelAttribute ProducerDto producerDTO) {
         try {
@@ -86,16 +111,17 @@ public class ProducerController {
             producerService.addProducer(producer);
 
 
+
         } catch (DataIntegrityViolationException e) {
             System.out.println("erro");
         }
-        return new RedirectView("/formularioProdutor");
+        return new RedirectView("/produtores");
     }
 
-//    public List<Producer> getAllProducers() {
-//        List<Producer> producers = producerService.getListProducer();
-//        return producers;
-//    }
+    public List<Producer> getAllProducers() {
+        List<Producer> producers = producerService.getListProducers();
+        return producers;
+    }
 
 //    @DeleteMapping("/producer/{producerId}")
 //    public ResponseEntity<Void> deleteProducer(@PathVariable Long producerId) {

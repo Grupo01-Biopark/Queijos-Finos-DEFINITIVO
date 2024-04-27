@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
-    <link rel="stylesheet" href="style/styleUsers.css">
+<!--    <link rel="stylesheet" href="style/styleProdutor.css">-->
 
 </head>
 
@@ -47,148 +47,127 @@
                 <li>administrador</li>
             </ul>
         </nav>
-
-        <section id="sectionForm" class="sectionForms sectionList">
-
-            <h4>novo usuário</h4>
-
-
-        </section>
-        <form th:action="@{/formularioProdutor/produtor}" method="post" style="border: 2px solid black; width: 94%; margin-x: 10px;">
-            <div style="gap: 20px;">
-                <div style="display:flex; width: 100%; justify-content: space-around;">
+        <form th:action="@{/formularioProdutor/produtor}" method="post" style="display:flex; flex-direction: column; gap: 20px; width: 94%; heigth: 1000px; margin-x: 10px;">
+            <div style="gap: 20px; border: 2px solid black; display:flex; flex-direction: column; padding: 20px;">
+                <div class="campos-form" style="display:flex; width: 100%; justify-content: space-between; gap: 10px;">
                     <div>
                         <label for="nome">Nome completo</label>
-                        <input name="nome" id="nome">
+                        <input style="width: 300px; padding: 5px; text-size: 12px" name="nome" id="nome">
                     </div>
                     <div>
                         <label for="cpf">CPF</label>
-                        <input id="cpf" name="cpf">
+                        <input style="padding: 3px" id="cpf" name="cpf">
                     </div>
                     <div>
                         <label for="telefone1">Telefone 1</label>
-                        <input id="telefone1" name="telefone1">
+                        <input style="padding: 3px" id="telefone1" name="telefone1">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
                     <div>
                         <label for="cnpj">CNPJ</label>
-                        <input id="cnpj" name="cnpj">
+                        <input style="padding: 3px" id="cnpj" name="cnpj">
                     </div>
                     <div>
                         <label for="razaoSocial">Razao Social</label>
-                        <input id="razaoSocial" name="razaoSocial" >
+                        <input style="padding: 3px" id="razaoSocial" name="razaoSocial" >
                     </div>
                     <div>
                         <label for="telefone2">Telefone 2</label>
-                        <input id="telefone2" name="telefone2">
+                        <input style="padding: 3px" id="telefone2" name="telefone2">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
                     <div>
                         <label for="cep">CEP</label>
-                        <input id="cep"  name="cep" >
+                        <input style="padding: 3px" id="cep"  name="cep" >
                     </div>
                     <div>
                         <label for="logradouro">Logradouro</label>
-                        <input id="logradouro"  name="logradouro" >
+                        <input style="padding: 3px" id="logradouro"  name="logradouro" >
                     </div>
                     <div>
                         <label for="numero">Numero</label>
-                        <input id="numero" name="numero">
+                        <input style="padding: 3px" id="numero" name="numero">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
                     <div>
                         <label for="bairro">Vila/Bairro</label>
-                        <input id="bairro" name="bairro">
+                        <input style="padding: 3px" id="bairro" name="bairro">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input style="padding: 3px" id="email" name="email">
                     </div>
                     <div>
                         <label for="uf">UF</label>
-                        <input id="uf" name="uf">
+                        <input style="padding: 3px" id="uf" name="uf">
                     </div>
                     <div>
                         <label for="cidade">Cidade</label>
-                        <input id="cidade" name="cidade">
-                    </div>
-                </div>
-                <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div>
-                        <label for="email">Email</label>
-                        <input id="email" name="email">
+                        <input style="padding: 3px" id="cidade" name="cidade">
                     </div>
                 </div>
             </div>
-            <div style="display:flex;">
-                <div>
-                    <div style="display:flex; flex-direction: column; border: 2px solid black; height: 200px;">
+            <div style="display:flex; justify-content: space-between; width: 100%;">
+                <div style="display:flex; width: 29%; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
+                    <h3>Certificações</h3>
+                    <div style="display:flex;justify-content: space-between; ">
+                        <label for="sim/poa">SIM/POA</label>
+                        <input id="sim/poa" name="sim_poa" type="date">
+                    </div>
+                    <div style="display:flex;justify-content: space-between; ">
+                        <label for="SUSAF">SUSAF</label>
+                        <input id="SUSAF" name="susaf" type="date">
+                    </div>
+                    <div style="display:flex;justify-content: space-between; ">
+                        <label for="SISBI">SISBI</label>
+                        <input id="SISBI" name="sisbi" type="date">
+                    </div>
+                    <div style="display:flex;justify-content: space-between; ">
+                        <label for="SELO ARTE">SELO ARTE</label>
+                        <input id="SELO ARTE" name="selo_arte" type="date">
+                    </div>
+                    <div style="display:flex;justify-content: space-between; ">
+                        <label for="CIF">SIM/POA</label>
+                        <input id="CIF" name="cif" type="date">
+                    </div>
+                </div>
+                <div style="width: 69%;">
+                    <div style="display:flex; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
                         <h3>Informações sobre contrato</h3>
-                        <div>
+                        <div style="display:flex; justify-content: space-between;">
                             <label for="dataAssinatura">Assinatura de Convenio de Cooperação Técnica</label>
                             <input id="dataAssinatura" name="dataAssinatura" type="date">
                         </div>
-                        <div>
+                        <div style="display:flex; justify-content: space-between;">
                             <label for="dataVencimento">Vencimento de contrato</label>
                             <input id="dataVencimento" name="dataVencimento" type="date">
-                        </div>
-                        <div>
+                        </div >
+                        <div style="display:flex;justify-content: space-between; ">
                             <label for="situacao">Situação no projeto</label>
-                            <select id="situacao" name="situacao">
+                            <select id="situacao" name="situacao" style="width: 122px">
                                 <option>Ativo</option>
                                 <option>Ativo em complementação</option>
                                 <option>Desistente</option>
                             </select>
                         </div>
-                        <div>
+                        <div style="display:flex; justify-content: space-between;">
                             <label for="dataSituacao">Data Situação</label>
                             <input id="dataSituacao" name="dataSituacao" type="date">
                         </div>
                     </div>
                 </div>
-                <div style="display:flex; flex-direction: column; border: 2px solid black; height: 200px;">
-                    <h3>Certificações</h3>
-                    <div>
-                        <label for="sim/poa">SIM/POA</label>
-                        <input id="sim/poa" name="sim_poa" type="date">
-                    </div>
-                    <div>
-                        <label for="SUSAF">SUSAF</label>
-                        <input id="SUSAF" name="susaf" type="date">
-                    </div>
-                    <div>
-                        <label for="SISBI">SISBI</label>
-                        <input id="SISBI" name="sisbi" type="date">
-                    </div>
-                    <div>
-                        <label for="SELO ARTE">SELO ARTE</label>
-                        <input id="SELO ARTE" name="selo_arte" type="date">
-                    </div>
-                    <div>
-                        <label for="CIF">SIM/POA</label>
-                        <input id="CIF" name="cif" type="date">
-                    </div>
-                </div>
-                <div>
-                    <h3>Observação</h3>
-                    <input name="observacao">
-                </div>
             </div>
-            <button type="submit">Submit</button>
+            <div>
+                <h3>Observação</h3>
+                <input style="width: 99%; heigth: 10%;" name="observacao">
+            </div>
+            <a href="/produtores"><button type="submit">Submit</button></a>
         </form>
-
-        <section class="sectionList">
-
-            <section class="flexContainerRowBetween sectionListHeader">
-                <p>Usuários</p>
-                <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
-            </section>
-
-        </section>
-
     </section>
-
 </main>
-
 
 <script src="script/opemForm.js"></script>
 <script src="script/validatePassword.js" ></script>

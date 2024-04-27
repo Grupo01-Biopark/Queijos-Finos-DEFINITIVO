@@ -1,18 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Address;
-import com.example.demo.entity.Certificate;
-import com.example.demo.entity.PhoneNumber;
-import com.example.demo.entity.Producer;
+import com.example.demo.entity.*;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.PhoneNumberRepository;
 import com.example.demo.repository.ProducerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,5 +32,10 @@ public class ProducerService {
 
         System.out.println("salvo com sucesso");
         return producerRepository.save(producer);
+    }
+
+    public List <Producer> getListProducers(){
+        List<Producer> producers = producerRepository.findAll();
+        return producers != null ? producers : Collections.emptyList();
     }
 }
