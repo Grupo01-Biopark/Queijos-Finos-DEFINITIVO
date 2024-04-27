@@ -22,7 +22,7 @@ public class Document {
 	private String file;
 	private Date date;
 	private String dateSystem;
-	private Long category; //alterar para enum (criar enum)
+	private Long category;
 	
 	@ManyToOne
 	@JoinColumn(name = "producer_id")

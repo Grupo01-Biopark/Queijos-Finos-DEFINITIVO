@@ -26,8 +26,8 @@ public class DocumentService {
     }
 
     public List <Document> getListDocument(){
-        List<Document> technologies = DocumentRepository.findAll();
-        return technologies != null ? technologies : Collections.emptyList();
+        List<Document> Document = DocumentRepository.findAll();
+        return Document != null ? Document : Collections.emptyList();
     }
 
     public void deleteDocument(Long DocumentId) {
