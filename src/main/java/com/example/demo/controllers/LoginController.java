@@ -30,7 +30,7 @@ public class LoginController {
         User user = repository.findByEmailAndPassword(email, password);
     
         if (user != null) {
-            mv.setViewName("redirect:/home");
+            mv.setViewName("redirect:/dashboardProducer");
         } else {
             // Se as credenciais forem inválidas, adicione uma mensagem de erro ao modelo
             mv.addObject("erro", "Credenciais inválidas. Por favor, tente novamente.");
