@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import ch.qos.logback.core.model.Model;
+
 
 @Controller
 public class LoginController {
@@ -24,15 +24,22 @@ public class LoginController {
     }
 
     @PostMapping("/logInto")
-    public String logar(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
+    public ModelAndView logInto(@RequestParam("email") String email, @RequestParam("password") String password) {
+        ModelAndView mv = new ModelAndView();
+    
         User user = repository.findByEmailAndPassword(email, password);
-
+    
         if (user != null) {
-            return "redirect:/home";
+            mv.setViewName("redirect:/home");
+        } else {
+            // Se as credenciais forem inválidas, adicione uma mensagem de erro ao modelo
+            mv.addObject("erro", "Credenciais inválidas. Por favor, tente novamente.");
+            // Retorna para a mesma página de login
+            mv.setViewName("Login/Login");
         }
-
-        return "redirect:/erro";
+    
+        return mv;
     }
+    
 }
-
 

@@ -128,3 +128,9 @@ input:not(:focus) {
     color: var(--color-gray);
     
 }
+
+.loginError{
+    font-size: 18px;
+    color: red;
+    
+}

@@ -16,21 +16,26 @@
 <body>
     
 	
-    <div class="content">
+    <main class="content">
 
         <h1 class="titulo1">QUEIJOS</h1>
         <h1 class="titulo2">FINOS</h1>
         
-        <form id="form" action="/logInto" method="post">
+        <form id="form" action="/logInto" method="post" >
             <div>
-                <input type="text" id="email" name="email" placeholder="E-mail de acesso" class="inputs required" oninput="emailValidate()">
+                <input type="text" id="email" name="email" placeholder="E-mail de acesso" class="inputs required" oninput="emailValidate()" >
                 <span class="span-required">Informe um E-mail válido</span>
             </div>
         
+            
+
             <div>
                 <input type="password" id="password" name="password" placeholder="Senha de acesso" class="inputs required">
                 <span class="span-required">Senha de acesso</span>
             </div>
+
+            <p class="loginError" th:if="${not #strings.isEmpty(erro)}" th:text="${erro}" ></p>
+
         
             <div class="box-select">
                 <div class="checkbox-container">
@@ -43,8 +48,9 @@
             <button type="submit">Entrar</button>
         </form>
         
-    
-	    <script src="script/scriptLogin.js"></script> 
+
+
+	    <!-- <script src="script/scriptLogin.js"></script> -->
 	
     </main>
 
