@@ -1,0 +1,63 @@
+:root{
+    --backgroudNavBar: #132F3E;
+    --backgorudBottonAdd: #30363D;
+    --backgroundBottonAddHover:#373b41;
+    --backgroudBottonSave: #06744D;
+    --backgroudBottonSaveHover:#02412b;
+    --backgroundBottonCancelHover:#ff0000;
+    --backgroundBottonExitHover:#c20808;
+    --backgroundBottonCancelPopup : #1865FA;
+    --backgroundBottonCancelPopupHover : #1a4bac;
+    --backgroudLListItem: #EBEBEB;
+    --colorAdmim: #0BCA87;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+.gridContainerBody{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.flexContainercolum{
+    display: flex;
+    flex-direction: column;
+}
+
+.flexContainerRowBetween{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.sectionPrincipal {
+    width: 100%;
+    justify-content: flex-start;
+
+}
+
+.graphics{
+    display: flex;
+    display: inline-block;
+    justify-content: space-between;
+}
+
+.productionStatus{
+    margin: 2rem;
+    width: 30%;
+    display: flex;
+    display: inline-block;
+
+}
+
+.certificationsAchieveds{
+    width: 60%;
+    display: flex;
+    display: inline-block;
+}
