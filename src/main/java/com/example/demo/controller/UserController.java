@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,13 +21,10 @@ import com.example.demo.service.UserService;
 @RestController
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-    
-
+   
     @GetMapping("/cadastro")
     public ModelAndView seuMetodo() {
         User user = new User();
@@ -63,4 +61,19 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PostMapping("/users/updateUser")
+    public RedirectView updateUser(@ModelAttribute("user") User user , RedirectAttributes attributes) {
+
+        System.out.println("o id do usuario e:" + user.getId());
+        System.out.println("o nome do usuaruio e:" + user.getNameUser());
+        try {
+            userService.updateUser(user);
+            attributes.addFlashAttribute("condition", "condition");
+        } catch (DataIntegrityViolationException e) {
+            attributes.addFlashAttribute("mensagem", "Email ja cadastardo no sistema "+e.getMessage());
+        }
+
+        return new RedirectView("/cadastro");
+    }
 }

@@ -53,9 +53,11 @@
 
             <section id="sectionForm" class="sectionForms sectionList">
 
-                <h4 class="titleForm" >novo usuário</h4>
+                <h4 class="titleForm">novo usuário</h4>
 
-                <form class="gridContainerForm" th:action="@{/cadastro/usuario}" th:object="${user}" method="post">
+                <form class="gridContainerForm"  th:object="${user}">
+                    
+                    <input id="id" name="id" th:field="*{id}" type="number" style="display: none;" value="1">
 
                     <div class="flexContainercolum">
 
@@ -134,7 +136,7 @@
                                 <td th:text="${user.email}">Email do Usuário</td>
                                 <td th:text="${user.tipoUserPermission}">Permissão</td>
                                 <td>
-                                    <button class="editBotton"><img src="images/icons/iconEdit.svg" alt="">
+                                    <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""> </button>
                                     
                                     <button type="button" class="delete-btn" th:data-id='${user.id}'>
                                         <img src="images/icons/iconDelete.svg" alt="">

@@ -1,11 +1,14 @@
 document.querySelectorAll('.delete-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const userId = this.getAttribute('data-id');
+    button.addEventListener('click', () => {
+        const userId = button.getAttribute('data-id');
         deleteUser(userId);
     });
 });
 
+
 function deleteUser(userId) {
+
+    console.log("funciona2");
 
     if (confirm("Tem certeza de que deseja excluir este usuário?")) {
         fetch('/users/' + userId, {

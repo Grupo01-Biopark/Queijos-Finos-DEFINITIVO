@@ -1,13 +1,20 @@
 const buttonAdd = document.getElementById("buttonAdd");
-const sectionForm = document.getElementById("sectionForm");
 const buttonCancel = document.getElementById("buttonCancel");
 
 buttonAdd.addEventListener("click", () => {
+    const sectionForm = document.getElementById("sectionForm");
+    const titleForm = document.querySelector(".titleForm");
+    const formAction = sectionForm.querySelector("form");
+
+    formAction.setAttribute("method","post")
+    formAction.setAttribute("action", "/cadastro/usuario");
+    titleForm.textContent = "novo usuario";
     sectionForm.style.display = "block";
     buttonAdd.style.display = "none";
 })
 
 buttonCancel.addEventListener("click", () => {
+    const sectionForm = document.getElementById("sectionForm");
     
     const alertpopup = document.getElementById("sectionPopupSave");
     alertpopup.style.display= "block";

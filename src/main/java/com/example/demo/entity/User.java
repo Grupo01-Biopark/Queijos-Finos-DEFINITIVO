@@ -37,6 +37,10 @@ public class User {
     private TipoUserPermission tipoUserPermission;
 
     
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
@@ -111,6 +115,7 @@ public class User {
             return false;
         return true;
     }
+
 
 
 
