@@ -28,6 +28,10 @@
      display: none; 
 }
 
+.sectionFormsEdit{
+    display: none;
+}
+
 
 .sectionForms form input{
     width: 30%;

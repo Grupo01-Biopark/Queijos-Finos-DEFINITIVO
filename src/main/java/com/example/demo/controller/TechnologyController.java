@@ -37,9 +37,22 @@ public class TechnologyController {
     }
 
     @PostMapping("/tecnologias/cadastrar")
-    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
+    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology,
+            RedirectAttributes attributes) {
         try {
             technologyService.createTechnology(technology);
+            attributes.addFlashAttribute("condition", "condition");
+        } catch (DataIntegrityViolationException e) {
+            attributes.addFlashAttribute("mensagem", "Erro ao cadastrar tecnologia: " + e.getMessage());
+        }
+        return new RedirectView("/tecnologias");
+    }
+
+    @PostMapping("/tecnologias/alterar")
+    public RedirectView alterTechnology(@ModelAttribute("technology") Technology technology,
+            RedirectAttributes attributes) {
+        try {
+            technologyService.alterTechnology(technology);
             attributes.addFlashAttribute("condition", "condition");
         } catch (DataIntegrityViolationException e) {
             attributes.addFlashAttribute("mensagem", "Erro ao cadastrar tecnologia: " + e.getMessage());
@@ -50,7 +63,7 @@ public class TechnologyController {
     public List<Technology> getAllTechnologies() {
         List<Technology> technologies = technologyService.getListTechnology();
         return technologies;
-        
+
     }
 
     @DeleteMapping("/technologies/{technologyId}")

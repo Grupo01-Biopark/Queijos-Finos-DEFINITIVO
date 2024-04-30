@@ -21,8 +21,8 @@
 
 <body>
 
-    <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-    <section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>
+    <section th:if="${condition}" th:insert="popups/savePopup"></section>
+    <section th:insert="popups/alertPopup" id="sectionPopupSave" style="display: none"></section>
 
     <main class="gridContainerBody">
 
@@ -32,7 +32,8 @@
                 <ul class="listLinks">
                     <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
                     <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
-                    <li class="listSelect"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastro Tecnologias</li>
+                    <li class="listSelect"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastro Tecnologias
+                    </li>
                     <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
                 </ul>
             </section>
@@ -53,13 +54,13 @@
             </nav>
 
             <section id="sectionForm" class="sectionForms sectionList">
-                <h4>TECNOLOGIAS</h4>
+                <h4 class="titleForm">TECNOLOGIAS</h4>
 
                 <form th:action="@{/tecnologias/cadastrar}" th:object="${technology}" method="post">
 
                     <label for="name">Nome:</label>
                     <input type="text" id="name" name="name" th:field="*{name}"
-                    placeholder="Digite o nome da tecnologia" th:required = "true">
+                        placeholder="Digite o nome da tecnologia" th:required="true">
 
 
                     <div class="formButtons flexContainerRowBetween">
@@ -67,10 +68,9 @@
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
                                 alt="">Salvar</button>
                     </div>
-
-
                 </form>
             </section>
+
 
             <section class="sectionList">
                 <section class="flexContainerRowBetween sectionListHeader">
@@ -90,14 +90,17 @@
                     <tbody>
                         <tr th:each="entry : ${report}">
                             <td th:text="${entry.key}"></td> <!-- ID da Tecnologia -->
-                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
-                            <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
-                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
+                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td>
+                            <!-- Contagem de tecnologias produzindo -->
+                            <td
+                                th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}">
+                            </td> <!-- Contagem de tecnologias em complementação -->
+                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td>
+                            <!-- Contagem de tecnologias abortadas -->
                             <td>
-                                <button>
+                                <button id="buttonEdit" class="buttons buttonEdit">
                                     <img src="images/icons/iconEdit.svg" alt="">
-        
-                                    </button>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -105,8 +108,55 @@
             </section>
 
             <script src="script/opemForm.js"></script>
-            <script src="script/deleteUser.js"></script>
+            <script>
+                const buttonEdit = document.querySelectorAll("#buttonEdit");
 
+                buttonEdit.forEach((button) => {
+
+                    button.addEventListener("click", () => {
+                        const tableRowWithButton = button.closest("tr");
+
+                        const technologyData = {
+                            name: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
+
+                        };
+
+
+                        fillFormWithTechnologyData(technologyData);
+                        opemForm(technologyData);
+                    })
+                });
+
+                function fillFormWithTechnologyData(technologyData) {
+                    const formInputs = sectionForm.querySelectorAll("input");
+
+
+                    formInputs.forEach(field => {
+                        const fieldName = field.name;
+                        if (technologyData.hasOwnProperty(fieldName)) {
+                            field.value = technologyData[fieldName];
+                        }
+                    });
+
+
+                }
+
+                function opemForm(technologyData) {
+                    const sectionForm = document.getElementById("sectionForm");
+                    const titleForm = document.querySelector(".titleForm");
+
+                    titleForm.textContent = "Atualizar Tecnologia: " + technologyData.name;
+
+
+                    sectionForm.style.display = "block";
+                    buttonAdd.style.display = "none";
+
+                    formElement.action.value = "@{/tecnologias/alterar}";
+                    formElement.method.value = "put";
+
+                }
+
+            </script>
 
 
 </body>
