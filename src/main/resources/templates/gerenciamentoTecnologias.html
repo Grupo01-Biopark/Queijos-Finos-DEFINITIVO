@@ -56,6 +56,7 @@
             <section id="sectionForm" class="sectionForms sectionList">
                 <h4 class="titleForm">TECNOLOGIAS</h4>
 
+
                 <form th:object="${technology}">
 
                     <label for="name">Nome:</label>
@@ -107,58 +108,10 @@
                 </table>
             </section>
 
+            
             <script src="script/opemForm.js"></script>
-            <script>
-                const buttonEdit = document.querySelectorAll("#buttonEdit");
-
-                buttonEdit.forEach((button) => {
-
-                    button.addEventListener("click", () => {
-                        const tableRowWithButton = button.closest("tr");
-                        const technologyData = {
-                            name: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
-
-                        };
-
-
-                        fillFormWithTechnologyData(technologyData);
-                        opemForm(technologyData);
-                    })
-                });
-
-                function fillFormWithTechnologyData(technologyData) {
-                    const formInputs = sectionForm.querySelectorAll("input");
-
-
-                    formInputs.forEach(field => {
-                        const fieldName = field.name;
-                        if (technologyData.hasOwnProperty(fieldName)) {
-                            field.value = technologyData[fieldName];
-                        }
-                    });
-
-
-                }
-
-                function opemForm(technologyData) {
-                    const sectionForm = document.getElementById("sectionForm");
-                    const titleForm = document.querySelector(".titleForm");
-
-                    titleForm.textContent = "Atualizar Tecnologia: " + technologyData.name;
-
-
-                    sectionForm.style.display = "block";
-                    buttonAdd.style.display = "none";
-
-                    // const formElement = document.querySelector("form");
-                    // formElement.setAttribute("action", "/tecnologias/alterar");
-                    // formElement.setAttribute("method", "put");
-
-                    //verificar aqui 
-
-                }
-
-            </script>
+            <script src="script/alterTechnology.js"></script>
+            
 
 
 </body>

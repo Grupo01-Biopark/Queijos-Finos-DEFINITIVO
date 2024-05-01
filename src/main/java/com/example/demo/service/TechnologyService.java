@@ -36,27 +36,18 @@ public class TechnologyService {
 
     @Validated
     public Technology alterTechnology(@Valid Technology technology) {
-    // Verifica se a tecnologia fornecida não é nula
-    Objects.requireNonNull(technology, "Tecnologia inválida. Verifique os campos obrigatórios.");
-
-    // Busca a tecnologia existente no banco de dados pelo ID
-    Optional<Technology> existingTechnologyOptional = technologyRepository.findById(technology.getId());
-
-    // Verifica se a tecnologia existe
-    if (existingTechnologyOptional.isPresent()) {
-        // Se existir, obtém a instância da tecnologia do Optional
-        Technology existingTechnology = existingTechnologyOptional.get();
-        
-        // Atualiza os atributos da tecnologia existente com os valores da tecnologia fornecida
-        existingTechnology.setName(technology.getName());
-
-        // Salva e retorna a tecnologia atualizada
-        return technologyRepository.save(existingTechnology);
-    } else {
-        // Se a tecnologia não existir, lança uma exceção
-        throw new IllegalArgumentException("Tecnologia não encontrada.");
+        Objects.requireNonNull(technology, "Tecnologia inválida. Verifique os campos obrigatórios.");
+    
+        Optional<Technology> existingTechnologyOptional = technologyRepository.findById(technology.getId());
+    
+        if (existingTechnologyOptional.isPresent()) {
+            Technology existingTechnology = existingTechnologyOptional.get();
+            existingTechnology.setName(technology.getName());
+            return technologyRepository.save(existingTechnology);
+        } else {
+            throw new IllegalArgumentException("Tecnologia não encontrada.");
+        }
     }
-}
 
 
     public List <Technology> getListTechnology(){
