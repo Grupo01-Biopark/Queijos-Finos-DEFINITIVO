@@ -24,7 +24,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Validated
-    public User creatUser(@Valid User user) {
+    public User createUser(@Valid User user) {
         Objects.requireNonNull(user, "Usuário inválido. Verifique os campos obrigatórios.");
         return userRepository.save(user);
     }
