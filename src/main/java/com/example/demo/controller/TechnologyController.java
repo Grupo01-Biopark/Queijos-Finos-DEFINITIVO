@@ -37,8 +37,7 @@ public class TechnologyController {
     }
 
     @PostMapping("/tecnologias/cadastrar")
-    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology,
-            RedirectAttributes attributes) {
+    public RedirectView createTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
         try {
             technologyService.createTechnology(technology);
             attributes.addFlashAttribute("condition", "condition");
@@ -49,8 +48,7 @@ public class TechnologyController {
     }
 
     @PostMapping("/tecnologias/alterar")
-    public RedirectView alterTechnology(@ModelAttribute("technology") Technology technology,
-            RedirectAttributes attributes) {
+    public RedirectView alterTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
         try {
             technologyService.alterTechnology(technology);
             attributes.addFlashAttribute("condition", "condition");
@@ -60,10 +58,11 @@ public class TechnologyController {
         return new RedirectView("/tecnologias");
     }
 
+
     public List<Technology> getAllTechnologies() {
         List<Technology> technologies = technologyService.getListTechnology();
         return technologies;
-
+        
     }
 
     @DeleteMapping("/technologies/{technologyId}")

@@ -27,7 +27,7 @@ public class TechnologyService {
 
     @Autowired
     private EntityManager entityManager;
-
+    
     @Validated
     public Technology createTechnology(@Valid Technology technology) {
         Objects.requireNonNull(technology, "Tecnologia inválida. Verifique os campos obrigatórios.");
@@ -36,25 +36,30 @@ public class TechnologyService {
 
     @Validated
     public Technology alterTechnology(@Valid Technology technology) {
+    // Verifica se a tecnologia fornecida não é nula
+    Objects.requireNonNull(technology, "Tecnologia inválida. Verifique os campos obrigatórios.");
 
-        Objects.requireNonNull(technology, "Tecnologia inválida. Verifique os campos obrigatórios.");
+    // Busca a tecnologia existente no banco de dados pelo ID
+    Optional<Technology> existingTechnologyOptional = technologyRepository.findById(technology.getId());
 
-        Optional<Technology> existingTechnologyOptional = technologyRepository.findById(technology.getId());
+    // Verifica se a tecnologia existe
+    if (existingTechnologyOptional.isPresent()) {
+        // Se existir, obtém a instância da tecnologia do Optional
+        Technology existingTechnology = existingTechnologyOptional.get();
+        
+        // Atualiza os atributos da tecnologia existente com os valores da tecnologia fornecida
+        existingTechnology.setName(technology.getName());
 
-        if (existingTechnologyOptional.isPresent()) {
-
-            Technology existingTechnology = existingTechnologyOptional.get();
-
-            existingTechnology.setName(technology.getName());
-
-            return technologyRepository.save(existingTechnology);
-        } else {
-
-            throw new IllegalArgumentException("Tecnologia não encontrada.");
-        }
+        // Salva e retorna a tecnologia atualizada
+        return technologyRepository.save(existingTechnology);
+    } else {
+        // Se a tecnologia não existir, lança uma exceção
+        throw new IllegalArgumentException("Tecnologia não encontrada.");
     }
+}
 
-    public List<Technology> getListTechnology() {
+
+    public List <Technology> getListTechnology(){
         List<Technology> technologies = technologyRepository.findAll();
         return technologies != null ? technologies : Collections.emptyList();
     }
@@ -64,15 +69,16 @@ public class TechnologyService {
     }
 
     public Map<String, Map<String, Long>> generateReportForAllTechnologies() {
-
+      
         Query query = entityManager.createNativeQuery(
-                "SELECT t.name, tt.tipo_status_production, COUNT(*) " +
-                        "FROM tb_technology t " +
-                        "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
-                        "GROUP BY t.name, tt.tipo_status_production");
-
+            "SELECT t.name, tt.tipo_status_production, COUNT(*) " +
+            "FROM tb_technology t " +
+            "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
+            "GROUP BY t.name, tt.tipo_status_production"
+        );
+    
         List<Object[]> results = query.getResultList();
-
+    
         Map<String, Map<String, Long>> report = new HashMap<>();
         for (Object[] row : results) {
             String technologyName = (String) row[0];
@@ -80,13 +86,13 @@ public class TechnologyService {
             TipoStatusProduction status = (statusByte != null) ? TipoStatusProduction.values()[statusByte] : null;
             String statusName = (status != null) ? status.name() : null;
             Long count = ((Number) row[2]).longValue(); // Cast para Long
-
+    
             if (!report.containsKey(technologyName)) {
                 report.put(technologyName, new HashMap<>());
             }
             report.get(technologyName).put(statusName, count);
         }
-
+    
         return report;
     }
 

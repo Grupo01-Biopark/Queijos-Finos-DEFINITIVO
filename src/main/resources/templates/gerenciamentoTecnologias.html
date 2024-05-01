@@ -56,7 +56,7 @@
             <section id="sectionForm" class="sectionForms sectionList">
                 <h4 class="titleForm">TECNOLOGIAS</h4>
 
-                <form th:action="@{/tecnologias/cadastrar}" th:object="${technology}" method="post">
+                <form th:object="${technology}">
 
                     <label for="name">Nome:</label>
                     <input type="text" id="name" name="name" th:field="*{name}"
@@ -115,7 +115,6 @@
 
                     button.addEventListener("click", () => {
                         const tableRowWithButton = button.closest("tr");
-
                         const technologyData = {
                             name: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
 
@@ -151,8 +150,11 @@
                     sectionForm.style.display = "block";
                     buttonAdd.style.display = "none";
 
-                    formElement.action.value = "@{/tecnologias/alterar}";
-                    formElement.method.value = "put";
+                    // const formElement = document.querySelector("form");
+                    // formElement.setAttribute("action", "/tecnologias/alterar");
+                    // formElement.setAttribute("method", "put");
+
+                    //verificar aqui 
 
                 }
 
