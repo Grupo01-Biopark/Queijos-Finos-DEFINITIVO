@@ -11,7 +11,7 @@ editButtons.forEach((button) => {
         };
 
         fillFormWithUserData(userData);
-        opemForm(userData);
+        opemFormEdit(userData);
     });
 });
 
@@ -30,7 +30,7 @@ function fillFormWithUserData(userData) {
     selectInput.value = userData.tipoUserPermission;
 }
 
-function opemForm(userData) {
+function opemFormEdit(userData) {
     const sectionForm = document.getElementById("sectionForm");
     const buttonAdd = document.getElementById("buttonAdd");
     const titleForm = document.querySelector(".titleForm");
