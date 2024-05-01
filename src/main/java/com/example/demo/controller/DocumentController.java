@@ -22,7 +22,7 @@ import com.example.demo.service.DocumentService;
 public class DocumentController {
 
     @Autowired
-    private Document DocumentService;
+    private DocumentService documentService;
 
     @GetMapping("/Documentos")
     public ModelAndView iniciarTela() {
@@ -39,7 +39,7 @@ public class DocumentController {
     @PostMapping("/Documentos/cadastrar")
     public RedirectView createDocument(@ModelAttribute("Document") Document Document, RedirectAttributes attributes) {
         try {
-            DocumentService.createDocument(Document);
+            documentService.createDocument(Document);
             attributes.addFlashAttribute("mensagem", "Documento adicionado com sucesso");
         } catch (DataIntegrityViolationException e) {
             attributes.addFlashAttribute("mensagem", "Erro ao adicionar o documento: " + e.getMessage());
@@ -48,14 +48,14 @@ public class DocumentController {
     }
 
     public List<Document> getAllDocument() {
-        List<Document> Document = DocumentService.getListDocument();
+        List<Document> Document = documentService.getListDocument();
         return Document;
         
     }
 
     @DeleteMapping("/Document/{DocumentId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long DocumentID) {
-        DocumentService.deleteDocument(DocumentID);
+        documentService.deleteDocument(DocumentID);
         return ResponseEntity.ok().build();
     }
 

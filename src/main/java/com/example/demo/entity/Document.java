@@ -103,6 +103,4 @@ public class Document {
 				&& Objects.equals(id, other.id) && Objects.equals(producer, other.producer)
 				&& Objects.equals(title, other.title);
 	}
-	
-	
 }
