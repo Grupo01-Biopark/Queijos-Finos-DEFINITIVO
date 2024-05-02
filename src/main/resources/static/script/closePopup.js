@@ -1,7 +1,7 @@
 
 function closePopups(){
 
-    const sectionPopup = document.querySelector(".sectionPopup");
+    const sectionPopup = document.querySelector(".sectionPopupSave");
     const popupForm = document.getElementById("popupAlertForm");
     const popupDelet = document.querySelector(".popupAlertDelet");
 
