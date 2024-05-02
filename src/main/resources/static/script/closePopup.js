@@ -1,8 +1,16 @@
 
-document.querySelector(".buttonPopup").addEventListener("click", ()=>{
-    
-    const popup = document.querySelector(".sectionPopup");
-    popup.style.display = "none";
+function closePopups(){
 
-});
+    const sectionPopup = document.querySelector(".sectionPopup");
+    const popupForm = document.getElementById("popupAlertForm");
+    const popupDelet = document.querySelector(".popupAlertDelet");
+
+    sectionPopup.style.display = "none";
+    popupForm.style.display = "none";
+    popupDelet.style.display = "none";
+}
+
+    
+
+
 

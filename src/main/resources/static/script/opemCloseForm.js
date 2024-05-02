@@ -14,16 +14,16 @@ openFormButton.addEventListener("click", () => {
 
 closeFormButton.addEventListener("click", () => {
     const sectionForm = document.getElementById("sectionForm");
-    const alertPopup = document.getElementById("PopupAlertForm");
+    const alertPopupForm = document.getElementById("popupAlertForm");
     const sectionPopup = document.querySelector(".sectionPopup");
 
     sectionPopup.style.display = "block";
-    alertPopup.style.display = "block";
+    alertPopupForm.style.display = "block";
 
-    document.getElementById("buttonPopupAlertExit").addEventListener("click", () => {
+    const exitButton = document.getElementById("buttonPopupAlertExit").addEventListener("click", () => {
         sectionForm.style.display = "none";
         openFormButton.style.display = "block";
-        alertPopup.style.display = "none";
+        alertPopupForm.style.display = "none";
         clearFormFields();
     });
 });
