@@ -27,7 +27,7 @@ public class Producer {
     private String socialReason; 
     private String cnpj;
     private String comments;
-    private TipoStatusProduction tipoStatusProducer;
+    private TipoStatusProduction tipoStatusProduction;
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -77,7 +77,7 @@ public class Producer {
     }
     
     public TipoStatusProduction getTipoStatusProducer() {
-        return tipoStatusProducer;
+        return tipoStatusProduction;
     }
 
     // Construtor privado, acessível apenas pelo Builder
@@ -126,8 +126,8 @@ public class Producer {
             return this;
         }
 
-        public Builder tipoStatusProducer(TipoStatusProduction tipoStatusProducer){
-            this.producer.tipoStatusProducer = tipoStatusProducer;
+        public Builder tipoStatusProduction(TipoStatusProduction tipoStatusProduction){
+            this.producer.tipoStatusProduction = tipoStatusProduction;
             return this;
         }
 

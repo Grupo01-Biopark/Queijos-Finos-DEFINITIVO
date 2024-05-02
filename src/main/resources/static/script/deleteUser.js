@@ -1,13 +1,24 @@
 document.querySelectorAll('.delete-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const userId = this.getAttribute('data-id');
-        deleteUser(userId);
+    button.addEventListener('click', () => {
+        const userId = button.getAttribute('data-id');
+        const alertPopupDelet = document.querySelector(".popupAlertDelet");
+        const sectionPopup = document.querySelector(".sectionPopup");
+
+        sectionPopup.style.display = "block";
+        alertPopupDelet.style.display = "block";
+
+        document.getElementById("buttonPopupAlertDelet").addEventListener("click", () => {
+            alertPopupDelet.style.display = "none";
+            sectionPopup.style.display = "none";
+            deleteUser(userId);
+        });
+        
     });
 });
 
-function deleteUser(userId) {
 
-    if (confirm("Tem certeza de que deseja excluir este usuário?")) {
+function deleteUser(userId) {
+    
         fetch('/users/' + userId, {
             method: 'DELETE'
         }).then(response => {
@@ -20,5 +31,4 @@ function deleteUser(userId) {
             console.error('Erro ao excluir o usuário:', error);
             alert('Erro ao excluir o usuário. Por favor, tente novamente mais tarde.');
         });
-    }
 }
