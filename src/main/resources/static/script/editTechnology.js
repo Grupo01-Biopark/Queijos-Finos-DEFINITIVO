@@ -1,24 +1,22 @@
-const buttonEdit = document.querySelectorAll("#buttonEdit");
+const editButtons = document.querySelectorAll(".editButton");
 
-buttonEdit.forEach((button) => {
-
+editButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const tableRowWithButton = button.closest("tr");
-        const technologyId = document.getElementById("technologyId").value;
         const technologyData = {
-            id: technologyId,
-            name: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
-
+            id: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
+            name: tableRowWithButton.querySelector("td:nth-child(2)").textContent
+           
         };
 
         fillFormWithTechnologyData(technologyData);
-        openForm(technologyData);
-    })
+        openFormEdit();
+    });
 });
 
 function fillFormWithTechnologyData(technologyData) {
+    const sectionForm = document.getElementById("sectionForm");
     const formInputs = sectionForm.querySelectorAll("input");
-
 
     formInputs.forEach(field => {
         const fieldName = field.name;
@@ -26,22 +24,18 @@ function fillFormWithTechnologyData(technologyData) {
             field.value = technologyData[fieldName];
         }
     });
-
-
 }
 
-function openForm(technologyData) {
+function openFormEdit() {
     const sectionForm = document.getElementById("sectionForm");
+    const buttonAdd = document.getElementById("buttonAdd");
     const titleForm = document.querySelector(".titleForm");
+    const formAction = sectionForm.querySelector("form");
 
-    titleForm.textContent = "Atualizar Tecnologia: " + technologyData.name;
-
-    const formElement = sectionForm.querySelector("form");
-    formElement.setAttribute("action", "/tecnologias/alterar");
-    formElement.setAttribute("method", "put");
+    formAction.setAttribute("method", "post");
+    formAction.setAttribute("action", "/technology/updateTechnology");
+    titleForm.textContent = "Atualizar Tecnologia";
 
     sectionForm.style.display = "block";
     buttonAdd.style.display = "none";
 }
-
-

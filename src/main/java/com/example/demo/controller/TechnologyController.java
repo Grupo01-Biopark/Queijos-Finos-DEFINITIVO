@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,16 +47,19 @@ public class TechnologyController {
         return new RedirectView("/tecnologias");
     }
 
-    @PutMapping("/tecnologias/alterar")
-    public RedirectView alterTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
+    @PostMapping("/technology/updateTechnology")
+    public RedirectView updateTechnology(@ModelAttribute("technology") Technology technology, RedirectAttributes attributes) {
+
         try {
-            technologyService.alterTechnology(technology);
-            attributes.addFlashAttribute("condition", "condition");
+            technologyService.updateTechnology(technology);
+            attributes.addFlashAttribute("condition", "true");
         } catch (DataIntegrityViolationException e) {
-            attributes.addFlashAttribute("mensagem", "Erro ao cadastrar tecnologia: " + e.getMessage());
+            attributes.addFlashAttribute("mensagem", "Email ja cadastardo no sistema "+e.getMessage());
         }
+
         return new RedirectView("/tecnologias");
     }
+    
 
 
     public List<Technology> getAllTechnologies() {
