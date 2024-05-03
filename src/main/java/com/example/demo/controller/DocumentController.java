@@ -26,11 +26,11 @@ public class DocumentController {
 
     @GetMapping("/Documentos")
     public ModelAndView iniciarTela() {
-        Document Document = new Document();
+        //Document Document = new Document();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("GerenciadorDocumentos");
-        modelAndView.addObject("Document", Document);
+       // modelAndView.addObject("Document", Document);
        // modelAndView.addObject("Document", getAllDocument());
 
         return modelAndView;
