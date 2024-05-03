@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="style/styleTechnology.css">
 
 </head>
-
 <body>
 
     <main class="gridContainerBody">
@@ -35,7 +34,6 @@
         </nav>
 
         <section class="sectionPrincipal flexContainercolum">
-
             <nav class="navBarHeader">
                 <ul class="navBarHeaderList">
                     <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
@@ -49,49 +47,49 @@
             </nav>
             <section id="sectionForm" class="sectionForms sectionList">
 
-            </section>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nome:</th>
-                            <th>Tipo de Documento:</th>
-                            <td>
-                                <select id="TipoDocumento" name="TipoDocumento">
-                                    <option value="option1">Contratos</option>
-                                    <option value="option2">Laudos Internos</option>
-                                    <option value="option3">Laudos Externos</option>
-                                    <option value="option4">Certificados</option>
-                                    <option value="option5">Documentos Gerais</option>
-                                </select>
-                            </td>
-                            <th>Data de Upload:</th>
-                            <td><input type="date" id="uploadDate" name="uploadDate"></td>
-                            <th>Data de Vencimento:</th>
-                            <td><input type="date" id="expiryDate" name="expiryDate"></td>
-                            <td>
-                            <section class="sectionList">
-
-                                    <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
-                                </section>
-                        </tr>                        
-
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nome</td>
-                            <td>19/04/2024</td>
-                            <td>19/04/2024</td>
-
-                            <td>
-                                <button><img src="images/icons/iconEdit.svg" alt="">
-                                    <button type="button" class="delete-btn">
-                                        <img src="images/icons/iconDelete.svg" alt="">
-                                    </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+                <section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome:</th>
+                    <th>Tipo de Documento:</th>
+                    <td>
+                        <select id="TipoDocumento" name="TipoDocumento">
+                            <option value="option1">Contratos</option>
+                            <option value="option2">Laudos Internos</option>
+                            <option value="option3">Laudos Externos</option>
+                            <option value="option4">Certificados</option>
+                            <option value="option5">Documentos Gerais</option>
+                        </select>
+                    </td>
+                    <th>Data de Upload:</th>
+                
+                    <th>Data de Vencimento:</th>
+                    <td>
+                        <section class="sectionList">
+                            <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
+                        </section>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vinicius Eduardo Agnes</td>
+                    <td>Certificados</td>
+                    <td>19/04/2024</td>
+                    <td>30/07/2024</td>
+                    <td>
+                        <button type="button">
+                            <img src="images/icons/iconEdit.svg" alt="Edit">
+                        </button>
+                        <button type="button" class="delete-btn">
+                            <img src="images/icons/iconDelete.svg" alt="Delete">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </body>
 
 </html>
