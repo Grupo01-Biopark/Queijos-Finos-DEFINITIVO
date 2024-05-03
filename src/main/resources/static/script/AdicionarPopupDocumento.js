@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const dataDeVencimento = document.getElementById('Data de Vencimento').value;
         const arquivoCarregado = document.getElementById('fileUpload').files[0];
 
-
         if (!nome || !dataDeUpload || !tipoDeDocumento || !dataDeVencimento || !arquivoCarregado) {
             alert('Por favor, preencha todos os campos e adicione um documento.');
             return;
@@ -20,6 +19,20 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Tipo de Documento:', tipoDeDocumento);
         console.log('Data de Vencimento:', dataDeVencimento);
         console.log('Documento:', arquivoCarregado.name);
+    });
 
+    const buttonAdd = document.getElementById('buttonAdd');
+    if (buttonAdd) {
+        buttonAdd.addEventListener('click', function(event) {
+            handleAddButtonClick(event);
         });
+    }
 });
+
+function handleAddButtonClick(event) {
+    event.preventDefault(); 
+
+    console.log('Botão Adicionar foi clicado');
+
+    window.location.href = 'popups/AddDocument.html';
+}
