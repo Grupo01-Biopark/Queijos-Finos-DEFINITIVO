@@ -1,5 +1,5 @@
 .sectionPrincipal{
-    width: 100%;
+    width: 0%;
     justify-content: flex-start; /* não remover */
 }
 
@@ -61,7 +61,7 @@
 }
 
 .formSelect{
-    justify-content: flex-start;
+    justify-content: space-around;
 }
 
 .formSelect select{
@@ -78,5 +78,5 @@
 }
 
 .formButtons button{
-    margin: 10px 0 10px 20px;
+    margin: 10px 10px 10px 20px;
 }
