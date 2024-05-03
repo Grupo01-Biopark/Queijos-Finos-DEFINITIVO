@@ -1,0 +1,37 @@
+<head>
+    <link rel="stylesheet" href="style/popups/stylePopups.css">
+</head>
+
+<section id="popup" class="sectionPopupSave">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Nome Completo">
+                <label for="Datadeupload">Data de upload:</label>
+                <input type="date" id="Datadeupload" name="Datadeupload">
+
+                <select name="Tipo de documento:" id="TipoDocumento">
+                    <option value="option1">Contratos 1</option>
+                    <option value="option2">Laudos Internos</option>
+                    <option value="option3">Laudos Externos</option>
+                    <option value="option2">Certificados</option>
+                    <option value="option3">Documentos Gerais</option>
+                </select>
+
+                <label for="Data de Vencimento">Data de Vencimento:</label>
+                <input type="date" id="Data de Vencimento" name="Data de Vencimento"><br><br>
+
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <label for="fileUpload">Adicionar Documentos:</label>
+                    <input type="file" id="fileUpload" name="document" required>
+                    <button type="submit">Adicionar</button>
+                </form>
+
+            </tr>
+
+        </thead>
+
+    <script src="script/AdicionarPopupDocumento.js"></script>
+</section>
