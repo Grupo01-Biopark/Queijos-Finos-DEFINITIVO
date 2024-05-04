@@ -42,23 +42,45 @@
 
 }
 
-.graphics{
+.graphic-container {
     display: flex;
-    display: inline-block;
     justify-content: space-between;
+    margin: 2rem; /* Ajuste conforme necessário */
+    text-align: center;
 }
 
-.productionStatus{
-    margin: 2rem;
+.txtgraph{
+ margin-bottom: 1rem;   
+ font-style: normal;
+ font-weight: 600;
+ color: black;
+}
+
+.graphic1{
     width: 30%;
     display: flex;
     display: inline-block;
 
 }
 
-.certificationsAchieveds{
+.graphic2{
     width: 60%;
     display: flex;
     display: inline-block;
 }
 
+.graphic-container2 {
+    margin: 4rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center;
+}
+
+.graphic3 {
+    width: 100%;
+    display: flex;
+    display: inline-block;
+    align-items: center;
+    justify-content: center; /* Centraliza horizontalmente */
+}
