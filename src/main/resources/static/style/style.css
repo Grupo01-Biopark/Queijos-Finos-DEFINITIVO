@@ -94,6 +94,8 @@
 
 /* configuracoes tabelas */
 
+
+
 .table{
     width: 100%;
     padding-top: 20px; 
@@ -118,6 +120,7 @@
     display: flex;
     align-items: center; 
     justify-content: flex-end; 
+    
 }
 
 select, input[type="date"] {

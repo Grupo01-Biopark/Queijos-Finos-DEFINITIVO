@@ -47,6 +47,7 @@ public class DocumentController {
         return new RedirectView("/Documentos");
     }
 
+
     public List<Document> getAllDocument() {
         List<Document> Document = documentService.getListDocument();
         return Document;
