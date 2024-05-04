@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.enums.TipoUserPermission;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +35,10 @@ public class User {
     @NotNull(message = "A permissão do usuário é obrigatória.")
     private TipoUserPermission tipoUserPermission;
 
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
@@ -111,6 +114,7 @@ public class User {
             return false;
         return true;
     }
+
 
 
 
