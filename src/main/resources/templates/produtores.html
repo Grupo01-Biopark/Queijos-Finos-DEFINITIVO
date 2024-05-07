@@ -24,7 +24,6 @@
 <!--<section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>-->
 
 <main class="gridContainerBody">
-
     <nav class="navBarLeft">
         <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
         <section class="listLinksNav">
@@ -68,6 +67,13 @@
                     <td th:text="${producer.nome}">Nome do Usuário</td>
                     <td th:text="${producer.email}">Email do Usuário</td>
                     <td th:text="${producer.cpf}">Permissão</td>
+                    <td>
+                        <a th:href="'/editProdutor/' + ${producer.id}">
+                            <button th:data-id="${producer.id}">
+                                edit
+                            </button>
+                        </a>
+                    </td>
                     <td>
                         <button id="buttonDelete" type="button" th:data-id="${producer.id}">
                             <img src="images/icons/iconDelete.svg" alt="">

@@ -20,10 +20,19 @@ public class Address {
     private String logradouro;
     private String cidade;
     private String uf;
+    private int numero;
 
     @ManyToOne
     @JoinColumn(name = "producer_id")
     private Producer producer;
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public Long getId() {
         return id;

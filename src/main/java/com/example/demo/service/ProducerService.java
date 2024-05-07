@@ -34,6 +34,14 @@ public class ProducerService {
         return producerRepository.save(producer);
     }
 
+    public Producer updateProducer(Producer producer) {
+        if (producer.getId() == null) {
+            throw new IllegalArgumentException("ID do produtor não pode ser nulo para atualização");
+        }
+
+        return producerRepository.save(producer);
+    }
+
     public List <Producer> getListProducers(){
         List<Producer> producers = producerRepository.findAll();
         return producers != null ? producers : Collections.emptyList();

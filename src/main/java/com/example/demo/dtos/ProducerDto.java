@@ -11,7 +11,7 @@ public class ProducerDto {
     private String telefone2;
     private String cep;
     private String logradouro;
-    private String numero;
+    private int numero;
     private String bairro;
     private String uf;
     private String cidade;
@@ -25,6 +25,15 @@ public class ProducerDto {
     private String sisbi;
     private String selo_arte;
     private String cif;
+    private String observacao;
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 
     public String getNome() {
         return nome;
@@ -90,11 +99,11 @@ public class ProducerDto {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
