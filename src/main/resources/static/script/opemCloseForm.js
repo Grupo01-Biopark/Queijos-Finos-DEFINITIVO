@@ -14,9 +14,16 @@ const formValuesTechnologies = {
     title: "Nova tecnologia"
 };
 
+const formValuesTransfers = {
+    action: "/transfer/register",
+    method: "post",
+    title: "Transferencia"
+}
+
 openFormButton.addEventListener("click", () => {  
     const page = openFormButton.getAttribute("data-page");
-    const formValues =  page === "technology" ? formValuesTechnologies : formValuesUsers;
+    const formValues =  page === "technology" ? formValuesTechnologies : 
+                       page === "transfer" ? formValuesTransfers : formValuesUsers;
     opemForm(formValues);
 });
 
