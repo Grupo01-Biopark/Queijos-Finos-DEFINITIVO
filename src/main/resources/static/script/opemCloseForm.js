@@ -2,29 +2,30 @@ const openFormButton = document.getElementById("buttonAdd");
 const closeFormButton = document.getElementById("buttonCancel");
 const sectionForm = document.getElementById("sectionForm");
 
-const formValuesUsers = {
-    action: "/users/register",
-    method: "post",
-    title: "Novo usuário"
+const formValues = {
+    technology: {
+        action: "/tecnologias/cadastrar",
+        method: "post",
+        title: "Nova tecnologia"
+    },
+    transfer: {
+        action: "/transfer/register",
+        method: "post",
+        title: "Transferencia"
+    },
+    user: {
+        action: "/users/register",
+        method: "post",
+        title: "Novo usuário"
+    }
+
 };
 
-const formValuesTechnologies = {
-    action: "/tecnologias/cadastrar",
-    method: "post",
-    title: "Nova tecnologia"
-};
-
-const formValuesTransfers = {
-    action: "/transfer/register",
-    method: "post",
-    title: "Transferencia"
-}
 
 openFormButton.addEventListener("click", () => {  
     const page = openFormButton.getAttribute("data-page");
-    const formValues =  page === "technology" ? formValuesTechnologies : 
-                       page === "transfer" ? formValuesTransfers : formValuesUsers;
-    opemForm(formValues);
+    const formValue = formValues[page] || formValues.user;
+    opemForm(formValue);
 });
 
 
