@@ -17,6 +17,12 @@
 </head>
 <body>
 
+    <section class="sectionPopup" >  
+        <section th:if="${condition}" th:insert= "popups/savePopup"></section>
+        <section th:insert = "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
+        <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
+    </section>
+
     <main class="gridContainerBody">
 
         <nav class="navBarLeft">
@@ -47,37 +53,71 @@
             </nav>
 
             <section id="sectionForm" class="sectionForms sectionList">
-                
+                <h4 class="titleForm"></h4>
 
-                <form th:object="${technology}">
+                <form th:object="${transfer}" id="transferForm">
 
                     <!-- <input type="number" name="id" th:field="*{id}" style="display: none;"> -->
 
                     <div class="topIpunts">
                         <label for="tecnologies">Tecnologia:</label>
-                        <input type="text" id="tecnologia" name="tecnologia" th:required="true">
+                        <select type="text" id="tecnologia" name="tecnologia" th:required="true">
+                            <option value="">Selecione uma tecnologia</option>
+                            <option th:each="technology : ${technologies}" th:value="${technology.id}" th:text="${technology.name}"></option>
+                        </select>
                         <label for="situacao">Situação:</label>
-                        <input type="text" id="situacao" name="situacao" th:required="true">
+                        <select type="text" id="situacao" name="situacao" th:required="true">
+                            <option value="situation1">Produzindo</option>
+                            <option value="situation2">Em complementação</option>
+                            <option value="situation3">Desistente</option>
+                        </select>
                     </div>
 
                     <div class="bottomInputs">
                         <label for="data_inicio">Data Início:</label>
-                        <input type="text" id="data_inicio" name="data_inicio" th:required="true">
+                        <input type="date" id="data_inicio" name="data_inicio" th:required="true" min="2024-01-01">
                         <label for="data_conclusao">Data Conclusão:</label>
-                        <input type="text" id="data_conclusao" name="data_conclusao" th:required="true">
-                        <label for="ultima_modificacao">Última Modificação:</label>
-                        <input type="text" id="ultima_modificacao" name="ultima_modificacao" th:required="true">
+                        <input type="date" id="data_conclusao" name="data_conclusao" th:required="true" min="2024-01-01">
                     </div>
                     
-                    
-
-
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
                                 alt="">Salvar</button>
                     </div>
                 </form>
+            </section>
+
+            <section class="sectionList">
+                <section class="flexContainerRowBetween sectionListHeader">
+                    <p>TECNOLOGIAS ATRIBUÍDAS AO PRODUTOR</p>
+                    <button id="buttonAdd" data-page = "transfer" class="buttons buttonAdd">&#43; Adicionar</button>
+                </section>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Situação</th>
+                            <th>Data Início</th>
+                            <th>Data Conclusão</th>
+                        </tr>
+                    
+                    </thead>
+                    <tbody>
+                        <tr th:each="entry : ${report}">
+                            <td th:text="${entry.key}" style="display: none;"></td> 
+                            <td th:each="innerEntry : ${entry.value}"><span th:text="${innerEntry.key}"></span></td>
+                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
+                            <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
+                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
+                            <td>
+                                <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""></button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
             </section>
 
             <script src="script/opemCloseForm.js"></script>
