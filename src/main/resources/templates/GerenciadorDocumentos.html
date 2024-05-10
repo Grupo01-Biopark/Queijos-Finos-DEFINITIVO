@@ -52,13 +52,12 @@
                     <li>Administrador</li>
                 </ul>
             </nav>
-            <section id="sectionForm" class="sectionForms sectionList"></section>
 
 
 
-            <section id="popup" class="sectionForm">
-                    <thead>
-                        <tr>
+
+        <section id="sectionForm" class="sectionForms sectionList sectionForm">
+            <form action="/upload" method="post" enctype="multipart/form-data"></form>
                             <label for="name">Documento:</label>
                             <input type="text" id="name" name="name" placeholder="Nome do Documento">
                             <label for="Datadeupload">Data de upload:</label>
@@ -73,27 +72,15 @@
                             </select>
                             <label for="Data de Vencimento">Data de Vencimento:</label>
                             <input type="date" id="Data de Vencimento" name="Data de Vencimento">
-                            <br>
-                            <br>
-            
-                            <form action="/upload" method="post" enctype="multipart/form-data">
                                 <label for="fileUpload">Adicionar Documentos:</label>
                                 <input type="file" id="fileUpload" name="document" required>
-
                                 <button id="buttonCancel" class="buttonCancel">Cancelar</button>
-                                <button id="buttonAdd" class="buttons buttonAdd">Adicionar</button>
+                                <button id="buttonAdd" class="buttons buttonAdd">Salvar</button>
                             </form>
-                        </tr>
-                    </thead>
-                </section>
+            </section>
 
 
 
-
-
-
-
-                <section>
         <table class="table">
             <thead>
                 <tr>
@@ -113,10 +100,7 @@
                     <th>Data de Upload:</th>
                     <th>Data de Vencimento:</th>
                     <td>
-                        <a href="popups/AddDocument.html">
-                            <button id="buttonAdd" class="buttons buttonAdd" onclick="handleAddButtonClick(event);">&#43; Adicionar</button>
-                        </a>
-                        
+                            <button id="buttonAdd" data-page = "Documentos" class="buttons buttonAdd" >&#43; Adicionar</button>
                     </td>
                 </tr>
             </thead>
@@ -145,7 +129,11 @@
             </tbody>
         </table>
     </section>
-        <script src="script/opemForm.js"></script>
-</body>
 
+
+
+        <script src="script/opemForm.js"></script>
+        <script src="script/opemCloseForm.js"></script>
+
+</body>
 </html>
