@@ -57,19 +57,17 @@
 
                 <form th:object="${transfer}" id="transferForm">
 
-                    <!-- <input type="number" name="id" th:field="*{id}" style="display: none;"> -->
-
                     <div class="topIpunts">
                         <label for="tecnologies">Tecnologia:</label>
                         <select type="text" id="tecnologia" name="tecnologia" th:required="true">
-                            <option value="">Selecione uma tecnologia</option>
+                            <option value="" th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'"></option>
                             <option th:each="technology : ${technologies}" th:value="${technology.id}" th:text="${technology.name}"></option>
                         </select>
                         <label for="situacao">Situação:</label>
                         <select type="text" id="situacao" name="situacao" th:required="true">
-                            <option value="situation1">Produzindo</option>
-                            <option value="situation2">Em complementação</option>
-                            <option value="situation3">Desistente</option>
+                            <option value="PRODUCING">Produzindo</option>
+                            <option value="COMPLEMENTATION">Em complementação</option>
+                            <option value="WITHDRAWAL">Desistente</option>
                         </select>
                     </div>
 
