@@ -94,8 +94,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="entry : ${report}">
-                            <td th:text="${entry.key}" style="display: none;"></td> 
-                            <td th:each="innerEntry : ${entry.value}"><span th:text="${innerEntry.key}"></span></td>
+                            <td th:text="${entry.key}" style="display: none;"></td> <!-- ID da tecnologia -->
+                            <td th:text="${entry.value['technologyName']}"></td> <!-- Nome da tecnologia -->
                             <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
                             <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
                             <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
@@ -103,8 +103,8 @@
                                 <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""></button>
                             </td>
                         </tr>
-                        
                     </tbody>
+                    
                 </table>
             </section>
 
