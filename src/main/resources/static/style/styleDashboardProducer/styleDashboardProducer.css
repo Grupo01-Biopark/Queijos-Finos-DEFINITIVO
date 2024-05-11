@@ -16,6 +16,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 .gridContainerBody{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -78,7 +82,7 @@
 }
 
 .graphic3 {
-    width: 100%;
+    width: 95%;
     display: flex;
     display: inline-block;
     align-items: center;
