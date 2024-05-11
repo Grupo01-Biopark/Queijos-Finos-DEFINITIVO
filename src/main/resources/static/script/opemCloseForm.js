@@ -17,8 +17,13 @@ const formValues = {
         action: "/users/register",
         method: "post",
         title: "Novo usuário"
+    },
+    
+    Document: {
+        action: "/Documentos/cadastrar",
+        method: "post",
+        title: "Novo Documento"
     }
-
 };
 
 

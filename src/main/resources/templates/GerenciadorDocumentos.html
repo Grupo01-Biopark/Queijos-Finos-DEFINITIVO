@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/AdicionarPopupDocumento">
     <link rel="stylesheet" href="style/popupAlertDelet">
-    <link rel="stylesheet" href="style/StyleAddDocument.css"
+    <link rel="stylesheet" href="style/StyleAddDocument.css">
 </head>
 
 
@@ -56,28 +56,35 @@
 
 
 
-        <section id="sectionForm" class="sectionForms sectionList sectionForm">
-            <form action="/upload" method="post" enctype="multipart/form-data"></form>
+        <section id="sectionForm" class="sectionForms sectionList" >
+            <h4 class="titleForm"></h4>
+            <form enctype="multipart/form-data">
                             <label for="name">Documento:</label>
                             <input type="text" id="name" name="name" placeholder="Nome do Documento">
                             <label for="Datadeupload">Data de upload:</label>
                             <input type="date" id="Datadeupload" name="Datadeupload">
             
-                            <select name="Tipo de documento:" id="TipoDocumento">
-                                <option value="option1">Contratos 1</option>
-                                <option value="option2">Laudos Internos</option>
-                                <option value="option3">Laudos Externos</option>
-                                <option value="option2">Certificados</option>
-                                <option value="option3">Documentos Gerais</option>
+                            <select id="TipoDocumento" name="TipoDocumento">
+                                <option value="" disabled selected>Selecione o tipo de documento</option>
+                                <option value="contratos">Contratos</option>
+                                <option value="laudos_internos">Laudos Internos</option>
+                                <option value="laudos_externos">Laudos Externos</option>
+                                <option value="certificados">Certificados</option>
+                                <option value="documentos_gerais">Documentos Gerais</option>
+                                <option value="outros">Outros</option>
                             </select>
+
                             <label for="Data de Vencimento">Data de Vencimento:</label>
                             <input type="date" id="Data de Vencimento" name="Data de Vencimento">
                                 <label for="fileUpload">Adicionar Documentos:</label>
                                 <input type="file" id="fileUpload" name="document" required>
-                                <button id="buttonCancel" class="buttonCancel">Cancelar</button>
-                                <button id="buttonAdd" class="buttons buttonAdd">Salvar</button>
+
+                                <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                                <button id="buttonSave" class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
+                                        alt="">Salvar</button>
                             </form>
             </section>
+
 
 
 
@@ -87,20 +94,19 @@
                     <th>Nome:</th>
                     <td>
                         <select id="TipoDocumento" name="TipoDocumento">
-                            <option value="option1">Documentos:</option>
-                            <option value="option2">Contratos</option>
-                            <option value="option3">Laudos Internos</option>
-                            <option value="option4">Laudos Externos</option>
-                            <option value="option5">Certificados</option>
-                            <option value="option6">Documentos Gerais</option>
-                            <option value="option7">Outros</option>
-
-                        </select>
+                            <option value="" disabled selected>Selecione o tipo de documento</option>
+                            <option value="contratos">Contratos</option>
+                            <option value="laudos_internos">Laudos Internos</option>
+                            <option value="laudos_externos">Laudos Externos</option>
+                            <option value="certificados">Certificados</option>
+                            <option value="documentos_gerais">Documentos Gerais</option>
+                            <option value="outros">Outros</option>
+                        </select>                        
                     </td>
                     <th>Data de Upload:</th>
                     <th>Data de Vencimento:</th>
                     <td>
-                            <button id="buttonAdd" data-page = "Documentos" class="buttons buttonAdd" >&#43; Adicionar</button>
+                      <button id="buttonAdd" data-page= "Document" class="buttons buttonAdd" >&#43; Adicionar</button>
                     </td>
                 </tr>
             </thead>
@@ -118,22 +124,21 @@
                             <img src="images/icons/iconEdit.svg" alt="Edit">
                         </button>
                     </a>
-  
-                        <a href="style/alertPopupDelet">
-                            <button type="button" class="delete-btn" th>
-                            <img src="images/icons/iconDelete.svg" alt="Delete">
-                        </button>
-                    </a>
+                            <button type="button" class="delete-btn" >
+                                <img src="images/icons/iconDelete.svg" alt=""></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+
+
+
+
     </section>
 
-
-
-        <script src="script/opemForm.js"></script>
         <script src="script/opemCloseForm.js"></script>
-
-</body>
+        <script src="script/deleteDocument.js"></script>
+    
+        </body>
 </html>
