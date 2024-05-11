@@ -20,8 +20,11 @@
 
 <body>
     
-    <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-    <section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>
+    <section class="sectionPopup" >  
+        <section th:if="${condition}" th:insert= "popups/savePopup"></section>
+        <section th:insert = "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
+        <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
+    </section>
 
     <main class="gridContainerBody">
         
@@ -32,7 +35,7 @@
                     <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
                     <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
                     <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
-                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                    <li class="listSelect"><img src="images/icons/configVetor.svg" alt="">Configurações</li>
                 </ul>
             </section>
         </nav>
@@ -53,9 +56,11 @@
 
             <section id="sectionForm" class="sectionForms sectionList">
 
-                <h4>novo usuário</h4>
+                <h4 class="titleForm">novo usuário</h4>
 
-                <form class="gridContainerForm" th:action="@{/cadastro/usuario}" th:object="${user}" method="post">
+                <form class="gridContainerForm"  th:object="${user}">
+                    
+                    <input id="id" name="id" th:field="*{id}" type="number" style="display: none;" value="1">
 
                     <div class="flexContainercolum">
 
@@ -130,11 +135,11 @@
                     </thead>
                     <tbody>
                         <tr th:each="user : ${users}">
-                            <td th:text="${user.nameUser}">Nome do Usuário</td>
-                            <td th:text="${user.email}">Email do Usuário</td>
-                            <td th:text="${user.tipoUserPermission}">Permissão</td>
-                            <td>
-                                <button><img src="images/icons/iconEdit.svg" alt="">
+                                <td th:text="${user.nameUser}">Nome do Usuário</td>
+                                <td th:text="${user.email}">Email do Usuário</td>
+                                <td th:text="${user.tipoUserPermission}">Permissão</td>
+                                <td>
+                                    <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""> </button>
                                     
                                     <button type="button" class="delete-btn" th:data-id='${user.id}'>
                                         <img src="images/icons/iconDelete.svg" alt="">
@@ -149,10 +154,11 @@
             </section>
             
         </main>
+        <script src="script/editUser.js"></script>
 
     
-    <script src="script/opemForm.js"></script>
-    <script src="script/validatePassword.js" ></script>
+    <script src="script/opemCloseForm.js"></script>
+    <!-- <script src="script/validatePassword.js" ></script> -->
     <script src="script/deleteUser.js">
 
         

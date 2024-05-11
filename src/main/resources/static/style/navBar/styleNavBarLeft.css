@@ -4,8 +4,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 1rem;
+    /* padding: 1rem; */
     border-right: 2px solid #000000;
+    
 }
 
 .logo {
@@ -19,15 +20,14 @@
 
 .listLinksNav {
     width: 100%;
+    
 }
 
 .listLinks li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
+    padding: 1rem;
     font-size: 1rem;
 }
 
@@ -35,3 +35,14 @@
     width: 2rem;
     padding-right: 10px;
 }
+
+.listSelect{
+    background-color: var(--backgroudNavBar);
+    color: white; 
+}
+
+.listSelect:hover{
+    cursor: pointer;
+} 
+
+

@@ -13,6 +13,7 @@
 
 .navBarHeader li img{
     padding-left: 20px;
+    cursor: pointer;
 }
 
 .navBarHeaderListLow{
