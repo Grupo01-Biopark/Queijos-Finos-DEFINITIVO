@@ -92,6 +92,13 @@
 
         <script src="../../script/DashboardProducer/graphicsDashboardProducer.js"></script>
 
+        <script th:inline="javascript">
+            
+            var counts = /*[[${counts}]]*/ [] ;
+            
+            console.log("Dados do controlador:", counts);
+        </script>
+
 </body>
 
 

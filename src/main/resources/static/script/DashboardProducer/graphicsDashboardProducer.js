@@ -1,15 +1,3 @@
-var statusCounts = /*[[${statusCounts}]]*/ {
-    producingCount: 0,
-    complementationCount: 0,
-    withdrawalCount: 0,
-    disconnectedCount: 0
-};
-
-var producingCount = statusCounts.producingCount || 0;
-var complementationCount = statusCounts.complementationCount || 0;
-var withdrawalCount = statusCounts.withdrawalCount || 0;
-var disconnectedCount = statusCounts.disconnectedCount || 0;
-
 const ProductionStatus = document.getElementById('graphicProductionStatus');
 
 const config1 = {
@@ -24,7 +12,7 @@ const config1 = {
 
       label: '',
 
-      data: [producingCount, complementationCount, withdrawalCount, disconnectedCount],
+      data: [counts], //n funciona tirar duvida com o gui 
 
       backgroundColor: [
 
