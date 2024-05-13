@@ -65,42 +65,31 @@ public class TechnologyService {
         technologyRepository.deleteById(technologyId);
     }
 
-    public Map<Long, Map<String, Map<String, Long>>> generateReportForAllTechnologies() {
+    public Map<Long, Map<String, Object>> generateReportForAllTechnologies() {
+       
         Query query = entityManager.createNativeQuery(
-                "SELECT t.id, t.name, tt.tipo_status_production, COUNT(*) " +
-                        "FROM tb_technology t " +
-                        "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
-                        "GROUP BY t.id, t.name, tt.tipo_status_production");
-
+            "SELECT t.id, t.name, tt.tipo_status_production, COUNT(*) " +
+                "FROM tb_technology t " +
+                "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
+                "GROUP BY t.id, t.name, tt.tipo_status_production"
+        );
+        
         List<Object[]> results = query.getResultList();
-
-        Map<Long, Map<String, Map<String, Long>>> report = new HashMap<>();
-        for (Object[] row : results) {
+        
+        Map<Long, Map<String, Object>> report = new HashMap<>();
+        results.forEach(row -> {
             Long technologyId = ((Number) row[0]).longValue();
-            String technologyName = (String) row[1]; 
+            String technologyName = (String) row[1];
             Byte statusByte = (Byte) row[2];
             TipoStatusProduction status = (statusByte != null) ? TipoStatusProduction.values()[statusByte] : null;
             String statusName = (status != null) ? status.name() : null;
-            Long count = ((Number) row[3]).longValue(); 
-
-            if (!report.containsKey(technologyId)) {
-                report.put(technologyId, new HashMap<>());
-            }
-            
-            if (!report.get(technologyId).containsKey(technologyName)) {
-                report.get(technologyId).put(technologyName, new HashMap<>());
-            }
-            report.get(technologyId).get(technologyName).put(statusName, count);
-        }
-
-        for (Map.Entry<Long, Map<String, Map<String, Long>>> entry : report.entrySet()) {
-            Long technologyId = entry.getKey();
-            for (Map.Entry<String, Map<String, Long>> innerEntry : entry.getValue().entrySet()) {
-                String technologyName = innerEntry.getKey();
-                System.out.println("ID: " + technologyId + ", Nome: " + technologyName);
-            }
-        }
-
+            Long count = ((Number) row[3]).longValue();
+        
+            report.computeIfAbsent(technologyId, id -> new HashMap<>())
+                    .put("technologyName", technologyName);
+            report.get(technologyId).put(statusName, count);
+        });
+        
         return report;
     }
 
