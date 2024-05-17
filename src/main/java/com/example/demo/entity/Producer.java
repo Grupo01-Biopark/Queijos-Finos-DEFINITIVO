@@ -1,13 +1,9 @@
 package com.example.demo.entity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.entity.enums.TipoStatusProducer;
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "tb_producer")
@@ -15,20 +11,20 @@ public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String observacao;
-    private String nome;
+    private String observation;
+    private String name;
     private String cpf;
     private String cnpj;
-    private String razaoSocial;
+    private String socialReason;
     private String email;
-    private String dataAssinatura;
-    private String dataVencimento;
-    private String situacao;
-    private String dataSituacao;
-    private String sim_poa;
+    private String signatureDate;
+    private String expirationDate;
+    private String status;
+    private String statusDate;
+    private String simPoa;
     private String susaf;
     private String sisbi;
-    private String selo_arte;
+    private String seloArte;
     private String cif;
 
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,20 +50,20 @@ public class Producer {
         this.id = id;
     }
 
-    public String getObservacao() {
-        return observacao;
+    public String getObservation() {
+        return observation;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpf() {
@@ -86,12 +82,12 @@ public class Producer {
         this.cnpj = cnpj;
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
+    public String getSocialReason() {
+        return socialReason;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public void setSocialReason(String corporateName) {
+        this.socialReason = corporateName;
     }
 
     public String getEmail() {
@@ -102,44 +98,44 @@ public class Producer {
         this.email = email;
     }
 
-    public String getDataAssinatura() {
-        return dataAssinatura;
+    public String getSignatureDate() {
+        return signatureDate;
     }
 
-    public void setDataAssinatura(String dataAssinatura) {
-        this.dataAssinatura = dataAssinatura;
+    public void setSignatureDate(String signatureDate) {
+        this.signatureDate = signatureDate;
     }
 
-    public String getDataVencimento() {
-        return dataVencimento;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
-    public String getSituacao() {
-        return situacao;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getDataSituacao() {
-        return dataSituacao;
+    public String getStatusDate() {
+        return statusDate;
     }
 
-    public void setDataSituacao(String dataSituacao) {
-        this.dataSituacao = dataSituacao;
+    public void setStatusDate(String statusDate) {
+        this.statusDate = statusDate;
     }
 
-    public String getSim_poa() {
-        return sim_poa;
+    public String getSimPoa() {
+        return simPoa;
     }
 
-    public void setSim_poa(String sim_poa) {
-        this.sim_poa = sim_poa;
+    public void setSimPoa(String simPoa) {
+        this.simPoa = simPoa;
     }
 
     public String getSusaf() {
@@ -158,12 +154,12 @@ public class Producer {
         this.sisbi = sisbi;
     }
 
-    public String getSelo_arte() {
-        return selo_arte;
+    public String getSeloArte() {
+        return seloArte;
     }
 
-    public void setSelo_arte(String selo_arte) {
-        this.selo_arte = selo_arte;
+    public void setSeloArte(String seloArte) {
+        this.seloArte = seloArte;
     }
 
     public String getCif() {

@@ -16,6 +16,7 @@ public class ProducerService {
 
     @Autowired
     private ProducerRepository producerRepository;
+
     @Autowired
     private AddressRepository addressRepository;
     @Autowired
@@ -46,4 +47,5 @@ public class ProducerService {
         List<Producer> producers = producerRepository.findAll();
         return producers != null ? producers : Collections.emptyList();
     }
+
 }

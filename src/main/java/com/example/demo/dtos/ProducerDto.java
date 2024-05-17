@@ -3,44 +3,44 @@ package com.example.demo.dtos;
 import java.util.Date;
 
 public class ProducerDto {
-    private String nome;
+    private String name;
     private String cpf;
-    private String telefone1;
+    private String phone1;
     private String cnpj;
-    private String razaoSocial;
-    private String telefone2;
+    private String socialReason;
+    private String phone2;
     private String cep;
-    private String logradouro;
-    private int numero;
-    private String bairro;
-    private String uf;
-    private String cidade;
+    private String street;
+    private int number;
+    private String neighborhood;
+    private String state;
+    private String city;
     private String email;
-    private String dataAssinatura;
-    private String dataVencimento;
-    private String situacao;
-    private String dataSituacao;
-    private String sim_poa;
+    private String signatureDate;
+    private String expirationDate;
+    private String status;
+    private String statusDate;
+    private String simPoa;
     private String susaf;
     private String sisbi;
-    private String selo_arte;
+    private String seloArte;
     private String cif;
-    private String observacao;
+    private String observation;
 
-    public String getObservacao() {
-        return observacao;
+    public String getObservation() {
+        return observation;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpf() {
@@ -51,12 +51,12 @@ public class ProducerDto {
         this.cpf = cpf;
     }
 
-    public String getTelefone1() {
-        return telefone1;
+    public String getPhone1() {
+        return phone1;
     }
 
-    public void setTelefone1(String telefone1) {
-        this.telefone1 = telefone1;
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
     }
 
     public String getCnpj() {
@@ -67,20 +67,20 @@ public class ProducerDto {
         this.cnpj = cnpj;
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
+    public String getSocialReason() {
+        return socialReason;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public void setSocialReason(String socialReason) {
+        this.socialReason = socialReason;
     }
 
-    public String getTelefone2() {
-        return telefone2;
+    public String getPhone2() {
+        return phone2;
     }
 
-    public void setTelefone2(String telefone2) {
-        this.telefone2 = telefone2;
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
     }
 
     public String getCep() {
@@ -91,52 +91,52 @@ public class ProducerDto {
         this.cep = cep;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getStreet() {
+        return street;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumber() {
+        return number;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
-    public String getUf() {
-        return uf;
+    public String getState() {
+        return state;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getDataAssinatura() {
-        return dataAssinatura;
+    public String getSignatureDate() {
+        return signatureDate;
     }
 
-    public void setDataAssinatura(String dataAssinatura) {
-        this.dataAssinatura = dataAssinatura;
+    public void setSignatureDate(String signatureDate) {
+        this.signatureDate = signatureDate;
     }
 
     public String getEmail() {
@@ -147,36 +147,36 @@ public class ProducerDto {
         this.email = email;
     }
 
-    public String getDataVencimento() {
-        return dataVencimento;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
-    public String getSituacao() {
-        return situacao;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getDataSituacao() {
-        return dataSituacao;
+    public String getStatusDate() {
+        return statusDate;
     }
 
-    public void setDataSituacao(String dataSituacao) {
-        this.dataSituacao = dataSituacao;
+    public void setStatusDate(String statusDate) {
+        this.statusDate = statusDate;
     }
 
-    public String getSim_poa() {
-        return sim_poa;
+    public String getSimPoa() {
+        return simPoa;
     }
 
-    public void setSim_poa(String sim_poa) {
-        this.sim_poa = sim_poa;
+    public void setSimPoa(String simPoa) {
+        this.simPoa = simPoa;
     }
 
     public String getSusaf() {
@@ -195,12 +195,12 @@ public class ProducerDto {
         this.sisbi = sisbi;
     }
 
-    public String getSelo_arte() {
-        return selo_arte;
+    public String getSeloArte() {
+        return seloArte;
     }
 
-    public void setSelo_arte(String selo_arte) {
-        this.selo_arte = selo_arte;
+    public void setSeloArte(String seloArte) {
+        this.seloArte = seloArte;
     }
 
     public String getCif() {
@@ -209,33 +209,5 @@ public class ProducerDto {
 
     public void setCif(String cif) {
         this.cif = cif;
-    }
-
-    @Override
-    public String toString() {
-        return "ProducerDto{" +
-                "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", telefone1='" + telefone1 + '\'' +
-                ", cnpj='" + cnpj + '\'' +
-                ", razaoSocial='" + razaoSocial + '\'' +
-                ", telefone2='" + telefone2 + '\'' +
-                ", cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", uf='" + uf + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", email='" + email + '\'' +
-                ", dataAssinatura=" + dataAssinatura +
-                ", dataVencimento=" + dataVencimento +
-                ", situacao='" + situacao + '\'' +
-                ", dataSituacao=" + dataSituacao +
-                ", sim_poa=" + sim_poa +
-                ", susaf=" + susaf +
-                ", sisbi=" + sisbi +
-                ", selo_arte=" + selo_arte +
-                ", cif=" + cif +
-                '}';
     }
 }

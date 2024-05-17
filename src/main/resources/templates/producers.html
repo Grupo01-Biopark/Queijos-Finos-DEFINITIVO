@@ -49,37 +49,64 @@
                 <li>administrador</li>
             </ul>
         </nav>
+        <section id="sectionForm" class="sectionForms sectionList">
+
+            <h4 class="titleForm">Buscar por:</h4>
+
+<!--            <form th:action="@{/filtro-produtores}" method="GET">-->
+<!--                <label for="nomeProdutor">Nome do Produtor:</label>-->
+<!--                <input type="text" id="nomeProdutor" name="nomeProdutor">-->
+
+<!--                <label for="statusProducao">Status de Produção:</label>-->
+<!--                <select id="statusProducao" name="statusProducao">-->
+<!--                    <option value="">Selecione...</option>-->
+<!--                    <option value="PRODUCING">PRODUCING</option>-->
+<!--                    <option value="COMPLEMENTATION">COMPLEMENTATION</option>-->
+<!--                </select>-->
+
+<!--                <label for="cidade">Cidade:</label>-->
+<!--                <input type="text" id="cidade" name="cidade">-->
+
+<!--                <label for="certificacoes">Certificações:</label>-->
+<!--                <input type="text" id="certificacoes" name="certificacoes">-->
+
+<!--                <button type="submit">Filtrar</button>-->
+<!--            </form>-->
+
+        </section>
         <section class="sectionList">
             <section class="flexContainerRowBetween sectionListHeader">
                 <p>Produtores</p>
-                <a href="/formularioProdutor"><button class="buttons buttonAdd">&#43; Adicionar</button></a>
+                <a href="/formProducer"><button class="buttons buttonAdd">&#43; Adicionar</button></a>
             </section>
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Nome</th>
-                    <th>Email</th>
-                    <th>Permissão</th>
+                    <th>Prazo</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="producer : ${producers}">
-                    <td th:text="${producer.nome}">Nome do Usuário</td>
-                    <td th:text="${producer.email}">Email do Usuário</td>
-                    <td th:text="${producer.cpf}">Permissão</td>
-                    <td>
-                        <a th:href="'/editProdutor/' + ${producer.id}">
-                            <button th:data-id="${producer.id}">
-                                edit
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <button id="buttonDelete" type="button" th:data-id="${producer.id}">
-                            <img src="images/icons/iconDelete.svg" alt="">
-                        </button>
-                    </td>
-                </tr>
+                    <tr class="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
+                        <td th:text="${producer.id}">Id do produtor</td>
+                        <td th:text="${producer.name}">Nome do Usuário</td>
+                        <td th:text="${producer.email}">Email do Usuário</td>
+                        <td th:text="${producer.cpf}">Permissão</td>
+                    </tr>
+<!--                        <td>-->
+<!--                            <a th:href="'/editProdutor/' + ${producer.id}">-->
+<!--                                <button th:data-id="${producer.id}">-->
+<!--                                    edit-->
+<!--                                </button>-->
+<!--                            </a>-->
+<!--                        </td>-->
+<!--                    <td>-->
+<!--                        <button id="buttonDelete" type="button" th:data-id="${producer.id}">-->
+<!--                            <img src="images/icons/iconDelete.svg" alt="">-->
+<!--                        </button>-->
+<!--                    </td>-->
                 </tbody>
             </table>
 
@@ -89,6 +116,14 @@
 
 </main>
 <script>
+    const linhaProdutor = document.querySelectorAll(".linhaProdutor").forEach(produtor => {
+        produtor.addEventListener("click", ()=>{
+            const producerId = produtor.getAttribute('data-id');
+            console.log(producerId)
+            window.location.replace("editProducer/"+ producerId)
+        })
+    })
+
     const buttonDelete = document.querySelectorAll("#buttonDelete").forEach(botao => {
         botao.addEventListener("click", () => {
             const producerId = botao.getAttribute('data-id');

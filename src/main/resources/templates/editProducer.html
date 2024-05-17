@@ -23,7 +23,7 @@
         <section class="listLinksNav">
             <ul class="listLinks">
                 <li><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
-                <li><a href="/produtores"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</a></li>
+                <li><a href="/producers"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</a></li>
                 <li><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
                 <li><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
             </ul>
@@ -31,6 +31,19 @@
     </nav>
 
     <section class="sectionPrincipal flexContainercolum">
+        <div>
+            <div>
+                <a href="/editProdutor/${producer.id}">
+                    dados gerais
+                </a>
+                <a href="/documentos/${producer.id}">
+                    botao2
+                </a>
+                <button>
+                    botao3
+                </button>
+            </div>
+        </div>
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
                 <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações}"></li>
@@ -42,20 +55,20 @@
                 <li>administrador</li>
             </ul>
         </nav>
-        <form th:action="@{/editProdutor/atualizar/{producerId}(producerId=${producer.id})}" th:object="${producerDto}" method="post" style="display:flex; flex-direction: column; gap: 20px; width: 94%; heigth: 1000px; margin-x: 10px;">
+        <form th:action="@{/editProducer/update/{producerId}(producerId=${producer.id})}" th:object="${producerDto}" method="post" style="display:flex; flex-direction: column; gap: 20px; width: 94%; height: 1000px; margin-x: 10px;">
             <div style="gap: 20px; border: 2px solid black; display:flex; flex-direction: column; padding: 20px;">
                 <div class="campos-form" style="display:flex; width: 100%; justify-content: space-between; gap: 10px;">
                     <div>
-                        <label for="nome">Nome completo</label>
-                        <input th:value="${producerDto.nome}" style="width: 300px; padding: 5px; text-size: 12px" name="nome" id="nome">
+                        <label for="name">Nome completo</label>
+                        <input th:value="${producerDto.name}" style="width: 300px; padding: 5px; text-size: 12px" name="name" id="name">
                     </div>
                     <div>
                         <label for="cpf">CPF</label>
                         <input th:value="${producerDto.cpf}" style="padding: 3px" id="cpf" name="cpf">
                     </div>
                     <div>
-                        <label for="telefone1">Telefone 1</label>
-                        <input th:value="${producerDto.telefone1}" style="padding: 3px" id="telefone1" name="telefone1">
+                        <label for="phone1">Telefone 1</label>
+                        <input th:value="${producerDto.phone1}" style="padding: 3px" id="phone1" name="phone1">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
@@ -64,12 +77,12 @@
                         <input th:value="${producerDto.cnpj}" style="padding: 3px" id="cnpj" name="cnpj">
                     </div>
                     <div>
-                        <label for="razaoSocial">Razao Social</label>
-                        <input th:value="${producerDto.razaoSocial}" style="padding: 3px" id="razaoSocial" name="razaoSocial" >
+                        <label for="socialReason">Razao Social</label>
+                        <input th:value="${producerDto.socialReason}" style="padding: 3px" id="socialReason" name="socialReason" >
                     </div>
                     <div>
-                        <label for="telefone2">Telefone 2</label>
-                        <input th:value="${producerDto.telefone2}" style="padding: 3px" id="telefone2" name="telefone2">
+                        <label for="phone2">Telefone 2</label>
+                        <input th:value="${producerDto.phone2}" style="padding: 3px" id="phone2" name="phone2">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
@@ -78,30 +91,30 @@
                         <input th:value="${producerDto.cep}" style="padding: 3px" id="cep"  name="cep" >
                     </div>
                     <div>
-                        <label for="logradouro">Logradouro</label>
-                        <input th:value="${producerDto.logradouro}" style="padding: 3px" id="logradouro"  name="logradouro" >
+                        <label for="street">Logradouro</label>
+                        <input th:value="${producerDto.street}" style="padding: 3px" id="street"  name="street" >
                     </div>
                     <div>
-                        <label for="numero">Numero</label>
-                        <input th:value="${producerDto.numero}" style="padding: 3px" id="numero" name="numero">
+                        <label for="number">Numero</label>
+                        <input th:value="${producerDto.number}" style="padding: 3px" id="number" name="number">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
                     <div>
-                        <label for="bairro">Vila/Bairro</label>
-                        <input th:value="${producerDto.bairro}" style="padding: 3px" id="bairro" name="bairro">
+                        <label for="neighborhood">Vila/Bairro</label>
+                        <input th:value="${producerDto.neighborhood}" style="padding: 3px" id="neighborhood" name="neighborhood">
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input th:value="${producerDto.email}" style="padding: 3px" id="email" name="email">
+                        <input th:value="${producerDto.email}" style="padding: 3px; width:100%;" id="email" name="email">
                     </div>
                     <div>
-                        <label for="uf">UF</label>
-                        <input th:value="${producerDto.uf}" style="padding: 3px" id="uf" name="uf">
+                        <label for="state">UF</label>
+                        <input th:value="${producerDto.state}" style="padding: 3px; width: 30%;" id="state" name="state">
                     </div>
                     <div>
-                        <label for="cidade">Cidade</label>
-                        <input th:value="${producerDto.cidade}" style="padding: 3px" id="cidade" name="cidade">
+                        <label for="city">Cidade</label>
+                        <input th:value="${producerDto.city}" style="padding: 3px" id="city" name="city">
                     </div>
                 </div>
             </div>
@@ -109,58 +122,59 @@
                 <div style="display:flex; width: 29%; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
                     <h3>Certificações</h3>
                     <div style="display:flex;justify-content: space-between; ">
-                        <label for="sim/poa">SIM/POA</label>
-                        <input th:value="${producerDto.sim_poa}" id="sim/poa" name="sim_poa" type="date">
+                        <label for="simPoa">SIM/POA</label>
+                        <input th:value="${producerDto.simPoa}" id="simPoa" name="simPoa" type="date">
                     </div>
                     <div style="display:flex;justify-content: space-between; ">
-                        <label for="SUSAF">SUSAF</label>
-                        <input th:value="${producerDto.susaf}" id="SUSAF" name="susaf" type="date">
+                        <label for="susaf">SUSAF</label>
+                        <input th:value="${producerDto.susaf}" id="susaf" name="susaf" type="date">
                     </div>
                     <div style="display:flex;justify-content: space-between; ">
-                        <label for="SISBI">SISBI</label>
-                        <input th:value="${producerDto.sisbi}" id="SISBI" name="sisbi" type="date">
+                        <label for="sisbi">SISBI</label>
+                        <input th:value="${producerDto.sisbi}" id="sisbi" name="sisbi" type="date">
                     </div>
                     <div style="display:flex;justify-content: space-between; ">
-                        <label for="SELO ARTE">SELO ARTE</label>
-                        <input th:value="${producerDto.selo_arte}" id="SELO ARTE" name="selo_arte" type="date">
+                        <label for="seloArte">SELO ARTE</label>
+                        <input th:value="${producerDto.seloArte}" id="seloArte" name="seloArte" type="date">
                     </div>
                     <div style="display:flex;justify-content: space-between; ">
-                        <label for="CIF">SIM/POA</label>
-                        <input th:value="${producerDto.cif}" id="CIF" name="cif" type="date">
+                        <label for="cif">CIF</label>
+                        <input th:value="${producerDto.cif}" id="cif" name="cif" type="date">
                     </div>
                 </div>
                 <div style="width: 69%;">
                     <div style="display:flex; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
                         <h3>Informações sobre contrato</h3>
                         <div style="display:flex; justify-content: space-between;">
-                            <label for="dataAssinatura">Assinatura de Convenio de Cooperação Técnica</label>
-                            <input th:value="${producerDto.dataAssinatura}" id="dataAssinatura" name="dataAssinatura" type="date">
+                            <label for="signatureDate">Assinatura de Convenio de Cooperação Técnica</label>
+                            <input th:value="${producerDto.signatureDate}" id="signatureDate" name="signatureDate" type="date">
                         </div>
                         <div style="display:flex; justify-content: space-between;">
-                            <label for="dataVencimento">Vencimento de contrato</label>
-                            <input th:value="${producerDto.dataVencimento}" id="dataVencimento" name="dataVencimento" type="date">
+                            <label for="expirationDate">Vencimento de contrato</label>
+                            <input th:value="${producerDto.expirationDate}" id="expirationDate" name="expirationDate" type="date">
                         </div >
                         <div style="display:flex;justify-content: space-between; ">
-                            <label for="situacao">Situação no projeto</label>
-                            <select th:value="${producerDto.situacao}" id="situacao" name="situacao" style="width: 122px">
+                            <label for="status">Situação no projeto</label>
+                            <select th:value="${producerDto.status}" id="status" name="status" style="width: 122px">
                                 <option id="Ativo">Ativo</option>
                                 <option id="Ativo em complementação">Ativo em complementação</option>
                                 <option id="Desistente">Desistente</option>
                             </select>
                         </div>
                         <div style="display:flex; justify-content: space-between;">
-                            <label for="dataSituacao">Data Situação</label>
-                            <input th:value="${producerDto.dataSituacao}" id="dataSituacao" name="dataSituacao" type="date">
+                            <label for="statusDate">Data Situação</label>
+                            <input th:value="${producerDto.statusDate}" id="statusDate" name="statusDate" type="date">
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="border: 2px solid black; display: flex; flex-direction: column; heigth: 700px;">
-                <p>teste</p>
+            <div style="border: 2px solid black; display: flex; flex-direction: column;">
                 <h3>Observaçãooooo</h3>
-                <input th:value="${producerDto.observacao}" id="observacao" name="observacao">
+                <input th:value="${producerDto.observation}" id="observation" name="observation"/>
             </div>
-            <a href="/produtores"><button type="submit">Submit</button></a>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
         </form>
     </section>
 </main>

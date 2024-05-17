@@ -16,22 +16,22 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cep;
-    private String bairro;
-    private String logradouro;
-    private String cidade;
-    private String uf;
-    private int numero;
+    private String neighborhood;
+    private String street;
+    private String city;
+    private String state;
+    private int number;
 
     @ManyToOne
     @JoinColumn(name = "producer_id")
     private Producer producer;
 
-    public int getNumero() {
-        return numero;
+    public int getNumber() {
+        return number;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public Long getId() {
@@ -50,36 +50,36 @@ public class Address {
         this.cep = cep;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getStreet() {
+        return street;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getUf() {
-        return uf;
+    public String getState() {
+        return state;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Producer getProducer() {

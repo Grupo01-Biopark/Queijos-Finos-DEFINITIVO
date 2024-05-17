@@ -37,8 +37,7 @@ public class Technology {
 	public void setObservation(String observation) {
 		this.observation = observation;	
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name, observation);
