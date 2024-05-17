@@ -21,7 +21,7 @@ public class Document {
 	private String title;
 	private String file;
 	private Date date;
-	private String dateSystem;
+	private Date dateSystem;
 	private String category; // Altere de Long para String
 
 	@ManyToOne
@@ -62,13 +62,13 @@ public class Document {
 		this.date = date;
 	}
 
-	public String getDateSystem() {
+	public Date getDateSystem() {
 		return dateSystem;
 	}
 
-	public void setDateSystem(String dateSystem) {
-		this.dateSystem = dateSystem;
-	}
+    public void setDateSystem(Date dateSystem) {
+        this.dateSystem = dateSystem;
+    }
 
 	public String getCategory() {
 		return category;

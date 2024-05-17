@@ -6,10 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import java.sql.Date;
 
 import com.example.demo.entity.Document;
 import com.example.demo.service.DocumentService;
@@ -43,22 +46,48 @@ public class DocumentController {
         return modelAndView;
     }
 
+
     @PostMapping("/Documentos/cadastrar")
     public RedirectView createDocument(@RequestParam("category") String category,
                                        @RequestParam("file") MultipartFile file,
                                        @RequestParam("title") String title,
+                                       @RequestParam("date") 
+                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date date,
+                                       @RequestParam("dateSystem") 
+                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date dateSystem,
                                        RedirectAttributes attributes) {
         Document document = new Document();
         document.setCategory(category);
         document.setTitle(title);
-
+    
+        // Log the received dates
+        logger.info("Received date: {}", date);
+        logger.info("Received dateSystem: {}", dateSystem);
+    
+        // Convert java.util.Date to java.sql.Date and set the dates
+        if (date != null) {
+            document.setDate(new Date(date.getTime()));
+        } else {
+            logger.warn("Date is null");
+            attributes.addFlashAttribute("mensagem", "A data não pode estar vazia");
+            return new RedirectView("/Documentos");
+        }
+    
+        if (dateSystem != null) {
+            document.setDateSystem(new Date(dateSystem.getTime()));
+        } else {
+            logger.warn("DateSystem is null");
+            attributes.addFlashAttribute("mensagem", "A data do sistema não pode estar vazia");
+            return new RedirectView("/Documentos");
+        }
+    
         try {
             String fileName = saveUploadedFile(file);
             document.setFile(fileName);
-
+    
             logger.info("Saving document: {}", document);
             documentService.createDocument(document);
-
+    
             attributes.addFlashAttribute("mensagem", "Documento adicionado com sucesso");
         } catch (DataIntegrityViolationException e) {
             logger.error("Data integrity violation: ", e);
@@ -70,7 +99,7 @@ public class DocumentController {
             logger.error("Unexpected error: ", e);
             attributes.addFlashAttribute("mensagem", "Erro inesperado: " + e.getMessage());
         }
-
+    
         return new RedirectView("/Documentos");
     }
 
@@ -139,4 +168,3 @@ public class DocumentController {
     }
 
 }
-    
