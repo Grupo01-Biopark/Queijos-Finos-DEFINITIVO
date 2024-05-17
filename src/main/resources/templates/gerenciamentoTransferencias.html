@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,25 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-        <title>Gerenciamento de Transferências</title>
+    <title>Gerenciamento de Transferências</title>
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/styleTransfer.css">
 </head>
+
 <body>
 
-    <section class="sectionPopup" >  
-        <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-        <section th:insert = "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
-        <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
+    <!-- SEÇÃO DE FUNCIONAMENTO DOS POPUPS -->
+
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
     </section>
+
+    <!-- SEÇÃO LEFTBAR -->
 
     <main class="gridContainerBody">
 
@@ -29,14 +35,17 @@
             <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
-                    <li class="listSelect"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</li>
-                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastro Tecnologias
+                    <li><img src="images/icons/Vector.svg" alt="Acessar Dashboard"> Dashboard</li>
+                    <li class="listSelect"><img src="images/icons/producerVetorWhite.svg" alt="Acessar Produtores">
+                        Produtores</li>
+                    <li><img src="images/icons/cheeseVetor.svg" alt="Acessar Tecnologias"> Cadastro Tecnologias
                     </li>
-                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                    <li><img src="images/icons/configVetor.svg" alt="Acessar Configurações">Configurações</li>
                 </ul>
             </section>
         </nav>
+
+        <!-- SEÇÃO NAVBAR -->
 
         <section class="sectionPrincipal flexContainercolum">
 
@@ -52,6 +61,8 @@
                 </ul>
             </nav>
 
+            <!-- SEÇÃO DO FORMULÁRIO PARA ASSOCIAR TECNOLOGIAS -->
+
             <section id="sectionForm" class="sectionForms sectionList">
                 <h4 class="titleForm"></h4>
 
@@ -59,12 +70,15 @@
 
                     <div class="topIpunts">
                         <label for="tecnologies">Tecnologia:</label>
-                        <select type="text" id="tecnologia" name="tecnologia" th:required="true">
-                            <option value="" th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'"></option>
-                            <option th:each="technology : ${technologies}" th:value="${technology.id}" th:text="${technology.name}"></option>
+                        <select th:field="*{technology}" id="tecnologia" name="tecnologia" th:required="true">
+                            <option value=""
+                                th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
+                            </option>
+                            <option th:each="technology : ${technologies}" th:value="${technology.id}"
+                                th:text="${technology.name}"></option>
                         </select>
                         <label for="situacao">Situação:</label>
-                        <select type="text" id="situacao" name="situacao" th:required="true">
+                        <select th:field="*{tipoStatusProduction}" id="situacao" name="situacao" th:required="true">
                             <option value="PRODUCING">Produzindo</option>
                             <option value="COMPLEMENTATION">Em complementação</option>
                             <option value="WITHDRAWAL">Desistente</option>
@@ -73,23 +87,27 @@
 
                     <div class="bottomInputs">
                         <label for="data_inicio">Data Início:</label>
-                        <input type="date" id="data_inicio" name="data_inicio" th:required="true" min="2024-01-01">
+                        <input type="date" th:field="*{startDate}" id="data_inicio" name="data_inicio"
+                            th:required="true" min="2024-01-01">
                         <label for="data_conclusao">Data Conclusão:</label>
-                        <input type="date" id="data_conclusao" name="data_conclusao" th:required="true" min="2024-01-01">
+                        <input type="date" th:field="*{completionDate}" id="data_conclusao" name="data_conclusao"
+                            th:required="true" min="2024-01-01">
                     </div>
-                    
+
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
-                                alt="">Salvar</button>
+                                alt="Salvar Transferência">Salvar</button>
                     </div>
                 </form>
             </section>
 
+            <!-- SEÇÃO PARA LISTAGEM DE TECNOLOGIAS ATRIBUIDAS AO PRODUTOR -->
+
             <section class="sectionList">
                 <section class="flexContainerRowBetween sectionListHeader">
                     <p>TECNOLOGIAS ATRIBUÍDAS AO PRODUTOR</p>
-                    <button id="buttonAdd" data-page = "transfer" class="buttons buttonAdd">&#43; Adicionar</button>
+                    <button id="buttonAdd" data-page="transfer" class="buttons buttonAdd">&#43; Adicionar</button>
                 </section>
 
                 <table class="table">
@@ -100,26 +118,30 @@
                             <th>Data Início</th>
                             <th>Data Conclusão</th>
                         </tr>
-                    
+
                     </thead>
                     <tbody>
-                        <tr th:each="entry : ${report}">
-                            <td th:text="${entry.key}" style="display: none;"></td> 
-                            <td th:each="innerEntry : ${entry.value}"><span th:text="${innerEntry.key}"></span></td>
-                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
-                            <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
-                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
+                        <tr th:each="transfer : ${transfers}">
+                            <td th:text="${transfer.technology.name}"></td>
+                            <td th:text="${transfer.tipoStatusProduction}"></td>
+                            <td th:text="${transfer.startDate}"></td>
+                            <td th:text="${transfer.completionDate}"></td>
                             <td>
-                                <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""></button>
+                                <button class="editButton"><img src="images/icons/iconEdit.svg"
+                                        alt="Botão de editar transferência"></button>
+                                <button type="button" class="delete-btn" th:data-id='${transfer.id}'>
+                                    <img src="images/icons/iconDelete.svg" alt="Botão de deletar transferência">
+                                </button>
                             </td>
                         </tr>
-                        
                     </tbody>
                 </table>
             </section>
 
+
             <script src="script/opemCloseForm.js"></script>
-            
-    
+
+
 </body>
+
 </html>
