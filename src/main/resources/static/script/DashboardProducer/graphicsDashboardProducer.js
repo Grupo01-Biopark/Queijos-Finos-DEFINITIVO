@@ -1,52 +1,40 @@
+/* var producingCount = producingCount 0;
+var complementationCount = complementationCount 0;
+var withdrawalCount = withdrawalCount 0;
+var disconnectedCount = disconnectedCount 0;
+
+console.log("Producing Count: ", producingCount);
+console.log("Complementation Count: ", complementationCount);
+console.log("Withdrawal Count: ", withdrawalCount);
+console.log("Disconnected Count: ", disconnectedCount);
+
 const ProductionStatus = document.getElementById('graphicProductionStatus');
 
 const config1 = {
-
-  type: 'doughnut',
-
-  data: {
-
-    labels: ['Ativos Produzindo', 'Ativos em complementação', 'Desistentes', 'Desligados'],
-
-    datasets: [{
-
-      label: '',
-
-      data: [counts], //n funciona tirar duvida com o gui 
-
-      backgroundColor: [
-
-        '#059bff',
-        '#ffc234',
-        '#ff4069',
-        '#9a9b98'
-
-      ],
-
-      hoverOffset: 4
-      
-    }]
-  },
-
-  options: {
-    plugins: {
-        legend: {
-            labels: {
-
-              font: {
-                family: 'Poppins', 
-                size: 16, 
-            },
-                
+    type: 'doughnut',
+    data: {
+        labels: ['Ativos Produzindo', 'Ativos em complementação', 'Desistentes', 'Desligados'],
+        datasets: [{
+            label: '',
+            data: [producingCount, complementationCount, withdrawalCount, disconnectedCount],
+            backgroundColor: ['#059bff', '#ffc234', '#ff4069', '#9a9b98'],
+            hoverOffset: 4
+        }]
+    },
+    options: { 
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: 'Poppins',
+                        size: 16,
+                    },
+                }
             }
         }
-    } 
-}
-
+    }
 };
-new Chart(ProductionStatus, config1);
-
-
+new Chart(ProductionStatus, config1); */
 
 const certificationsAchieveds = document.getElementById('graphicCertificationsAchieveds');
 
@@ -54,7 +42,7 @@ new Chart(certificationsAchieveds, {
 type: 'bar',
 
 data: {
-  labels: ['Não Possui', 'Sim/POA', 'SUSAF', 'SISBI', 'SELO ARTE', 'SIF'],
+  labels: ['Não Possui', 'Sim/POA', 'SUSAF', 'SISBI', 'SELO ARTE', 'SIF'], //avaliar com professor a barra não possui
   datasets: [{
       maxBarThickness: 100,
       label: ' ', // remover aparência da label

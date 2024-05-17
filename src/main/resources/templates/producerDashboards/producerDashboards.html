@@ -56,7 +56,8 @@
                     <h2 class="txtgraph">Status De Produção</h2>
 
                     <div class="productionStatus">
-                        <canvas id="graphicProductionStatus"></canvas>
+                        <canvas id="graphicProductionStatus" th:id="'graphicProductionStatus'"></canvas>
+
                     </div>
 
                 </div>
@@ -93,11 +94,47 @@
         <script src="../../script/DashboardProducer/graphicsDashboardProducer.js"></script>
 
         <script th:inline="javascript">
+            var producingCount = /*[[${producingCount}]]*/ 0;
+            var complementationCount = /*[[${complementationCount}]]*/ 0;
+            var withdrawalCount = /*[[${withdrawalCount}]]*/ 0;
+            var disconnectedCount = /*[[${disconnectedCount}]]*/ 0;
+        
+            console.log("Producing Count: ", producingCount);
+            console.log("Complementation Count: ", complementationCount);
+            console.log("Withdrawal Count: ", withdrawalCount);
+            console.log("Disconnected Count: ", disconnectedCount);
+        
+            const ProductionStatus = document.getElementById('graphicProductionStatus');
+        
+            const config1 = {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ativos Produzindo', 'Ativos em complementação', 'Desistentes', 'Desligados'],
+                    datasets: [{
+                        label: '',
+                        data: [producingCount, complementationCount, withdrawalCount, disconnectedCount],
+                        backgroundColor: ['#059bff', '#ffc234', '#ff4069', '#9a9b98'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'Poppins',
+                                    size: 16,
+                                },
+                            }
+                        }
+                    }
+                }
+            };
+            new Chart(ProductionStatus, config1);
+
             
-            var counts = /*[[${counts}]]*/ [] ;
-            
-            console.log("Dados do controlador:", counts);
         </script>
+        
 
 </body>
 

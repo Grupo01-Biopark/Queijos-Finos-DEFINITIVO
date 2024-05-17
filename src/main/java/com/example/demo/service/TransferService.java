@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entity.enums.TipoStatusProduction;
@@ -13,13 +11,21 @@ public class TransferService {
     @Autowired
     private TransferRepository transferRepository;
 
-    public List<Long> countAllTipoStatusProductions() {
-    List<Long> allCounts = new ArrayList<>();
-    allCounts.addAll(transferRepository.countAllByTipoStatusProduction(TipoStatusProduction.PRODUCING));
-    allCounts.addAll(transferRepository.countAllByTipoStatusProduction(TipoStatusProduction.COMPLEMENTATION));
-    allCounts.addAll(transferRepository.countAllByTipoStatusProduction(TipoStatusProduction.WITHDRAWAL));
-    allCounts.addAll(transferRepository.countAllByTipoStatusProduction(TipoStatusProduction.DISCONNECTED));
-    return allCounts;
+
+    public long countProducing() {
+        return transferRepository.countByTipoStatusProduction(TipoStatusProduction.PRODUCING);
+    }
+
+    public long countComplementation() {
+        return transferRepository.countByTipoStatusProduction(TipoStatusProduction.COMPLEMENTATION);
+    }
+
+    public long countWithdrawal() {
+        return transferRepository.countByTipoStatusProduction(TipoStatusProduction.WITHDRAWAL);
+    }
+
+    public long countDisconnected() {
+        return transferRepository.countByTipoStatusProduction(TipoStatusProduction.DISCONNECTED);
+    }
 }
 
-}
