@@ -1,6 +1,6 @@
 document.querySelectorAll('.delete-btn').forEach(button => {
     button.addEventListener('click', () => {
-        const userId = button.getAttribute('data-id');
+        const documentId = button.getAttribute('data-id');
         const alertPopupDelet = document.querySelector(".popupAlertDelet");
         const sectionPopup = document.querySelector(".sectionPopup");
 
@@ -10,25 +10,22 @@ document.querySelectorAll('.delete-btn').forEach(button => {
         document.getElementById("buttonPopupAlertDelet").addEventListener("click", () => {
             alertPopupDelet.style.display = "none";
             sectionPopup.style.display = "none";
-            deleteUser(userId);
+            deleteDocument(documentId);
         });
-        
     });
 });
 
-
-function deleteUser(userId) {
-    
-        fetch('/users/' + userId, {
-            method: 'DELETE'
-        }).then(response => {
-            if (response.ok) {
-                window.location.reload(); // Atualizar a página após a exclusão
-            } else {
-                alert('Falha ao excluir o usuário.');
-            }
-        }).catch(error => {
-            console.error('Erro ao excluir o usuário:', error);
-            alert('Erro ao excluir o usuário. Por favor, tente novamente mais tarde.');
-        });
+function deleteDocument(documentId) {
+    fetch('/Documentos/' + documentId, {
+        method: 'DELETE'
+    }).then(response => {
+        if (response.ok) {
+            window.location.reload(); // Atualizar a página após a exclusão
+        } else {
+            alert('Falha ao excluir o documento.');
+        }
+    }).catch(error => {
+        console.error('Erro ao excluir o documento:', error);
+        alert('Erro ao excluir o documento. Por favor, tente novamente mais tarde.');
+    });
 }
