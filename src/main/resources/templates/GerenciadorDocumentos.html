@@ -54,17 +54,25 @@
             </nav>
 
 
-
-
-        <section id="sectionForm" class="sectionForms sectionList" >
-            <h4 class="titleForm"></h4>
-            <form enctype="multipart/form-data">
-                            <label for="name">Documento:</label>
-                            <input type="text" id="name" name="name" placeholder="Nome do Documento">
-                            <label for="Datadeupload">Data de upload:</label>
-                            <input type="date" id="Datadeupload" name="Datadeupload">
             
-                            <select id="TipoDocumento" name="TipoDocumento">
+        <section id="sectionForm" class="sectionForms sectionList">
+            <h4 class="titleForm"></h4>
+                <form th:action="@{/Documentos/cadastrar}" th:object="${document}" enctype="multipart/form-data" method="post">
+
+                    <div class="row">
+                        <div class="row-element-25">
+                            <label for="title">Documento:</label>
+                            <input type="text" id="title" name="title" th:field="*{title}" placeholder="Nome do Documento" required>
+                        </div>
+
+                        <div class="row-element-25">
+                            <label for="dateSystem">Data de upload:</label>
+                            <input type="date" id="dateSystem" name="dateSystem" th:field="*{dateSystem}">
+                        </div>
+
+                        <div class="row-element-25">
+                            <label for="category">Tipo de Documento:</label>
+                            <select id="category" name="category" th:field="*{category}">
                                 <option value="" disabled selected>Selecione o tipo de documento</option>
                                 <option value="contratos">Contratos</option>
                                 <option value="laudos_internos">Laudos Internos</option>
@@ -73,21 +81,24 @@
                                 <option value="documentos_gerais">Documentos Gerais</option>
                                 <option value="outros">Outros</option>
                             </select>
+                        </div>
 
-                            <label for="Data de Vencimento">Data de Vencimento:</label>
-                            <input type="date" id="Data de Vencimento" name="Data de Vencimento">
-                                <label for="fileUpload">Adicionar Documentos:</label>
-                                <input type="file" id="fileUpload" name="document" required>
+                        <div class="row-element-25">
+                            <label for="date">Data de Vencimento:</label>
+                            <input type="date" id="date" name="date" th:field="*{date}">
+                        </div>
 
-                                <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                                <button id="buttonSave" class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
-                                        alt="">Salvar</button>
-                            </form>
+                    </div>
+                    
+                    <label for="file">Adicionar Documentos:</label>
+                    <input type="file" id="file" th:field="*{file}"name="document" required>
+            
+                    <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                    <button id="buttonSave" class="buttons buttonSave" type="submit">Salvar</button>
+                </form>
             </section>
-
-
-
-
+            
+            
         <table class="table">
             <thead>
                 <tr>
@@ -112,11 +123,12 @@
             </thead>
             <tbody>
                 <tr>
-                    </td>
-                    <td>Laudos Fiscalização.PDF</td>
-                    <td>Certificados</td>
-                    <td>19/04/2024</td>
-                    <td>30/07/2024</td>
+                    <tr th:each="document : ${documents}">
+                        <td th:text="${document.title}"></td>
+                        <td th:text="${document.category}"></td>
+                        <td th:text="${document.dateSystem}"></td>
+                        <td th:text="${document.date}"></td>
+                        <td>
                     
                     <td>
                         <a href="style/">
@@ -130,10 +142,6 @@
                 </tr>
             </tbody>
         </table>
-
-
-
-
 
     </section>
 

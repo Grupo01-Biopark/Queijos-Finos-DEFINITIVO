@@ -7,6 +7,8 @@
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
 .sectionList{
@@ -16,6 +18,49 @@
     box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
 }
 
+.row{
+    display: flex;
+}
+
+.row-element-25{
+    padding: 0 5px;
+}
+
+.titleForm {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sectionForms form {
+    display: grid;
+    grid-gap: 5px; /* space between grid items */
+    align-items: start; /* Align items vertically */
+}
+
+.sectionForms label {
+    font-weight: bold;
+    margin-bottom: 1px;
+    display: block;
+}
+
+.sectionForms input[type="text"],
+.sectionForms input[type="date"],
+.sectionForms select {
+    flex: 1 1 40%; 
+    padding: 10px;
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sectionForms input[type="file"] {
+    width: 100%;
+    padding: 70px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
     .popupAdicionar{
         width: 25%;
         max-width: 500px;
@@ -32,7 +77,7 @@
     }
 
    .popupAdicionardiv{
-        justify-content: space-around;
+        justify-content: flex-end;
    }
 
    .popupAdicionarbutton{
@@ -60,7 +105,7 @@
     color: var(--backgroundBottonCancelHover);
 }
 
-.buttonCancel:hover{
+    .buttonCancel:hover{
     background-color: var(--backgroundBottonCancelHover);
     color: white;
 }

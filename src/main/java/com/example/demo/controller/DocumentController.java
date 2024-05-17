@@ -26,20 +26,16 @@ public class DocumentController {
 
     @GetMapping("/Documentos")
     public ModelAndView iniciarTela() {
-        //Document Document = new Document();
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("GerenciadorDocumentos");
-       // modelAndView.addObject("Document", Document);
-       // modelAndView.addObject("Document", getAllDocument());
-
+        ModelAndView modelAndView = new ModelAndView("GerenciadorDocumentos");
+        modelAndView.addObject("document", new Document());
+        modelAndView.addObject("documents", getAllDocuments());
         return modelAndView;
     }
 
     @PostMapping("/Documentos/cadastrar")
-    public RedirectView createDocument(@ModelAttribute("Document") Document Document, RedirectAttributes attributes) {
+    public RedirectView createDocument(@ModelAttribute("document") Document document, RedirectAttributes attributes) {
         try {
-            documentService.createDocument(Document);
+            documentService.createDocument(document);
             attributes.addFlashAttribute("mensagem", "Documento adicionado com sucesso");
         } catch (DataIntegrityViolationException e) {
             attributes.addFlashAttribute("mensagem", "Erro ao adicionar o documento: " + e.getMessage());
@@ -47,17 +43,14 @@ public class DocumentController {
         return new RedirectView("/Documentos");
     }
 
-
-    public List<Document> getAllDocument() {
-        List<Document> Document = documentService.getListDocument();
-        return Document;
-        
+    @GetMapping("/Documentos/lista")
+    public List<Document> getAllDocuments() {
+        return documentService.getListDocument();
     }
 
-    @DeleteMapping("/Document/{DocumentId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long DocumentID) {
-        documentService.deleteDocument(DocumentID);
+    @DeleteMapping("/Documentos/{documentId}")
+    public ResponseEntity<Void> deleteDocument(@PathVariable Long documentId) {
+        documentService.deleteDocument(documentId);
         return ResponseEntity.ok().build();
     }
-
 }
