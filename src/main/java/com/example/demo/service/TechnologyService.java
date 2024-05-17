@@ -16,6 +16,7 @@ import com.example.demo.entity.enums.TipoStatusProduction;
 import com.example.demo.repository.TechnologyRepository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Query;
 import jakarta.validation.Valid;
 
@@ -61,6 +62,17 @@ public class TechnologyService {
         return technologies != null ? technologies : Collections.emptyList();
     }
 
+ 
+    public void changeTechnologyStatus(Long id) {
+        
+        Technology technology = technologyRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Tecnologia não encontrada com ID: " + id));
+        
+        technology.setActiveItem(!technology.getActiveItem());
+
+        technologyRepository.save(technology);
+    }
+
     public void deleteTechnology(Long technologyId) {
         technologyRepository.deleteById(technologyId);
     }
@@ -71,6 +83,7 @@ public class TechnologyService {
             "SELECT t.id, t.name, tt.tipo_status_production, COUNT(*) " +
                 "FROM tb_technology t " +
                 "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
+                "WHERE t.active_item is true " +
                 "GROUP BY t.id, t.name, tt.tipo_status_production"
         );
         

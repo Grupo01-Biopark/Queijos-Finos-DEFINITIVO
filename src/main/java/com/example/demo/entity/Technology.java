@@ -20,7 +20,7 @@ public class Technology {
 	private Long id;
 	private String name;
 	private String observation;
-	private Boolean activeItem;
+	private Boolean activeItem = true; 
 
 	@OneToMany(mappedBy = "technology", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transfer> transfers = new ArrayList<>();
@@ -49,7 +49,6 @@ public class Technology {
 		this.observation = observation;
 	}
 
-	
 	public Boolean getActiveItem() {
 		return activeItem;
 	}
@@ -58,21 +57,16 @@ public class Technology {
 		this.activeItem = activeItem;
 	}
 
-
 	public void setTransfers(List<Transfer> transfers) {
 		this.transfers = transfers;
 	}
 
 	public List<Transfer> getTransfers() {
 		return transfers;
-	} 
-
-	
+	}
 
 	public Technology() {
 	}
-
-	
 
 	public Technology(Long id, String name, String observation, Boolean activeItem, List<Transfer> transfers) {
 		this.id = id;
