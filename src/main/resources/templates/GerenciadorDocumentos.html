@@ -74,12 +74,12 @@
                             <label for="category">Tipo de Documento:</label>
                             <select id="category" name="category" th:field="*{category}">
                                 <option value="" disabled selected>Selecione o tipo de documento</option>
-                                <option value="contratos">Contratos</option>
-                                <option value="laudos_internos">Laudos Internos</option>
-                                <option value="laudos_externos">Laudos Externos</option>
-                                <option value="certificados">Certificados</option>
-                                <option value="documentos_gerais">Documentos Gerais</option>
-                                <option value="outros">Outros</option>
+                                <option value="Contratos">Contratos</option>
+                                <option value="Laudos internos">Laudos Internos</option>
+                                <option value="Laudos Externos">Laudos Externos</option>
+                                <option value="Certificados">Certificados</option>
+                                <option value="Documentos Gerais">Documentos Gerais</option>
+                                <option value="Outros">Outros</option>
                             </select>
                         </div>
 
@@ -106,12 +106,12 @@
                     <td>
                         <select id="TipoDocumento" name="TipoDocumento">
                             <option value="" disabled selected>Selecione o tipo de documento</option>
-                            <option value="contratos">Contratos</option>
-                            <option value="laudos_internos">Laudos Internos</option>
-                            <option value="laudos_externos">Laudos Externos</option>
-                            <option value="certificados">Certificados</option>
-                            <option value="documentos_gerais">Documentos Gerais</option>
-                            <option value="outros">Outros</option>
+                            <option value="Contratos">Contratos</option>
+                            <option value="Laudos internos">Laudos Internos</option>
+                            <option value="Laudos Externos">Laudos Externos</option>
+                            <option value="Certificados">Certificados</option>
+                            <option value="Documentos Gerais">Documentos Gerais</option>
+                            <option value="Outros">Outros</option>
                         </select>                        
                     </td>
                     <th>Data de Upload:</th>
@@ -131,11 +131,6 @@
                         <td>
                     
                     <td>
-                        <a href="style/">
-                            <button type="button">
-                            <img src="images/icons/iconEdit.svg" alt="Edit">
-                        </button>
-                    </a>
                             <button type="button" class="delete-btn" th:data-id='${document.id}'>
                                 <img src="images/icons/iconDelete.svg" alt=""></button>
                     </td>

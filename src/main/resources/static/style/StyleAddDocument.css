@@ -9,6 +9,8 @@
     margin-right: 5px;
     flex-wrap: wrap; 
     gap: 10px; 
+    justify-content: flex-end;
+
 }
 
 .sectionList{
@@ -16,6 +18,8 @@
     margin-top: 20px;
     padding: 10px 20px 5px;
     box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+    justify-content: flex-end;
+
 }
 
 .row{
@@ -34,8 +38,8 @@
 
 .sectionForms form {
     display: grid;
-    grid-gap: 5px; /* space between grid items */
-    align-items: start; /* Align items vertically */
+    grid-gap: 5px; 
+    align-items: end;
 }
 
 .sectionForms label {
@@ -74,6 +78,7 @@
     .popupAdicionarp{
         padding-top: 20px;
         padding-bottom: 10px;
+        justify-content: flex-end;
     }
 
    .popupAdicionardiv{
@@ -103,9 +108,30 @@
    .buttonCancel{
     border: 2px solid var(--backgroundBottonCancelHover);
     color: var(--backgroundBottonCancelHover);
+    justify-content: flex-end;
+
 }
 
     .buttonCancel:hover{
     background-color: var(--backgroundBottonCancelHover);
     color: white;
+    justify-content: flex-end;
+}
+.buttonSave{
+    background-color: var(--backgroudBottonSave);
+    border: 2px solid var(--backgroudBottonSave);
+    justify-content: flex-end;
+
+
+}
+
+.buttonSave:hover{
+    background-color: var(--backgroudBottonSaveHover);
+    border: 2px solid var(--backgroudBottonSaveHover);
+    justify-content: flex-end;
+
+}
+
+.buttonSave img{
+    height: 1rem;
 }
