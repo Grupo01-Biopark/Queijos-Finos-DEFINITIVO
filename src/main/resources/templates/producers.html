@@ -83,6 +83,7 @@
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th></th>
                     <th>Nome</th>
                     <th>Prazo</th>
                     <th>Status</th>
@@ -91,7 +92,8 @@
                 <tbody>
                     <tr class="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
                         <td th:text="${producer.id}">Id do produtor</td>
-                        <td th:text="${producer.name}">Nome do Usuário</td>
+                        <td style="display: flex; justify-content: align-itens;"><img style="width: 60%; height: 60%;" src="images/icons/producerVetor.svg"></td>
+                        <td th:text="${producer.name}"> Nome do Usuário</td>
                         <td th:text="${producer.email}">Email do Usuário</td>
                         <td th:text="${producer.cpf}">Permissão</td>
                     </tr>
