@@ -67,7 +67,7 @@
                 <h4 class="titleForm"></h4>
 
                 <form th:object="${transfer}" id="transferForm">
-
+                    <input type="hidden" th:field="*{id}">
                     <div class="topIpunts">
                         <label for="tecnologies">Tecnologia:</label>
                         <select th:field="*{technology}" id="tecnologia" name="tecnologia" th:required="true">

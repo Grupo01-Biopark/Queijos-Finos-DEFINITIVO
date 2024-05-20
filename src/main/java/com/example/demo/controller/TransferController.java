@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +19,10 @@ public class TransferController {
     @Autowired
     TechnologyService technologyService;
 
+    @Autowired
+    private TransferService transferService;
+    
+
     @GetMapping("/transfer")
     public ModelAndView showscreen() {
     Transfer transfer = new Transfer();
@@ -26,16 +30,13 @@ public class TransferController {
     modelAndView.setViewName("gerenciamentoTransferencias");
     modelAndView.addObject("transfer", transfer);
     modelAndView.addObject("technologies", technologyService.getListTechnology());
-    modelAndView.addObject("transfers", transferService.getAllTransfers()); // Adicione esta linha
+    modelAndView.addObject("transfers", transferService.getAllTransfers()); 
     return modelAndView;
 }
     
 
-     @Autowired
-    private TransferService transferService;
-
     @PostMapping("/transfer/register")
-    public ModelAndView registerTransfer(@RequestBody Transfer transfer) {
+    public ModelAndView registerTransfer(@ModelAttribute Transfer transfer) {
         transferService.createTransfer(transfer);
         return new ModelAndView("redirect:/transfer");
     }
