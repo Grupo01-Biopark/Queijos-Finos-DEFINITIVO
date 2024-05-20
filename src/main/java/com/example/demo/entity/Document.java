@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity	
+@Entity
 @Table(name = "tb_document")
 public class Document {
 
@@ -21,12 +21,14 @@ public class Document {
 	private String title;
 	private String file;
 	private Date date;
-	private String dateSystem;
-	private Long category; //alterar para enum (criar enum)
-	
+	private Date dateSystem;
+	private String category; // Altere de Long para String
+
 	@ManyToOne
 	@JoinColumn(name = "producer_id")
 	private Producer producer;
+
+	// Getters e Setters
 
 	public Long getId() {
 		return id;
@@ -60,19 +62,19 @@ public class Document {
 		this.date = date;
 	}
 
-	public String getDateSystem() {
+	public Date getDateSystem() {
 		return dateSystem;
 	}
 
-	public void setDateSystem(String dateSystem) {
-		this.dateSystem = dateSystem;
-	}
+    public void setDateSystem(Date dateSystem) {
+        this.dateSystem = dateSystem;
+    }
 
-	public Long getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Long category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -103,6 +105,4 @@ public class Document {
 				&& Objects.equals(id, other.id) && Objects.equals(producer, other.producer)
 				&& Objects.equals(title, other.title);
 	}
-	
-	
 }

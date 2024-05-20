@@ -1,8 +1,8 @@
 package com.example.demo.entity.enums;
 
-public enum TipoStatusProducer {
+public enum TipoStatusProduction {
     PRODUCING, // PRODUZINDO
     COMPLEMENTATION, // ATIVO EM COMPLEMENTACAO
     WITHDRAWAL, // DESISTENTE
-    DISCONNECTED; // DESLLIGADO
+    DISCONNECTED; // DESLIGADO
 }
