@@ -8,6 +8,6 @@ import com.example.demo.entity.enums.TipoStatusProduction;
 @Repository
 public interface TransferRepository extends JpaRepository<Transfer, Long> {
 
-    long countByTipoStatusProduction(TipoStatusProduction tipoStatusProduction);
+    long countByTipoStatusProduction(TipoStatusProduction tipoStatusProduction); 
     
 }

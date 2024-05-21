@@ -1,40 +1,4 @@
-/* var producingCount = producingCount 0;
-var complementationCount = complementationCount 0;
-var withdrawalCount = withdrawalCount 0;
-var disconnectedCount = disconnectedCount 0;
 
-console.log("Producing Count: ", producingCount);
-console.log("Complementation Count: ", complementationCount);
-console.log("Withdrawal Count: ", withdrawalCount);
-console.log("Disconnected Count: ", disconnectedCount);
-
-const ProductionStatus = document.getElementById('graphicProductionStatus');
-
-const config1 = {
-    type: 'doughnut',
-    data: {
-        labels: ['Ativos Produzindo', 'Ativos em complementação', 'Desistentes', 'Desligados'],
-        datasets: [{
-            label: '',
-            data: [producingCount, complementationCount, withdrawalCount, disconnectedCount],
-            backgroundColor: ['#059bff', '#ffc234', '#ff4069', '#9a9b98'],
-            hoverOffset: 4
-        }]
-    },
-    options: { 
-        plugins: {
-            legend: {
-                labels: {
-                    font: {
-                        family: 'Poppins',
-                        size: 16,
-                    },
-                }
-            }
-        }
-    }
-};
-new Chart(ProductionStatus, config1); */
 
 const certificationsAchieveds = document.getElementById('graphicCertificationsAchieveds');
 
@@ -90,30 +54,38 @@ beginAtZero: true
 }
 });
 
-const technologies = document.getElementById('technologies');
+const scriptElement = document.querySelector('script[src="../../script/DashboardProducer/graphicsDashboardProducer.js"]');
+const myObjectData = JSON.parse(scriptElement.getAttribute('data-myobject'));
 
+const labels = Object.keys(myObjectData).map(techId => myObjectData[techId].technologyName);
+const produzindoData = Object.keys(myObjectData).map(techId => myObjectData[techId].count); // Aqui estamos acessando o valor 'count'
+const complementacaoData = Object.keys(myObjectData).map(techId => myObjectData[techId].count);
+const desistentesData = Object.keys(myObjectData).map(techId => myObjectData[techId].count); // Aqui também estamos acessando o valor 'count'
+
+
+// Configurar o gráfico com os dados extraídos
 new Chart(technologies, {
     type: 'bar',
     data: {
-        labels: ['Canastra', 'Minas', 'Brie', 'Cheddar', 'Gouda', 'Mussarela'],
+        labels: labels,
         datasets: [{
             label: 'Produzindo',
             backgroundColor: 'rgb(5, 155, 255, 0.6)',
             borderColor: 'rgb(5, 155, 255, 10)',
             borderWidth: 4,
-            data: [55, 77, 30, 25, 25, 3]
+            data: produzindoData
         }, {
             label: 'Em complementação',
             backgroundColor: 'rgb(255, 194, 52, 0.6)',
             borderColor: 'rgb(255, 194, 52)',
             borderWidth: 4,
-            data: [35, 50, 20, 15, 30, 5]
+            data: complementacaoData
         }, {
             label: 'Desistentes',
             backgroundColor: 'rgb(255, 64, 105, 0.6)',
             borderColor: 'rgb(255, 64, 105, 10)',
             borderWidth: 4,
-            data: [20, 30, 10, 10, 20, 2]
+            data: desistentesData
         }]
     },
     options: {
