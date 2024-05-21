@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,5 +106,15 @@ public class TechnologyService {
         }
     }
     
+    public TechnologyService(TechnologyRepository technologyRepository) {
+        this.technologyRepository = technologyRepository;
+    }
 
+     public List<String> getAllActiveTechnologyNames() {
+        List<Technology> activeTechnologies = technologyRepository.findAllByActiveItemTrue();
+        return activeTechnologies.stream()
+                .map(Technology::getName) // Extrai apenas o nome da tecnologia
+                .collect(Collectors.toList()); // Coleta os nomes em uma lista
+    }
+ 
 }

@@ -12,20 +12,37 @@ public class TransferService {
     private TransferRepository transferRepository;
 
 
-    public long countProducing() {
+    public long countStatusProducing() {
         return transferRepository.countByTipoStatusProduction(TipoStatusProduction.PRODUCING);
     }
 
-    public long countComplementation() {
+    public long countStatusComplementation() {
         return transferRepository.countByTipoStatusProduction(TipoStatusProduction.COMPLEMENTATION);
     }
 
-    public long countWithdrawal() {
+    public long countStatusWithdrawal() {
         return transferRepository.countByTipoStatusProduction(TipoStatusProduction.WITHDRAWAL);
     }
 
-    public long countDisconnected() {
+    public long countStatusDisconnected() {
         return transferRepository.countByTipoStatusProduction(TipoStatusProduction.DISCONNECTED);
+    }
+
+    
+    public long countProducingByTechnology(String technologyName) {
+        return transferRepository.countByTechnologyNameAndTipoStatusProduction(technologyName, TipoStatusProduction.PRODUCING);
+    }
+
+    public long countComplementationByTechnology(String technologyName) {
+        return transferRepository.countByTechnologyNameAndTipoStatusProduction(technologyName, TipoStatusProduction.COMPLEMENTATION);
+    }
+
+    public long countWithdrawalByTechnology(String technologyName) {
+        return transferRepository.countByTechnologyNameAndTipoStatusProduction(technologyName, TipoStatusProduction.WITHDRAWAL);
+    }
+
+    public long countDisconnectedByTechnology(String technologyName) {
+        return transferRepository.countByTechnologyNameAndTipoStatusProduction(technologyName, TipoStatusProduction.DISCONNECTED);
     }
 }
 
