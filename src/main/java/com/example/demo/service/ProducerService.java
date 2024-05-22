@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProducerService {
@@ -41,6 +42,13 @@ public class ProducerService {
         }
 
         return producerRepository.save(producer);
+    }
+
+    public List<Document> getListDocuments(Long producerId){
+        Optional<Producer> producer = producerRepository.findById(producerId);
+        System.out.println(producer);
+        List<Document> documents = producer.get().getDocuments();
+        return documents;
     }
 
     public List <Producer> getListProducers(){

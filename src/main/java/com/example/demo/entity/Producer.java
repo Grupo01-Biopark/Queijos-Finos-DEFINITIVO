@@ -33,6 +33,16 @@ public class Producer {
     private List<Certificate> certificates = new ArrayList<>();
     @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Address address = new Address();
+    @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Document> documents = new ArrayList<>();
+
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
 
     public Address getAddress() {
         return address;

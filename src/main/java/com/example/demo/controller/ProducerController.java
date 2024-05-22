@@ -116,7 +116,8 @@ public class ProducerController {
 
     @GetMapping("/editProducer/{producerId}")
     public ModelAndView editProducer(@PathVariable Long producerId){
-        Producer producer = producerRepository.findById(producerId).get();
+        Producer producer = producerRepository.findById(producerId)
+                .orElseThrow(() -> new NoSuchElementException("Producer not found with id: " + producerId));
         ProducerDto producerDto = new ProducerDto();
 
         producerDto.setName(producer.getName());

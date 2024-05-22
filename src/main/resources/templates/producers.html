@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body style="padding: 0px; margin: 0px;">
 
 <!--<section th:if="${condition}" th:insert= "popups/savePopup"></section>-->
 <!--<section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>-->
@@ -90,25 +90,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr class="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
+                    <tr id="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
                         <td th:text="${producer.id}">Id do produtor</td>
                         <td style="display: flex; justify-content: align-itens;"><img style="width: 60%; height: 60%;" src="images/icons/producerVetor.svg"></td>
                         <td th:text="${producer.name}"> Nome do Usuário</td>
                         <td th:text="${producer.email}">Email do Usuário</td>
                         <td th:text="${producer.cpf}">Permissão</td>
                     </tr>
-<!--                        <td>-->
-<!--                            <a th:href="'/editProdutor/' + ${producer.id}">-->
-<!--                                <button th:data-id="${producer.id}">-->
-<!--                                    edit-->
-<!--                                </button>-->
-<!--                            </a>-->
-<!--                        </td>-->
-<!--                    <td>-->
-<!--                        <button id="buttonDelete" type="button" th:data-id="${producer.id}">-->
-<!--                            <img src="images/icons/iconDelete.svg" alt="">-->
-<!--                        </button>-->
-<!--                    </td>-->
                 </tbody>
             </table>
 
@@ -118,7 +106,7 @@
 
 </main>
 <script>
-    const linhaProdutor = document.querySelectorAll(".linhaProdutor").forEach(produtor => {
+    const linhaProdutor = document.querySelectorAll("#linhaProdutor").forEach(produtor => {
         produtor.addEventListener("click", ()=>{
             const producerId = produtor.getAttribute('data-id');
             console.log(producerId)
@@ -158,7 +146,6 @@
 <script src="script/opemForm.js"></script>
 <script src="script/validatePassword.js"></script>
 <script src="script/deleteUser.js">
-
 
 </script>
 

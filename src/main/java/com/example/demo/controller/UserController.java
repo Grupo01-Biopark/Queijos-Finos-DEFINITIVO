@@ -32,7 +32,6 @@ public class UserController {
         this.userService = userService;
     }
 
-<<<<<<< HEAD
     @GetMapping("/cadastroUsuario")
     public ModelAndView seuMetodo() {
         User user = new User();
@@ -40,23 +39,11 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cadastroUsuario");
         modelAndView.addObject("user", user);
-=======
-   
-    @GetMapping("/users")
-    public ModelAndView viewUsersAndView() {
-        ModelAndView modelAndView = new ModelAndView("cadastroUsuario");
-        modelAndView.addObject("user", new User());
->>>>>>> origin/5-desenvolvimento-da-tela-de-gerenciamento-de-documentos-do-produtor
         modelAndView.addObject("users", getAllUsers());
         return modelAndView;
     }
-<<<<<<< HEAD
 
     @PostMapping("/cadastroUsuario/usuario")
-=======
-    
-    @PostMapping("/users/register")
->>>>>>> origin/5-desenvolvimento-da-tela-de-gerenciamento-de-documentos-do-produtor
     public RedirectView createUser(@ModelAttribute("user") User user, RedirectAttributes attributes) {
         try {
             userService.createUser(user);

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleProdutor.css">
 </head>
 
 <body>
@@ -60,57 +61,57 @@
                         <label for="name">Nome completo</label>
                         <input style="width: 300px; padding: 5px; text-size: 12px" name="name" id="name">
                     </div>
-                    <div>
+                    <div >
                         <label for="cpf">CPF</label>
                         <input style="padding: 3px" id="cpf" name="cpf">
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="phone1">Telefone 1</label>
                         <input style="padding: 3px" id="phone1" name="phone1">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div>
+                    <div style="text-align: center;">
                         <label for="cnpj">CNPJ</label>
                         <input style="padding: 3px" id="cnpj" name="cnpj">
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="socialReason">Razao Social</label>
                         <input style="padding: 3px" id="socialReason" name="socialReason" >
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="phone2">Telefone 2</label>
                         <input style="padding: 3px" id="phone2" name="phone2">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div>
+                    <div style="text-align: center;">
                         <label for="cep">CEP</label>
                         <input style="padding: 3px" id="cep"  name="cep" >
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="street">Logradouro</label>
                         <input style="padding: 3px" id="street"  name="street" >
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="number">Numero</label>
                         <input style="padding: 3px" id="number" name="number">
                     </div>
                 </div>
                 <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div>
+                    <div style="text-align: center;">
                         <label for="neighborhood">Vila/Bairro</label>
                         <input style="padding: 3px" id="neighborhood" name="neighborhood">
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="email">Email</label>
-                        <input style="padding: 3px; width: 100%;" id="email" name="email">
+                        <input style="padding: 3px; width: 85%;" id="email" name="email">
                     </div>
-                    <div style="width: 50%;">
+                    <div style="text-align: center;">
                         <label for="state">UF</label>
-                        <input style="padding: 3px;" id="state" name="state">
+                        <input style="padding: 3px; width: 60%;" id="state" name="state">
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                         <label for="city">Cidade</label>
                         <input style="padding: 3px" id="city" name="city">
                     </div>
@@ -119,23 +120,23 @@
             <div style="display:flex; justify-content: space-between; width: 100%;">
                 <div style="display:flex; width: 29%; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
                     <h3>Certificações</h3>
-                    <div style="display:flex;justify-content: space-between; ">
+                    <div style="display:flex;justify-content: space-between; text-align: center;">
                         <label for="sim/poa">SIM/POA</label>
                         <input id="sim/poa" name="simPoa" type="date">
                     </div>
-                    <div style="display:flex;justify-content: space-between; ">
+                    <div style="display:flex;justify-content: space-between; text-align: center;">
                         <label for="SUSAF">SUSAF</label>
                         <input id="SUSAF" name="susaf" type="date">
                     </div>
-                    <div style="display:flex;justify-content: space-between; ">
+                    <div style="display:flex;justify-content: space-between; text-align: center;">
                         <label for="SISBI">SISBI</label>
                         <input id="SISBI" name="sisbi" type="date">
                     </div>
-                    <div style="display:flex;justify-content: space-between; ">
+                    <div style="display:flex; justify-content: space-between; text-align: center;">
                         <label for="SELO ARTE">SELO ARTE</label>
                         <input id="SELO ARTE" name="seloArte" type="date">
                     </div>
-                    <div style="display:flex;justify-content: space-between; ">
+                    <div style="display:flex;justify-content: space-between; text-align: center;">
                         <label for="CIF">SIM/POA</label>
                         <input id="CIF" name="cif" type="date">
                     </div>
@@ -143,15 +144,15 @@
                 <div style="width: 69%;">
                     <div style="display:flex; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
                         <h3>Informações sobre contrato</h3>
-                        <div style="display:flex; justify-content: space-between;">
+                        <div style="text-align: center;display:flex; justify-content: space-between;">
                             <label for="dataAssinatura">Assinatura de Convenio de Cooperação Técnica</label>
                             <input id="dataAssinatura" name="signatureDate" type="date">
                         </div>
-                        <div style="display:flex; justify-content: space-between;">
+                        <div style="text-align: center; display:flex; justify-content: space-between;">
                             <label for="dataVencimento">Vencimento de contrato</label>
                             <input id="dataVencimento" name="expirationDate" type="date">
                         </div >
-                        <div style="display:flex;justify-content: space-between; ">
+                        <div style="text-align: center; display:flex;justify-content: space-between; ">
                             <label for="situacao">Situação no projeto</label>
                             <select id="situacao" name="status" style="width: 122px">
                                 <option>Ativo</option>
@@ -159,14 +160,14 @@
                                 <option>Desistente</option>
                             </select>
                         </div>
-                        <div style="display:flex; justify-content: space-between;">
+                        <div style="text-align: center; display:flex; justify-content: space-between;">
                             <label for="dataSituacao">Data Situação</label>
                             <input id="dataSituacao" name="statusDate" type="date">
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
+            <div style="text-align: center;">
                 <h3>Observação</h3>
                 <input style="width: 99%; heigth: 10%;" name="observation">
             </div>

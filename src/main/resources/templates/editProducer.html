@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/style/style.css}">
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleProdutor.css}">
 </head>
 
 <body>
@@ -33,14 +34,14 @@
     <section class="sectionPrincipal flexContainercolum">
         <div>
             <div>
-                <a href="/editProdutor/${producer.id}">
-                    dados gerais
-                </a>
-                <a href="/documentos/${producer.id}">
-                    botao2
-                </a>
-                <button>
-                    botao3
+                <button id="dadosButton" style="padding: 30px; border:2px solid black; background-color: gray;" >
+                    Dados
+                </button>
+                <button id="documentsButton" style="padding: 30px; border:2px solid black; background-color: gray;">
+                    Documentos
+                </button>
+                <button id="transferenceButton" style="padding: 30px; border:2px solid black; background-color: gray;">
+                    Transferencia
                 </button>
             </div>
         </div>
@@ -178,13 +179,37 @@
         </form>
     </section>
 </main>
+<script>
+    const pathname = window.location.pathname;
 
-<script src="script/opemForm.js"></script>
-<script src="script/validatePassword.js" ></script>
-<script src="script/deleteUser.js">
+    const pathnameSplit = pathname.split("/");
+    const id = pathnameSplit[2]
+
+    const redirectUrlDocuments = "/documents/" + id;
+    const redirectUrlTransference = "transferences/" + id;
+
+    const documentsButton = document.querySelector("#documentsButton");
+    console.log(documentsButton)
+    const transferenceButton = document.querySelector("#transferenceButton");
+
+    documentsButton.addEventListener("click", ()=> {
+        console.log("aaaaa")
+        window.location.replace(redirectUrlDocuments)
+    })
+
+    transferenceButton.addEventListener("click", ()=>{
+        window.location.replace(redirectUrlTransference)
+    })
+
+
 
 
 </script>
+
+<script src="script/opemForm.js"></script>
+<script src="script/validatePassword.js" ></script>
+<script src="script/deleteUser.js"></script>
+
 
 </body>
 

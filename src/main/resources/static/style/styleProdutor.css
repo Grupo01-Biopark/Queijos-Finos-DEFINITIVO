@@ -11,3 +11,12 @@
 .campos-form.input{
     padding: 10px;
 }
+
+.labelWithInput{
+    display: flex;
+    align-itens: center;
+}
+
+input{
+    border: 2px solid black;
+}
