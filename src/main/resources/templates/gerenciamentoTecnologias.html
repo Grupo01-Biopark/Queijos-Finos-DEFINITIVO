@@ -21,10 +21,11 @@
 
 <body>
 
-    <section class="sectionPopup" >  
-        <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-        <section th:insert = "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
-        <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/savePopup" style="display: none;" class="popupAlertSave"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
     </section>
 
     <main class="gridContainerBody">
@@ -80,7 +81,7 @@
             <section class="sectionList">
                 <section class="flexContainerRowBetween sectionListHeader">
                     <p>Tecnologias</p>
-                    <button id="buttonAdd" data-page = "technology" class="buttons buttonAdd">&#43; Adicionar</button>
+                    <button id="buttonAdd" data-page="technology" class="buttons buttonAdd">&#43; Adicionar</button>
                 </section>
 
                 <table class="table">
@@ -92,26 +93,74 @@
                             <th>Abortado</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr th:each="entry : ${report}">
-                            <td th:text="${entry.key}" style="display: none;"></td> 
-                            <td th:each="innerEntry : ${entry.value}"><span th:text="${innerEntry.key}"></span></td>
-                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td> <!-- Contagem de tecnologias produzindo -->
-                            <td th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}"></td> <!-- Contagem de tecnologias em complementação -->
-                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td> <!-- Contagem de tecnologias abortadas -->
+
+                            <td th:text="${entry.value['technologyName']}"></td> <!-- Nome da tecnologia -->
+                            <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td>
+                            <td
+                                th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}">
+                            </td> 
+                            <td th:text="${entry.value['WITHDRAWAL'] != null ? entry.value['WITHDRAWAL'] : 0}"></td>
+                            
                             <td>
-                                <button class="editButton"><img src="images/icons/iconEdit.svg" alt=""></button>
+                                <button class="editButton">
+                                    <img src="images/icons/iconEdit.svg" alt="">
+                                </button>
+
+                                <button type="button" class="delete-btn" th:data-id='${entry.key}'>
+                                    <img src="images/icons/iconDelete.svg" alt="">
+                                </button>
                             </td>
                         </tr>
-                        
                     </tbody>
+
                 </table>
             </section>
 
-            
+            <script>
+
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const technologyId = button.getAttribute('data-id');
+                        const alertPopupDelet = document.querySelector(".popupAlertDelet");
+                        const sectionPopup = document.querySelector(".sectionPopup");
+                        
+
+                        sectionPopup.style.display = "block";
+                        alertPopupDelet.style.display = "block";
+                        
+                        document.getElementById("buttonPopupAlertDelet").addEventListener("click", () => {
+                            deleteUser(technologyId);
+                        });
+
+                    });
+                });
+
+                function deleteUser(Id) {
+                   
+                    
+                    fetch('technology/' + Id, {
+                        method: 'PUT'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = '/tecnologias';
+                            } 
+                        })
+                        .catch(error => {
+                            console.error('Erro ao executar a requisição:', error);
+                        });
+                }
+
+
+            </script>
+
+
             <script src="script/opemCloseForm.js"></script>
             <script src="script/editTechnology.js"></script>
-            
+
 
 
 </body>

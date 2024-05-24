@@ -4,8 +4,8 @@ editButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const tableRowWithButton = button.closest("tr");
         const technologyData = {
-            id: tableRowWithButton.querySelector("td:nth-child(1)").textContent,
-            name: tableRowWithButton.querySelector("td:nth-child(2)").textContent
+            id: tableRowWithButton.querySelector(".delete-btn").getAttribute("data-id"),
+            name: tableRowWithButton.querySelector("td:nth-child(1)").textContent
            
         };
 
