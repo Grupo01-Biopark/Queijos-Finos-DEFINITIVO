@@ -15,7 +15,6 @@ import org.springframework.validation.annotation.Validated;
 import com.example.demo.entity.Technology;
 import com.example.demo.entity.enums.TipoStatusProduction;
 import com.example.demo.repository.TechnologyRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -106,27 +105,6 @@ public class TechnologyService {
         });
         
         return report;
-            Long count = ((Number) row[3]).longValue();
-    
-            Map<String, Object> technologyData = new HashMap<>();
-            technologyData.put("technologyName", technologyName);
-            technologyData.put("statusName", statusName);
-            technologyData.put("count", count);
-    
-            report.put(String.valueOf(technologyId), technologyData);
-        });
-    
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(report);
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle the exception properly in your application
-            return null;
-        }
-    }
-    
-    public TechnologyService(TechnologyRepository technologyRepository) {
-        this.technologyRepository = technologyRepository;
     }
 
      public List<String> getAllActiveTechnologyNames() {
