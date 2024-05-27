@@ -63,14 +63,14 @@
 
             <!-- SEÇÃO DO FORMULÁRIO PARA ASSOCIAR TECNOLOGIAS -->
 
-            <section id="sectionForm" class="sectionForms sectionList">
+            <section id="sectionForm" class="sectionForms sectionList" th:if="${transfer}">
                 <h4 class="titleForm"></h4>
-
+    
                 <form th:object="${transfer}" id="transferForm">
                     <input type="hidden" th:field="*{id}">
                     <div class="topIpunts">
                         <label for="tecnologies">Tecnologia:</label>
-                        <select th:field="*{technology}" id="tecnologia" name="tecnologia" th:required="true">
+                        <select th:field="*{technology.id}" id="tecnologia" name="tecnologia" th:required="true">
                             <option value=""
                                 th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
                             </option>
@@ -79,12 +79,12 @@
                         </select>
                         <label for="situacao">Situação:</label>
                         <select th:field="*{tipoStatusProduction}" id="situacao" name="situacao" th:required="true">
-                            <option value="PRODUCING">Produzindo</option>
-                            <option value="COMPLEMENTATION">Em complementação</option>
-                            <option value="WITHDRAWAL">Desistente</option>
+                            <option value="PRODUCING" th:selected="${transfer.tipoStatusProduction == 'PRODUCING'}">Produzindo</option>
+                            <option value="COMPLEMENTATION" th:selected="${transfer.tipoStatusProduction == 'COMPLEMENTATION'}">Em complementação</option>
+                            <option value="WITHDRAWAL" th:selected="${transfer.tipoStatusProduction == 'WITHDRAWAL'}">Desistente</option>
                         </select>
                     </div>
-
+    
                     <div class="bottomInputs">
                         <label for="data_inicio">Data Início:</label>
                         <input type="date" th:field="*{startDate}" id="data_inicio" name="data_inicio"
@@ -93,7 +93,7 @@
                         <input type="date" th:field="*{completionDate}" id="data_conclusao" name="data_conclusao"
                             th:required="true" min="2024-01-01">
                     </div>
-
+    
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
@@ -122,6 +122,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="transfer : ${transfers}">
+                            <td th:text="${transfer.id}" style="display: none;"></td>
                             <td th:text="${transfer.technology.name}"></td>
                             <td th:text="${transfer.tipoStatusProduction}"></td>
                             <td th:text="${transfer.startDate}"></td>
@@ -140,6 +141,7 @@
 
 
             <script src="script/opemCloseForm.js"></script>
+            <script src="script/editTransfer.js"></script>
 
 
 </body>
