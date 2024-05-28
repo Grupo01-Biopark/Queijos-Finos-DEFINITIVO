@@ -15,14 +15,10 @@
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/styleUsers.css">
-
+    <link rel="stylesheet" href="style/inlineStyles.css">
 </head>
 
-<body style="padding: 0px; margin: 0px;">
-
-<!--<section th:if="${condition}" th:insert= "popups/savePopup"></section>-->
-<!--<section th:insert= "popups/alertPopup" id ="sectionPopupSave" style="display: none" ></section>-->
-
+<body>
 <main class="gridContainerBody">
     <nav class="navBarLeft">
         <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
@@ -37,42 +33,18 @@
     </nav>
 
     <section class="sectionPrincipal flexContainercolum">
-
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
                 <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
                 <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
             </ul>
-
             <ul class="navBarHeaderList navBarHeaderListLow">
                 <li>Configurar Produtores</li>
                 <li>administrador</li>
             </ul>
         </nav>
         <section id="sectionForm" class="sectionForms sectionList">
-
             <h4 class="titleForm">Buscar por:</h4>
-
-<!--            <form th:action="@{/filtro-produtores}" method="GET">-->
-<!--                <label for="nomeProdutor">Nome do Produtor:</label>-->
-<!--                <input type="text" id="nomeProdutor" name="nomeProdutor">-->
-
-<!--                <label for="statusProducao">Status de Produção:</label>-->
-<!--                <select id="statusProducao" name="statusProducao">-->
-<!--                    <option value="">Selecione...</option>-->
-<!--                    <option value="PRODUCING">PRODUCING</option>-->
-<!--                    <option value="COMPLEMENTATION">COMPLEMENTATION</option>-->
-<!--                </select>-->
-
-<!--                <label for="cidade">Cidade:</label>-->
-<!--                <input type="text" id="cidade" name="cidade">-->
-
-<!--                <label for="certificacoes">Certificações:</label>-->
-<!--                <input type="text" id="certificacoes" name="certificacoes">-->
-
-<!--                <button type="submit">Filtrar</button>-->
-<!--            </form>-->
-
         </section>
         <section class="sectionList">
             <section class="flexContainerRowBetween sectionListHeader">
@@ -90,27 +62,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr id="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
-                        <td th:text="${producer.id}">Id do produtor</td>
-                        <td style="display: flex; justify-content: align-itens;"><img style="width: 60%; height: 60%;" src="images/icons/producerVetor.svg"></td>
-                        <td th:text="${producer.name}"> Nome do Usuário</td>
-                        <td th:text="${producer.email}">Email do Usuário</td>
-                        <td th:text="${producer.cpf}">Permissão</td>
-                    </tr>
+                <tr id="linhaProdutor" th:each="producer : ${producers}" th:data-id="${producer.id}">
+                    <td th:text="${producer.id}">Id do produtor</td>
+                    <td><img src="images/icons/producerVetor.svg"></td>
+                    <td th:text="${producer.name}"> Nome do Usuário</td>
+                    <td th:text="${producer.email}">Email do Usuário</td>
+                    <td th:text="${producer.cpf}">Permissão</td>
+                </tr>
                 </tbody>
             </table>
-
         </section>
-
     </section>
-
 </main>
 <script>
     const linhaProdutor = document.querySelectorAll("#linhaProdutor").forEach(produtor => {
-        produtor.addEventListener("click", ()=>{
+        produtor.addEventListener("click", () => {
             const producerId = produtor.getAttribute('data-id');
             console.log(producerId)
-            window.location.replace("editProducer/"+ producerId)
+            window.location.replace("editProducer/" + producerId)
         })
     })
 
@@ -139,17 +108,9 @@
             });
         }
     }
-
 </script>
-
-
 <script src="script/opemForm.js"></script>
 <script src="script/validatePassword.js"></script>
-<script src="script/deleteUser.js">
-
-</script>
-
+<script src="script/deleteUser.js"></script>
 </body>
-
-
 </html>
