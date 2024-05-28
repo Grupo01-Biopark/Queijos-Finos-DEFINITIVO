@@ -13,7 +13,7 @@ const formValues = {
         title: "Nova tecnologia"
     },
     transfer: {
-        action: "/transfer/register",
+        action: "/transfer/register/"+id,
         method: "post",
         title: "Transferencia"
     },

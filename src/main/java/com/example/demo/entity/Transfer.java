@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import com.example.demo.entity.enums.TipoStatusProduction;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,9 +21,11 @@ public class Transfer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Enumerated(EnumType.ORDINAL)
+	private TipoStatusProduction tipoStatusProduction;
 	private LocalDate startDate;
 	private LocalDate completionDate;
-	private TipoStatusProduction tipoStatusProduction;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "producer_id")
@@ -38,6 +42,14 @@ public class Transfer {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public TipoStatusProduction getTipoStatusProduction() {
+        return tipoStatusProduction;
+    }
+
+    public void setTipoStatusProduction(TipoStatusProduction tipoStatusProduction) {
+        this.tipoStatusProduction = tipoStatusProduction;
+    }
 
 	public LocalDate getStartDate() {
 		return startDate;
@@ -69,14 +81,6 @@ public class Transfer {
 
 	public void setTechnology(Technology technology) {
 		this.technology = technology;
-	}
-
-	public TipoStatusProduction getTipoStatusProduction() {
-		return tipoStatusProduction;
-	}
-
-	public void setTipoStatusProduction(TipoStatusProduction tipoStatusProduction) {
-		this.tipoStatusProduction = tipoStatusProduction;
 	}
 
 	@Override

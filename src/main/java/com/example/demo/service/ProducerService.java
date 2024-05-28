@@ -23,6 +23,11 @@ public class ProducerService {
     @Autowired
     private PhoneNumberRepository phoneNumberRepository;
 
+    public Producer getProducer(Long producerId){
+        Producer producer = producerRepository.getById(producerId);
+        return producer;
+    }
+
     public Producer addProducer(Producer producer) {
         producerRepository.save(producer);
         for (int i =0; i < 2; i = i + 1){
@@ -49,6 +54,12 @@ public class ProducerService {
         System.out.println(producer);
         List<Document> documents = producer.get().getDocuments();
         return documents;
+    }
+
+    public List<Transfer> getListTransfer(Long producerId){
+        Optional<Producer> producer = producerRepository.findById(producerId);
+        List<Transfer> transfers = producer.get().getTransfers();
+        return transfers;
     }
 
     public List <Producer> getListProducers(){

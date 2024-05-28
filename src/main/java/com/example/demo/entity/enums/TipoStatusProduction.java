@@ -6,3 +6,4 @@ public enum TipoStatusProduction {
     WITHDRAWAL, // DESISTENTE
     DISCONNECTED; // DESLIGADO
 }
+

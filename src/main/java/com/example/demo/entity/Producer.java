@@ -35,6 +35,16 @@ public class Producer {
     private Address address = new Address();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Document> documents = new ArrayList<>();
+    @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transfer> transfers = new ArrayList<>();
+
+    public List<Transfer> getTransfers() {
+        return transfers;
+    }
+
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
+    }
 
     public List<Document> getDocuments() {
         return documents;

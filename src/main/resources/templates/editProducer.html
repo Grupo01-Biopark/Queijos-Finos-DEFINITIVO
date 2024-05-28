@@ -186,7 +186,7 @@
     const id = pathnameSplit[2]
 
     const redirectUrlDocuments = "/documents/" + id;
-    const redirectUrlTransference = "transferences/" + id;
+    const redirectUrlTransference = "/transfer/" + id;
 
     const documentsButton = document.querySelector("#documentsButton");
     console.log(documentsButton)
@@ -200,8 +200,6 @@
     transferenceButton.addEventListener("click", ()=>{
         window.location.replace(redirectUrlTransference)
     })
-
-
 
 
 </script>
