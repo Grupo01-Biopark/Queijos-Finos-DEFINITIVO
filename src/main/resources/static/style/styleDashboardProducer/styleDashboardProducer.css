@@ -1,0 +1,90 @@
+:root{
+    --backgroudNavBar: #132F3E;
+    --backgorudBottonAdd: #30363D;
+    --backgroundBottonAddHover:#373b41;
+    --backgroudBottonSave: #06744D;
+    --backgroudBottonSaveHover:#02412b;
+    --backgroundBottonCancelHover:#ff0000;
+    --backgroundBottonExitHover:#c20808;
+    --backgroundBottonCancelPopup : #1865FA;
+    --backgroundBottonCancelPopupHover : #1a4bac;
+    --backgroudLListItem: #EBEBEB;
+    --colorAdmim: #0BCA87;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.gridContainerBody{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.flexContainercolum{
+    display: flex;
+    flex-direction: column;
+}
+
+.flexContainerRowBetween{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.sectionPrincipal {
+    width: 100%;
+    justify-content: flex-start;
+
+}
+
+.graphic-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem; /* Ajuste conforme necessário */
+    text-align: center;
+}
+
+.txtgraph{
+ margin-bottom: 1rem;   
+ font-style: normal;
+ font-weight: 600;
+ color: black;
+}
+
+.graphic1{
+    width: 30%;
+    display: flex;
+    display: inline-block;
+
+}
+
+.graphic2{
+    width: 60%;
+    display: flex;
+    display: inline-block;
+}
+
+.graphic-container2 {
+    margin: 4rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center;
+}
+
+.graphic3 {
+    width: 95%;
+    display: flex;
+    display: inline-block;
+    align-items: center;
+    justify-content: center; /* Centraliza horizontalmente */
+}
