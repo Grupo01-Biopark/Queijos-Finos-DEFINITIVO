@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,6 +17,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.example.demo.entity.Technology;
 import com.example.demo.service.TechnologyService;
 
+import ch.qos.logback.core.model.Model;
+import jakarta.persistence.EntityNotFoundException;
+
+
 @RestController
 public class TechnologyController {
 
@@ -25,14 +28,13 @@ public class TechnologyController {
     private TechnologyService technologyService;
 
     @GetMapping("/tecnologias")
-    public ModelAndView iniciarTela() {
+    public ModelAndView iniciarTela(Model model) {
         Technology technology = new Technology();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTecnologias");
         modelAndView.addObject("technology", technology);
         modelAndView.addObject("report", technologyService.generateReportForAllTechnologies());
-
         return modelAndView;
     }
 
@@ -61,12 +63,17 @@ public class TechnologyController {
     }
     
 
-
-    public List<Technology> getAllTechnologies() {
-        List<Technology> technologies = technologyService.getListTechnology();
-        return technologies;
-        
+    @PutMapping("technology/{id}")
+    public ResponseEntity<Void> changeTechnologyStatus(@PathVariable Long id) {
+        try {
+            System.out.println("O ID E:" + id);
+            technologyService.changeTechnologyStatus(id);
+            return ResponseEntity.ok().build(); 
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
+    
 
     @DeleteMapping("/technologies/{technologyId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long technologyID) {

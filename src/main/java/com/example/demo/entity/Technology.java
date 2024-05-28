@@ -20,6 +20,7 @@ public class Technology {
 	private Long id;
 	private String name;
 	private String observation;
+	private Boolean activeItem = true; 
 
 	@OneToMany(mappedBy = "technology", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transfer> transfers = new ArrayList<>();
@@ -46,6 +47,14 @@ public class Technology {
 
 	public void setObservation(String observation) {
 		this.observation = observation;
+	}
+
+	public Boolean getActiveItem() {
+		return activeItem;
+	}
+
+	public void setActiveItem(Boolean activeItem) {
+		this.activeItem = activeItem;
 	}
 
 	@Override
