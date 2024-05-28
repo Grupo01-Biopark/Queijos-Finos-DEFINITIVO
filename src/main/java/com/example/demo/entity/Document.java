@@ -19,10 +19,10 @@ public class Document {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	private String file;
+	private String file; // Caminho do arquivo armazenado no sistema de arquivos
 	private Date date;
 	private Date dateSystem;
-	private String category; // Altere de Long para String
+	private String category;
 
 	@ManyToOne
 	@JoinColumn(name = "producer_id")
@@ -66,9 +66,9 @@ public class Document {
 		return dateSystem;
 	}
 
-    public void setDateSystem(Date dateSystem) {
-        this.dateSystem = dateSystem;
-    }
+	public void setDateSystem(Date dateSystem) {
+		this.dateSystem = dateSystem;
+	}
 
 	public String getCategory() {
 		return category;

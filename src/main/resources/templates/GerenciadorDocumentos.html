@@ -23,7 +23,7 @@
     <body>
         <section class="sectionPopup" >  
             <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-            <section th:insert = "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
+            <section th:insert= "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
             <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
         </section>
         
@@ -131,7 +131,10 @@
                         <td>
                     
                     <td>
-                            <button type="button" class="delete-btn" th:data-id='${document.id}'>
+                           
+                        <button type="button" class="download-btn" th:data-id='${document.id}'>
+                            <img src="images/icons/iconEdit.svg" alt=""></button>
+                        <button type="button" class="delete-btn" th:data-id='${document.id}'>
                                 <img src="images/icons/iconDelete.svg" alt=""></button>
                     </td>
                 </tr>
@@ -139,9 +142,10 @@
         </table>
 
     </section>
-
+         <script src="script/downloadDocument.js"></script>
         <script src="script/opemCloseForm.js"></script>
         <script src="script/deleteDocument.js"></script>
-    
-        </body>
+
+
+    </body>
 </html>
