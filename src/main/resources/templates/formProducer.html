@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
-    <link rel="stylesheet" href="style/styleProdutor.css">
+    <link rel="stylesheet" href="style/styleEditProducer.css">
 </head>
 
 <body>
@@ -30,19 +30,6 @@
         </section>
     </nav>
     <section class="sectionPrincipal flexContainercolum">
-        <div>
-            <div>
-                <button>
-                    botao1
-                </button>
-                <button>
-                    botao2
-                </button>
-                <button>
-                    botao3
-                </button>
-            </div>
-        </div>
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
                 <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
@@ -54,125 +41,140 @@
                 <li>administrador</li>
             </ul>
         </nav>
-        <form th:action="@{/formProducer/producer}" method="post" style="display:flex; flex-direction: column; gap: 20px; width: 94%; height: 1000px; margin-x: 10px;">
-            <div style="gap: 20px; border: 2px solid black; display:flex; flex-direction: column; padding: 20px;">
-                <div class="campos-form" style="display:flex; width: 100%; justify-content: space-between; gap: 10px;">
-                    <div>
-                        <label for="name">Nome completo</label>
-                        <input style="width: 300px; padding: 5px; text-size: 12px" name="name" id="name">
-                    </div>
-                    <div >
-                        <label for="cpf">CPF</label>
-                        <input style="padding: 3px" id="cpf" name="cpf">
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="phone1">Telefone 1</label>
-                        <input style="padding: 3px" id="phone1" name="phone1">
-                    </div>
-                </div>
-                <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div style="text-align: center;">
-                        <label for="cnpj">CNPJ</label>
-                        <input style="padding: 3px" id="cnpj" name="cnpj">
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="socialReason">Razao Social</label>
-                        <input style="padding: 3px" id="socialReason" name="socialReason" >
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="phone2">Telefone 2</label>
-                        <input style="padding: 3px" id="phone2" name="phone2">
-                    </div>
-                </div>
-                <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div style="text-align: center;">
-                        <label for="cep">CEP</label>
-                        <input style="padding: 3px" id="cep"  name="cep" >
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="street">Logradouro</label>
-                        <input style="padding: 3px" id="street"  name="street" >
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="number">Numero</label>
-                        <input style="padding: 3px" id="number" name="number">
-                    </div>
-                </div>
-                <div style="display:flex; width: 100%; justify-content: space-around;">
-                    <div style="text-align: center;">
-                        <label for="neighborhood">Vila/Bairro</label>
-                        <input style="padding: 3px" id="neighborhood" name="neighborhood">
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="email">Email</label>
-                        <input style="padding: 3px; width: 85%;" id="email" name="email">
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="state">UF</label>
-                        <input style="padding: 3px; width: 60%;" id="state" name="state">
-                    </div>
-                    <div style="text-align: center;">
-                        <label for="city">Cidade</label>
-                        <input style="padding: 3px" id="city" name="city">
-                    </div>
+        <div class="contentEditProducer">
+            <div class="containerButtonsInfoProducer">
+                <div class="containerButtons">
+                    <button id="dadosButton" class="buttonsInfoProducer">
+                        Dados
+                    </button>
+                    <button id="documentsButton" class="buttonsInfoProducer">
+                        Documentos
+                    </button>
+                    <button id="transferenceButton" class="buttonsInfoProducer">
+                        Transferencia
+                    </button>
                 </div>
             </div>
-            <div style="display:flex; justify-content: space-between; width: 100%;">
-                <div style="display:flex; width: 29%; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
-                    <h3>Certificações</h3>
-                    <div style="display:flex;justify-content: space-between; text-align: center;">
-                        <label for="sim/poa">SIM/POA</label>
-                        <input id="sim/poa" name="simPoa" type="date">
+            <form th:action="@{/formProducer/producer}" method="post" class="producer-form">
+                <div class="campos-container">
+                    <div class="campos-form">
+                        <div>
+                            <label for="name">Nome completo</label>
+                            <input name="name" id="name">
+                        </div>
+                        <div>
+                            <label for="cpf">CPF</label>
+                            <input id="cpf" name="cpf">
+                        </div>
+                        <div>
+                            <label for="phone1">Telefone 1</label>
+                            <input id="phone1" name="phone1">
+                        </div>
                     </div>
-                    <div style="display:flex;justify-content: space-between; text-align: center;">
-                        <label for="SUSAF">SUSAF</label>
-                        <input id="SUSAF" name="susaf" type="date">
+                    <div class="campos-form">
+                        <div>
+                            <label for="cnpj">CNPJ</label>
+                            <input id="cnpj" name="cnpj">
+                        </div>
+                        <div>
+                            <label for="socialReason">Razao Social</label>
+                            <input id="socialReason" name="socialReason">
+                        </div>
+                        <div>
+                            <label for="phone2">Telefone 2</label>
+                            <input id="phone2" name="phone2">
+                        </div>
                     </div>
-                    <div style="display:flex;justify-content: space-between; text-align: center;">
-                        <label for="SISBI">SISBI</label>
-                        <input id="SISBI" name="sisbi" type="date">
+                    <div class="campos-form">
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input id="cep" name="cep">
+                        </div>
+                        <div>
+                            <label for="street">Logradouro</label>
+                            <input id="street" name="street">
+                        </div>
+                        <div>
+                            <label for="number">Numero</label>
+                            <input id="number" name="number">
+                        </div>
                     </div>
-                    <div style="display:flex; justify-content: space-between; text-align: center;">
-                        <label for="SELO ARTE">SELO ARTE</label>
-                        <input id="SELO ARTE" name="seloArte" type="date">
-                    </div>
-                    <div style="display:flex;justify-content: space-between; text-align: center;">
-                        <label for="CIF">SIM/POA</label>
-                        <input id="CIF" name="cif" type="date">
+                    <div class="campos-form">
+                        <div>
+                            <label for="neighborhood">Vila/Bairro</label>
+                            <input id="neighborhood" name="neighborhood">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" name="email">
+                        </div>
+                        <div>
+                            <label for="state">UF</label>
+                            <input id="state" name="state">
+                        </div>
+                        <div>
+                            <label for="city">Cidade</label>
+                            <input id="city" name="city">
+                        </div>
                     </div>
                 </div>
-                <div style="width: 69%;">
-                    <div style="display:flex; padding: 5px; flex-direction: column; border: 2px solid black; height: 200px;">
-                        <h3>Informações sobre contrato</h3>
-                        <div style="text-align: center;display:flex; justify-content: space-between;">
-                            <label for="dataAssinatura">Assinatura de Convenio de Cooperação Técnica</label>
-                            <input id="dataAssinatura" name="signatureDate" type="date">
+                <div class="certifications-info">
+                    <div class="certifications">
+                        <h3>Certificações</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="simPoa">SIM/POA</label>
+                            <input id="simPoa" name="simPoa" type="date">
                         </div>
-                        <div style="text-align: center; display:flex; justify-content: space-between;">
-                            <label for="dataVencimento">Vencimento de contrato</label>
-                            <input id="dataVencimento" name="expirationDate" type="date">
-                        </div >
-                        <div style="text-align: center; display:flex;justify-content: space-between; ">
-                            <label for="situacao">Situação no projeto</label>
-                            <select id="situacao" name="status" style="width: 122px">
-                                <option>Ativo</option>
-                                <option>Ativo em complementação</option>
-                                <option>Desistente</option>
+                        <div class="campoCertificationInfos">
+                            <label for="susaf">SUSAF</label>
+                            <input id="susaf" name="susaf" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="sisbi">SISBI</label>
+                            <input id="sisbi" name="sisbi" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="seloArte">SELO ARTE</label>
+                            <input id="seloArte" name="seloArte" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="cif">CIF</label>
+                            <input id="cif" name="cif" type="date">
+                        </div>
+                    </div>
+                    <div class="contract-info">
+                        <h3>Informações sobre contrato</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="signatureDate">Assinatura de Convenio de Cooperação Técnica</label>
+                            <input id="signatureDate" name="signatureDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="expirationDate">Vencimento de contrato</label>
+                            <input id="expirationDate" name="expirationDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="status">Situação no projeto</label>
+                            <select id="status" name="status">
+                                <option id="Ativo">Ativo</option>
+                                <option id="Ativo em complementação">Ativo em complementação</option>
+                                <option id="Desistente">Desistente</option>
                             </select>
                         </div>
-                        <div style="text-align: center; display:flex; justify-content: space-between;">
-                            <label for="dataSituacao">Data Situação</label>
-                            <input id="dataSituacao" name="statusDate" type="date">
+                        <div class="campoCertificationInfos">
+                            <label for="statusDate">Data Situação</label>
+                            <input id="statusDate" name="statusDate" type="date">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="text-align: center;">
-                <h3>Observação</h3>
-                <input style="width: 99%; heigth: 10%;" name="observation">
-            </div>
-            <a href="/produtores"><button type="submit">Submit</button></a>
-        </form>
+                <div class="observation-container">
+                    <h3>Observaçãooooo</h3>
+                    <input id="observation" name="observation">
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
     </section>
 </main>
 

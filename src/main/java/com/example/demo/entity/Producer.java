@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -17,15 +18,30 @@ public class Producer {
     private String cnpj;
     private String socialReason;
     private String email;
-    private String signatureDate;
-    private String expirationDate;
     private String status;
-    private String statusDate;
-    private String simPoa;
-    private String susaf;
-    private String sisbi;
-    private String seloArte;
-    private String cif;
+    @Temporal(TemporalType.DATE)
+    private Date signatureDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date expirationDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date statusDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date simPoa;
+
+    @Temporal(TemporalType.DATE)
+    private Date susaf;
+
+    @Temporal(TemporalType.DATE)
+    private Date sisbi;
+
+    @Temporal(TemporalType.DATE)
+    private Date seloArte;
+
+    @Temporal(TemporalType.DATE)
+    private Date cif;
 
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhoneNumber> phoneNumbers = new ArrayList<>();
@@ -118,22 +134,6 @@ public class Producer {
         this.email = email;
     }
 
-    public String getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(String signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -142,51 +142,67 @@ public class Producer {
         this.status = status;
     }
 
-    public String getStatusDate() {
+    public Date getSignatureDate() {
+        return signatureDate;
+    }
+
+    public void setSignatureDate(Date signatureDate) {
+        this.signatureDate = signatureDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public Date getStatusDate() {
         return statusDate;
     }
 
-    public void setStatusDate(String statusDate) {
+    public void setStatusDate(Date statusDate) {
         this.statusDate = statusDate;
     }
 
-    public String getSimPoa() {
+    public Date getSimPoa() {
         return simPoa;
     }
 
-    public void setSimPoa(String simPoa) {
+    public void setSimPoa(Date simPoa) {
         this.simPoa = simPoa;
     }
 
-    public String getSusaf() {
+    public Date getSusaf() {
         return susaf;
     }
 
-    public void setSusaf(String susaf) {
+    public void setSusaf(Date susaf) {
         this.susaf = susaf;
     }
 
-    public String getSisbi() {
+    public Date getSisbi() {
         return sisbi;
     }
 
-    public void setSisbi(String sisbi) {
+    public void setSisbi(Date sisbi) {
         this.sisbi = sisbi;
     }
 
-    public String getSeloArte() {
+    public Date getSeloArte() {
         return seloArte;
     }
 
-    public void setSeloArte(String seloArte) {
+    public void setSeloArte(Date seloArte) {
         this.seloArte = seloArte;
     }
 
-    public String getCif() {
+    public Date getCif() {
         return cif;
     }
 
-    public void setCif(String cif) {
+    public void setCif(Date cif) {
         this.cif = cif;
     }
 

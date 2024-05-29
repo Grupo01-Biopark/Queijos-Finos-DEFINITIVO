@@ -24,21 +24,17 @@
     </section>
 
     <main class="gridContainerBody">
-
         <nav class="navBarLeft">
             <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img th:src="@{/images/icons/Vector.svg}" alt="Acessar Dashboard"> Dashboard</li>
-                    <li class="listSelect"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt="Acessar Produtores">
-                        Produtores</li>
-                    <li><img th:src="@{/images/icons/cheeseVetor.svg}" alt="Acessar Tecnologias"> Cadastro Tecnologias
-                    </li>
-                    <li><img th:src="@{/images/icons/configVetor.svg}" alt="Acessar Configurações">Configurações</li>
+                    <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                    <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                    <li class="listSelect" id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                    <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
                 </ul>
             </section>
         </nav>
-
         <section class="sectionPrincipal flexContainercolum">
 
             <nav class="navBarHeader">
@@ -127,6 +123,7 @@
             <script th:src="@{/script/opemCloseForm.js}"></script>
             <script th:src="@{/script/editTransfer.js}"></script>
             <script th:src="@{/script/closePopup.js}"></script>
+            <script th:src="@{/script/navbarRedirect.js}"></script>
 </body>
 
 </html>

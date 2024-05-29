@@ -21,17 +21,16 @@
 <body>
 <main class="gridContainerBody">
     <nav class="navBarLeft">
-        <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+        <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
         <section class="listLinksNav">
             <ul class="listLinks">
-                <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
-                <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
-                <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
-                <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                <li class="listSelect" id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                <li id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
             </ul>
         </section>
     </nav>
-
     <section class="sectionPrincipal flexContainercolum">
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
@@ -109,8 +108,6 @@
         }
     }
 </script>
-<script src="script/opemForm.js"></script>
-<script src="script/validatePassword.js"></script>
-<script src="script/deleteUser.js"></script>
+<script th:src="@{/script/navbarRedirect.js}"></script>
 </body>
 </html>

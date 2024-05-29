@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import com.example.demo.dtos.ProducerDto;
 import com.example.demo.entity.Address;
 import com.example.demo.entity.PhoneNumber;
@@ -68,15 +72,43 @@ public class ProducerController {
         producer.setCnpj(producerDto.getCnpj());
         producer.setSocialReason(producerDto.getSocialReason());
         producer.setEmail(producerDto.getEmail());
-        producer.setSignatureDate(producerDto.getSignatureDate());
-        producer.setExpirationDate(producerDto.getExpirationDate());
-        producer.setStatus(producerDto.getStatus());
-        producer.setStatusDate(producerDto.getStatusDate());
-        producer.setSimPoa(producerDto.getSimPoa());
-        producer.setSusaf(producerDto.getSusaf());
-        producer.setSisbi(producerDto.getSisbi());
-        producer.setSeloArte(producerDto.getSeloArte());
-        producer.setCif(producerDto.getCif());
+
+        // Formatando as datas para o padrão esperado
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
+        Date signatureDate = Date.from(signatureDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setSignatureDate(signatureDate);
+
+        LocalDate expirationDateParsed = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
+        Date expirationDate = Date.from(expirationDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setExpirationDate(expirationDate);
+
+        LocalDate statusDateParsed = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+        Date statusDate = Date.from(statusDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setStatusDate(statusDate);
+
+        LocalDate simPoaDateParsed = LocalDate.parse(producerDto.getSimPoa(), dateFormat);
+        Date simPoaDate = Date.from(simPoaDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setSimPoa(simPoaDate);
+
+        LocalDate susafDateParsed = LocalDate.parse(producerDto.getSusaf(), dateFormat);
+        Date susafDate = Date.from(susafDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setSusaf(susafDate);
+
+        LocalDate sisbiDateParsed = LocalDate.parse(producerDto.getSisbi(), dateFormat);
+        Date sisbiDate = Date.from(sisbiDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setSisbi(sisbiDate);
+
+        LocalDate seloArteDateParsed = LocalDate.parse(producerDto.getSeloArte(), dateFormat);
+        Date seloArteDate = Date.from(seloArteDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setSeloArte(seloArteDate);
+
+        LocalDate cifDateParsed = LocalDate.parse(producerDto.getCif(), dateFormat);
+        Date cifDate = Date.from(cifDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        producer.setCif(cifDate);
+
+
         producer.setObservation(producerDto.getObservation());
 
         Address address = producer.getAddress();
@@ -114,8 +146,9 @@ public class ProducerController {
         return new RedirectView("/editProducer/"+ producerId);
     }
 
+
     @GetMapping("/editProducer/{producerId}")
-    public ModelAndView editProducer(@PathVariable Long producerId){
+    public ModelAndView editProducer(@PathVariable Long producerId) {
         Producer producer = producerRepository.findById(producerId)
                 .orElseThrow(() -> new NoSuchElementException("Producer not found with id: " + producerId));
         ProducerDto producerDto = new ProducerDto();
@@ -125,15 +158,32 @@ public class ProducerController {
         producerDto.setCnpj(producer.getCnpj());
         producerDto.setSocialReason(producer.getSocialReason());
         producerDto.setEmail(producer.getEmail());
-        producerDto.setSignatureDate(producer.getSignatureDate());
-        producerDto.setExpirationDate(producer.getExpirationDate());
-        producerDto.setStatus(producer.getStatus());
-        producerDto.setStatusDate(producer.getStatusDate());
-        producerDto.setSimPoa(producer.getSimPoa());
-        producerDto.setSusaf(producer.getSusaf());
-        producerDto.setSisbi(producer.getSisbi());
-        producerDto.setSeloArte(producer.getSeloArte());
-        producerDto.setCif(producer.getCif());
+
+        // Formatando as datas para string
+        String signatureDateStr = formatDate(producer.getSignatureDate());
+        producerDto.setSignatureDate(signatureDateStr);
+
+        String expirationDateStr = formatDate(producer.getExpirationDate());
+        producerDto.setExpirationDate(expirationDateStr);
+
+        String statusDateStr = formatDate(producer.getStatusDate());
+        producerDto.setStatusDate(statusDateStr);
+
+        String simPoaStr = formatDate(producer.getSimPoa());
+        producerDto.setSimPoa(simPoaStr);
+
+        String susafStr = formatDate(producer.getSusaf());
+        producerDto.setSusaf(susafStr);
+
+        String sisbiStr = formatDate(producer.getSisbi());
+        producerDto.setSisbi(sisbiStr);
+
+        String seloArteStr = formatDate(producer.getSeloArte());
+        producerDto.setSeloArte(seloArteStr);
+
+        String cifStr = formatDate(producer.getCif());
+        producerDto.setCif(cifStr);
+
         producerDto.setObservation(producer.getObservation());
 
         Address address = producer.getAddress();
@@ -164,6 +214,14 @@ public class ProducerController {
         return model;
     }
 
+    private String formatDate(Date date) {
+        if (date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(date);
+        }
+        return "";
+    }
+
     @PostMapping("/formProducer/producer")
     public RedirectView createProducer(@ModelAttribute ProducerDto producerDto) {
         try {
@@ -177,16 +235,57 @@ public class ProducerController {
             producer.setCnpj(producerDto.getCnpj());
             producer.setSocialReason(producerDto.getSocialReason());
 
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
             producer.setEmail(producerDto.getEmail());
-            producer.setSignatureDate(producerDto.getSignatureDate());
-            producer.setExpirationDate(producerDto.getExpirationDate());
-            producer.setStatus(producerDto.getStatus());
-            producer.setStatusDate(producerDto.getStatusDate());
-            producer.setSimPoa(producerDto.getSimPoa());
-            producer.setSusaf(producerDto.getSusaf());
-            producer.setSisbi(producerDto.getSisbi());
-            producer.setSeloArte(producerDto.getSeloArte());
-            producer.setCif(producerDto.getCif());
+
+            LocalDate signatureDate = null;
+            if (!producerDto.getSignatureDate().isEmpty()) {
+                signatureDate = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
+            }
+            producer.setSignatureDate(signatureDate != null ? java.sql.Date.valueOf(signatureDate) : null);
+
+            LocalDate expirationDate = null;
+            if (!producerDto.getExpirationDate().isEmpty()) {
+                expirationDate = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
+            }
+            producer.setExpirationDate(expirationDate != null ? java.sql.Date.valueOf(expirationDate) : null);
+
+            LocalDate statusDate = null;
+            if (!producerDto.getStatusDate().isEmpty()) {
+                statusDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setStatusDate(statusDate != null ? java.sql.Date.valueOf(statusDate) : null);
+
+            LocalDate simPoa = null;
+            if (!producerDto.getSimPoa().isEmpty()) {
+                simPoa = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setSimPoa(simPoa != null ? java.sql.Date.valueOf(simPoa) : null);
+
+            LocalDate susafDate = null;
+            if (!producerDto.getSusaf().isEmpty()) {
+                susafDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setSusaf(susafDate != null ? java.sql.Date.valueOf(susafDate) : null);
+
+            LocalDate dataSisbi = null;
+            if (!producerDto.getSisbi().isEmpty()) {
+                dataSisbi = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setSisbi(dataSisbi != null ? java.sql.Date.valueOf(dataSisbi) : null);
+
+            LocalDate dataSeloArte = null;
+            if (!producerDto.getSeloArte().isEmpty()) {
+                dataSeloArte = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setSeloArte(dataSeloArte != null ? java.sql.Date.valueOf(dataSeloArte) : null);
+
+            LocalDate dateCif = null;
+            if (!producerDto.getCif().isEmpty()) {
+                dateCif = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            }
+            producer.setCif(dateCif != null ? java.sql.Date.valueOf(dateCif) : null);
 
             address.setStreet(producerDto.getStreet());
             address.setNeighborhood(producerDto.getNeighborhood());
