@@ -26,7 +26,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método "save" está funcionando e se quando um usuário é criado, o mesmo está sendo salvo no banco de dados.
     @Test
-    public void userSaveTest(){
+    public void TestUserSave(){
         //Cenário
         User newUser = new User();
 
@@ -46,7 +46,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método findById está buscando o usuário corretamente.
     @Test
-    public void findByIdTest(){
+    public void TestFindById(){
         //Cenário
         User newUser = new User();
 
@@ -65,7 +65,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método findByEmailAndPasswordTest está funcionando corretamente.
     @Test
-    public void findByEmailAndPasswordTest(){
+    public void TestFindByEmailAndPassword(){
         //Cenário
         User newUser = new User();
 
@@ -85,7 +85,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método findByEmail está funcionando corretamente. 
     @Test
-    public void findByEmailTest(){
+    public void TestFindByEmail(){
         //Cenário
         User newUser = new User();
 
@@ -103,7 +103,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método findAll está funcionando corretamente.
     @Test
-    public void findAllTest(){
+    public void TestFindAll(){
         //Cenário
         User newUser1 = new User();
 
@@ -131,7 +131,7 @@ public class UserRepositoryTest {
 
     //Teste para verificar se o método deleteById está funcionando corretamente.
     @Test
-    public void deleteByIdTest(){
+    public void TestDeleteById(){
         //Cenário
         User newUser = new User();
 
