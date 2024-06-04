@@ -5,5 +5,6 @@ public enum TipoStatusProduction {
     COMPLEMENTATION, // ATIVO EM COMPLEMENTACAO
     WITHDRAWAL, // DESISTENTE
     DISCONNECTED; // DESLIGADO
+
 }
 

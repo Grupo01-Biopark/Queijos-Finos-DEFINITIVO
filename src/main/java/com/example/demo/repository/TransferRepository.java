@@ -9,6 +9,6 @@ public interface TransferRepository extends JpaRepository<Transfer , Long>{
 
     long countByTipoStatusProduction(TipoStatusProduction tipoStatusProduction);
 
-    long countByTechnologyNameAndTipoStatusProduction(String technologyName, TipoStatusProduction producing); 
-    
+    long countByTechnologyNameAndTipoStatusProduction(String technologyName, TipoStatusProduction producing);
+
 }

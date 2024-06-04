@@ -12,7 +12,7 @@ import com.example.demo.repository.UserRepository;
 
 @Controller
 public class PasswordResetController {
-    
+
     @Autowired
     private UserRepository repository;
 
@@ -20,15 +20,15 @@ public class PasswordResetController {
     public ModelAndView PasswordReset() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("PasswordReset/PasswordReset");
-        return mv ; 
+        return mv ;
     }
-    
+
     @PostMapping("/PasswordReset")
     public ModelAndView logInto(@RequestParam("email") String email) {
         ModelAndView mv = new ModelAndView();
-    
+
         User user = repository.findByEmail(email);
-    
+
         if (user != null) {
             mv.setViewName("redirect:/Login");
         } else {
@@ -37,8 +37,8 @@ public class PasswordResetController {
             // Retorna para a mesma página de login
             mv.setViewName("PasswordReset/PasswordReset");
         }
-    
+
         return mv;
     }
-    
+
 }

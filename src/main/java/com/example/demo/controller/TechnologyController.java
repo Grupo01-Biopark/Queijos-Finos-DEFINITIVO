@@ -61,19 +61,19 @@ public class TechnologyController {
 
         return new RedirectView("/tecnologias");
     }
-    
+
 
     @PutMapping("technology/{id}")
     public ResponseEntity<Void> changeTechnologyStatus(@PathVariable Long id) {
         try {
             System.out.println("O ID E:" + id);
             technologyService.changeTechnologyStatus(id);
-            return ResponseEntity.ok().build(); 
+            return ResponseEntity.ok().build();
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
 
     @DeleteMapping("/technologies/{technologyId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long technologyID) {
