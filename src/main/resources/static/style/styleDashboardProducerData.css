@@ -1,3 +1,28 @@
+.title-section{
+    display: block;
+    font-size: 18px;
+}
+.section-button{
+    width: 98%;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.section-button button{
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.section-button button a{
+    color: black;
+}
+
+
+
 .producer-info{
     display: flex;
     flex-direction: row;
@@ -51,3 +76,71 @@
     margin-left: 15px;
     font-weight: 500;
 }
+
+.section-certificate {
+    margin-top: 20px;
+    width: 98%;
+}
+
+.section-certificate-seta {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-top: 5px;
+}
+
+.section-certificate-seta > div {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.seta-retangulo {
+    flex: 1;
+    height: 25px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.seta-triangulo {
+    width: 30px;
+    height: 25px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    position: absolute;
+    right: -15px;
+    z-index: 10;
+}
+
+.section-certificate-seta > div + div {
+    margin-left: -15px; /* Sobreposição de 15 pixels */
+}
+
+.seta-triangulo-ultima {
+    position: static;
+}
+
+/* Cores das setas */
+.azul {
+    background-color: blue;
+}
+
+.vermelho {
+    background-color: red;
+}
+
+.preto {
+    background-color: black;
+}
+
+.cinza {
+    background-color: gray;
+}
+
+.amarelo {
+    background-color: yellow;
+}
+
