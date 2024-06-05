@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <title>Dados do Produtor</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleUsers.css">
+    <link rel="stylesheet" href="style/styleDashboardProducerData.css">
+
+</head>
+
+<body>
+
+    <section class="sectionPopup">
+        <section th:if="${condition}" th:insert="popups/savePopup"></section>
+        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+        <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
+    </section>
+
+    <main class="gridContainerBody">
+
+        <nav class="navBarLeft">
+            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="listLinksNav">
+                <ul class="listLinks">
+                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
+                    <li class="listSelect"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</li>
+                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
+                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                </ul>
+            </section>
+        </nav>
+
+        <section class="sectionPrincipal flexContainercolum">
+
+            <nav class="navBarHeader">
+                <ul class="navBarHeaderList">
+                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                </ul>
+
+                <ul class="navBarHeaderList navBarHeaderListLow">
+                    <li>Dados do Produtor</li>
+                    <li>administrador</li>
+                </ul>
+            </nav>
+
+            <section class="producer-section sectionList">
+
+                <div class="producer-info">
+                    <div class="producer-details">
+
+                        <h4 class="producer-name">joao teste teste</h4>
+                        <h5 class="business-name">Queijos sublimes</h5>
+
+                        <p class="phone-number">Telefone: <span>(44) 0 0000-0000</span></p>
+                        <p class="phone-number">Telefone: <span>(44) 0 0000-0000</span></p>
+                    </div>
+
+                    <div class="identifiers">
+                        <p class="cpf">CPF: <span>000000000-00</span></p>
+                        <p class="cnpj">CNPJ: <span>00000000000000000/00</span></p>
+                    </div>
+                </div>
+
+
+                <div class="location-info">
+                    <p class="location">
+                        Localização
+                    </p>
+                    <p class="address">
+                        Endereço: Linha Vento Curvo, s/n - Novo Sobradinho - Toledo/PR - CEP 85900-000
+                    </p>
+                </div>
+
+
+            </section>
+
+
+
+
+
+        </section>
+
+    </main>
+    <script src="script/editUser.js"></script>
+
+
+    <script src="script/opemCloseForm.js"></script>
+    <script src="script/validatePassword.js"></script>
+    <script src="script/deleteUser.js">
+
+
+    </script>
+
+</body>
+
+
+</html>

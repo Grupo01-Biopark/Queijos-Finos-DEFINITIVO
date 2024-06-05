@@ -1,0 +1,53 @@
+.producer-info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 20%;
+}
+
+.business-name,
+.producer-name{
+    font-size: 25px;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+}
+
+.business-name{
+    font-size: 18px;
+}
+
+.phone-number,
+.identifiers{
+    font-weight: 500;
+}
+
+.phone-number{
+    margin-bottom: 5px;
+}
+
+.phone-number span,
+.identifiers span{
+    font-weight: 400;
+    margin: 10px;
+}
+
+.identifiers p{
+    margin-bottom: 5px;
+}
+
+
+.location-info{
+    margin: 10px 0;
+}
+.location{
+    background-color: #40685B;
+    display: inline;
+    padding: 3px 10px;
+    color: white;
+}
+
+.address{
+    display: inline;
+    margin-left: 15px;
+    font-weight: 500;
+}
