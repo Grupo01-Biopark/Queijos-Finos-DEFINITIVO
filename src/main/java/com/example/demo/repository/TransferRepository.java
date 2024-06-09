@@ -5,11 +5,10 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.Transfer;
 import com.example.demo.entity.enums.TipoStatusProduction;
 
-@Repository
-public interface TransferRepository extends JpaRepository<Transfer, Long> {
+public interface TransferRepository extends JpaRepository<Transfer , Long>{
 
     long countByTipoStatusProduction(TipoStatusProduction tipoStatusProduction);
 
-    long countByTechnologyNameAndTipoStatusProduction(String technologyName, TipoStatusProduction producing); 
-    
+    long countByTechnologyNameAndTipoStatusProduction(String technologyName, TipoStatusProduction producing);
+
 }

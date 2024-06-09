@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.repository.ProducerRepository;
+import com.example.demo.repository.TransferRepository;
+import com.example.demo.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +27,17 @@ public class TransferController {
     @Autowired
     private TransferService transferService;
 
-    @GetMapping("/transfer")
-    public ModelAndView showScreen() {
+    @Autowired
+    private ProducerService producerService;
+
+    @GetMapping("/transfer/{producerId}")
+    public ModelAndView showScreen(@PathVariable Long producerId) {
         Transfer transfer = new Transfer();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("gerenciamentoTransferencias");
         modelAndView.addObject("transfer", transfer);
         modelAndView.addObject("technologies", technologyService.getListTechnology());
-        modelAndView.addObject("transfers", transferService.getAllTransfers());
+        modelAndView.addObject("transfers", producerService.getListTransfer(producerId));
         return modelAndView;
     }
 
@@ -45,8 +51,8 @@ public class TransferController {
         return modelAndView;
     }
 
-    @PostMapping("/transfer/updateTransfer")
-    public RedirectView updateTransfer(@ModelAttribute("transfer") Transfer transfer, RedirectAttributes attributes) {
+    @PostMapping("/transfer/updateTransfer/{producerId}")
+    public RedirectView updateTransfer(@ModelAttribute("transfer") Transfer transfer,@PathVariable Long producerId, RedirectAttributes attributes) {
         try {
             transferService.updateTransfer(transfer);
             attributes.addFlashAttribute("condition", "true");
@@ -55,12 +61,13 @@ public class TransferController {
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("mensagem", "Erro: " + e.getMessage());
         }
-        return new RedirectView("/transfer");
+        return new RedirectView("/transfer/"+ producerId);
     }
 
-    @PostMapping("/transfer/register")
-    public ModelAndView registerTransfer(@ModelAttribute Transfer transfer) {
+    @PostMapping("/transfer/register/{producerId}")
+    public ModelAndView registerTransfer(@ModelAttribute Transfer transfer, @PathVariable Long producerId) {
+        transfer.setProducer(producerService.getProducer(producerId));
         transferService.createTransfer(transfer);
-        return new ModelAndView("redirect:/transfer");
+        return new ModelAndView("redirect:/transfer/"+ producerId);
     }
 }

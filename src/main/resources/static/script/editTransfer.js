@@ -1,6 +1,7 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const editButtons = document.querySelectorAll(".editButton");
-
     editButtons.forEach((button) => {
         button.addEventListener("click", function() {
             const transferId = this.closest('tr').querySelector('td:first-child').textContent;
@@ -23,8 +24,12 @@ function openFormEdit() {
     const titleForm = document.querySelector(".titleForm");
     const formAction = sectionForm.querySelector("form");
 
+    const pathname = window.location.pathname;
+    const pathnameSplit = pathname.split("/");
+    const id = pathnameSplit[2]
+
     formAction.setAttribute("method", "post");
-    formAction.setAttribute("action", "/transfer/updateTransfer");
+    formAction.setAttribute("action", "/transfer/updateTransfer/"+id);
     titleForm.textContent = "Atualizar Transferência";
 
     sectionForm.style.display = "block";

@@ -28,53 +28,42 @@ public class Certificate {
     public Long getId() {
         return id;
     }
-    public String getIssuingBody() {
-        return issuingBody;
+
+    public void setId(Long id) {
+        this.id = id;
     }
+
     public String getDescription() {
         return description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIssuingBody() {
+        return issuingBody;
+    }
+
+    public void setIssuingBody(String issuingBody) {
+        this.issuingBody = issuingBody;
+    }
+
     public Date getIssuanceDate() {
         return issuanceDate;
     }
+
+    public void setIssuanceDate(Date issuanceDate) {
+        this.issuanceDate = issuanceDate;
+    }
+
     public Producer getProducer() {
         return producer;
     }
 
-    public static class Builder {
-
-        private final Certificate certificate;
-
-        public Builder(){
-            this.certificate = new Certificate();
-        }
-
-        public Builder id(Long id){
-            this.certificate.id = id;
-            return this;
-        }
-
-        public Builder issuingBody(String issuingBody){
-            this.certificate.issuingBody = issuingBody;
-            return this;
-        }
-
-        public Builder description(String description){
-            this.certificate.description = description;
-            return this;
-        }
-
-        public Builder issuanceDate(Date issuanceDate){
-            this.certificate.issuanceDate = issuanceDate;
-            return this;
-        }
-
-        public Builder producer(Producer producer){
-            this.certificate.producer = producer;
-            return this;
-        }
+    public void setProducer(Producer producer) {
+        this.producer = producer;
     }
-    
 
     @Override
     public int hashCode() {

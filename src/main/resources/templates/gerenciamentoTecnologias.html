@@ -10,13 +10,11 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
     <title>Gerenciamento de Tecnologias</title>
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
-    <link rel="stylesheet" href="style/styleTechnology.css">
-
-
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleTechnology.css}">
 </head>
 
 <body>
@@ -24,7 +22,7 @@
     <section class="sectionPopup">
         <section th:if="${condition}" th:insert="popups/savePopup"></section>
         <section th:insert="popups/savePopup" style="display: none;" class="popupAlertSave"></section>
-        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+<!--        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>-->
         <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
     </section>
 

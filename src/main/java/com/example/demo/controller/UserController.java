@@ -32,7 +32,7 @@ public class UserController {
         this.userService = userService;
     }
 
-   
+
     @GetMapping("/users")
     public ModelAndView viewUsersAndView() {
         ModelAndView modelAndView = new ModelAndView("cadastroUsuario");
@@ -40,7 +40,7 @@ public class UserController {
         modelAndView.addObject("users", getAllUsers());
         return modelAndView;
     }
-    
+
     @PostMapping("/users/register")
     public RedirectView createUser(@ModelAttribute("user") User user, RedirectAttributes attributes) {
         try {
@@ -51,8 +51,8 @@ public class UserController {
         }
         return new RedirectView("/users");
     }
-    
-    
+
+
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
@@ -71,17 +71,17 @@ public class UserController {
 
         return new RedirectView("/users");
     }
-    
+
     public List<User> getAllUsers() {
         try {
             return userService.getListUser();
         } catch (Exception e) {
-            
+
             logger.error("Erro ao obter a lista de usuários: {}", e.getMessage());
-            return Collections.emptyList(); 
+            return Collections.emptyList();
         }
     }
-    
+
 
 
 }

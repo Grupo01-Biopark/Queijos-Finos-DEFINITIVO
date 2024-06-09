@@ -57,25 +57,6 @@ public class Technology {
 		this.activeItem = activeItem;
 	}
 
-	public void setTransfers(List<Transfer> transfers) {
-		this.transfers = transfers;
-	}
-
-	public List<Transfer> getTransfers() {
-		return transfers;
-	}
-
-	public Technology() {
-	}
-
-	public Technology(Long id, String name, String observation, Boolean activeItem, List<Transfer> transfers) {
-		this.id = id;
-		this.name = name;
-		this.observation = observation;
-		this.activeItem = activeItem;
-		this.transfers = transfers;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,64 +1,61 @@
-<!DOCTYPE html>
-<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+    <!DOCTYPE html>
+    <html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
-    <title>Documentos do Produtor</title>
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
-    <link rel="stylesheet" href="style/AdicionarPopupDocumento">
-    <link rel="stylesheet" href="style/popupAlertDelet">
-    <link rel="stylesheet" href="style/StyleAddDocument.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+                rel="stylesheet">
+        <title>Documentos do Produtor</title>
+        <link rel="stylesheet" th:href="@{/style/AdicionarPopupDocumento}">
+        <link rel="stylesheet" th:href="@{/style/popupAlertDelet}">
+        <link rel="stylesheet" th:href="@{/style/reset.css}">
+        <link rel="stylesheet" th:href="@{/style/style.css}">
+        <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+        <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+        <link rel="stylesheet" th:href="@{/style/StyleAddDocument.css}">
+    </head>
 
 
     <body>
-        <section class="sectionPopup" >  
-            <section th:if="${condition}" th:insert= "popups/savePopup"></section>
-            <section th:insert= "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>
-            <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
-        </section>
-        
-     <main class="gridContainerBody">
+    <section class="sectionPopup" >
+        <section th:if="${condition}" th:insert= "popups/savePopup"></section>
+    <!--    <section th:insert= "popups/alertPopupDelet" class="popupAlertDelet" style="display: none;" ></section>-->
+        <section th:insert= "popups/alertPopupForm" id ="popupAlertForm" class="teste" style="display: none" ></section>
+    </section>
+
+    <main class="gridContainerBody">
         <nav class="navBarLeft">
-            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
-                    <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
-                    <li class="listSelect"><img src="images/icons/cheeseVetorWhite.svg" alt=""> Cadastro de Tecnologia</li>
-                    <li><img src="images/icons/configVetor.svg" alt=""> Configurações</li>
+                    <li><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                    <li><img th:src="@{/images/icons/producerVetor.svg}" alt=""><a href="/producers">Produtores</a></li>
+                    <li class="listSelect">
+                        <img th:src="@{/images/icons/cheeseVetorWhite.svg}" alt=""> Cadastro de Tecnologia
+                    </li>
+                    <li><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</li>
                 </ul>
             </section>
         </nav>
-
         <section class="sectionPrincipal Containercolum">
             <nav class="navBarHeader">
                 <ul class="navBarHeaderList">
                     <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
                     <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
                 </ul>
-                
+
                 <ul class="navBarHeaderList navBarHeaderListLow">
                     <li>DOCUMENTOS DO PRODUTOR</li>
                     <li>Administrador</li>
                 </ul>
             </nav>
-
-
-            
-        <section id="sectionForm" class="sectionForms sectionList">
-            <h4 class="titleForm"></h4>
-                <form th:action="@{/Documentos/cadastrar}" th:object="${document}" enctype="multipart/form-data" method="post">
-
+            <section id="sectionForm" class="sectionForms sectionList">
+                <h4 class="titleForm"></h4>
+                <form id="form" th:action="@{/documents/register/${producer.id}}" th:object="${document}" enctype="multipart/form-data" method="post">
                     <div class="row">
                         <div class="row-element-25">
                             <label for="title">Documento:</label>
@@ -89,18 +86,18 @@
                         </div>
 
                     </div>
-                    
+
                     <label for="file">Adicionar Documentos:</label>
                     <input type="file" id="file" th:field="*{file}"name="document" required>
-            
+
                     <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                     <button id="buttonSave" class="buttons buttonSave" type="submit">Salvar</button>
                 </form>
             </section>
-            
-            
-        <table class="table">
-            <thead>
+
+
+            <table class="table">
+                <thead>
                 <tr>
                     <th>Nome:</th>
                     <td>
@@ -112,40 +109,38 @@
                             <option value="Certificados">Certificados</option>
                             <option value="Documentos Gerais">Documentos Gerais</option>
                             <option value="Outros">Outros</option>
-                        </select>                        
+                        </select>
                     </td>
                     <th>Data de Upload:</th>
                     <th>Data de Vencimento:</th>
                     <td>
-                      <button id="buttonAdd" data-page= "Document" class="buttons buttonAdd" >&#43; Adicionar</button>
+                        <button id="buttonAdd" data-page= "Document" class="buttons buttonAdd" >&#43; Adicionar</button>
                     </td>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
-                    <tr th:each="document : ${documents}">
-                        <td th:text="${document.title}"></td>
-                        <td th:text="${document.category}"></td>
-                        <td th:text="${document.dateSystem}"></td>
-                        <td th:text="${document.date}"></td>
-                        <td>
-                    
+                <tr th:each="document : ${documents}">
+                    <td th:text="${document.title}"></td>
+                    <td th:text="${document.category}"></td>
+                    <td th:text="${document.dateSystem}"></td>
+                    <td th:text="${document.date}"></td>
                     <td>
-                           
+
+                    <td>
+
                         <button type="button" class="download-btn" th:data-id='${document.id}'>
                             <img src="images/icons/iconEdit.svg" alt=""></button>
                         <button type="button" class="delete-btn" th:data-id='${document.id}'>
-                                <img src="images/icons/iconDelete.svg" alt=""></button>
+                            <img src="images/icons/iconDelete.svg" alt=""></button>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-    </section>
-         <script src="script/downloadDocument.js"></script>
-        <script src="script/opemCloseForm.js"></script>
-        <script src="script/deleteDocument.js"></script>
-
-
+        </section>
+        <script th:src="@{/script/downloadDocument.js}"></script>
+        <script th:src="@{/script/opemCloseForm.js}"></script>
+        <script th:src="@{/script/deleteDocument.js}"></script>
     </body>
-</html>
+    </html>

@@ -20,15 +20,15 @@ public class LoginController {
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("Login/Login");
-        return mv; 
+        return mv;
     }
 
     @PostMapping("/logInto")
     public ModelAndView logInto(@RequestParam("email") String email, @RequestParam("password") String password) {
         ModelAndView mv = new ModelAndView();
-    
+
         User user = repository.findByEmailAndPassword(email, password);
-    
+
         if (user != null) {
             mv.setViewName("redirect:/dashboardProducer");
         } else {
@@ -37,9 +37,9 @@ public class LoginController {
             // Retorna para a mesma página de login
             mv.setViewName("Login/Login");
         }
-    
+
         return mv;
     }
-    
+
 }
 

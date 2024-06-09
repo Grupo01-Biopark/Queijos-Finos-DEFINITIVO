@@ -1,6 +1,5 @@
 /* variaveis css cores */
 :root{
-
     --backgroudNavBar: #132F3E;
     --backgorudBottonAdd: #30363D;
     --backgroundBottonAddHover:#373b41;
@@ -29,7 +28,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .flexContainerRowBetween{
@@ -38,8 +36,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
-/* configuracao botoes */
 
 .buttons{
     font-size: 1rem;
