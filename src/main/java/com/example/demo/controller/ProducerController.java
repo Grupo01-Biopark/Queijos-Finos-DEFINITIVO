@@ -42,7 +42,7 @@ public class ProducerController {
         return modelAndView;
     }
 
-    @GetMapping("/producers")
+    /* @GetMapping("/producers") DESATIVADO POR CONTA DE MELHORIAS
     public ModelAndView showProducers(){
         Producer producer = new Producer();
         ModelAndView modelAndView = new ModelAndView();
@@ -50,7 +50,7 @@ public class ProducerController {
         modelAndView.addObject("producer", producer);
         modelAndView.addObject("producers", getAllProducers());
         return modelAndView;
-    }
+    }*/
 
     @GetMapping("/producers/{producerId}")
     public ResponseEntity<Void> deleteProducer(@PathVariable Long producerId){
