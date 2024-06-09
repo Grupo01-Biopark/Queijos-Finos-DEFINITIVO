@@ -1,7 +1,5 @@
 package com.example.demo.dtos;
 
-import java.util.Date;
-
 public class ProducerDto {
     private String name;
     private String cpf;

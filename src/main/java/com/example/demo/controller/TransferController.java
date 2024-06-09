@@ -1,8 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.repository.ProducerRepository;
-import com.example.demo.repository.TransferRepository;
-import com.example.demo.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.entity.Transfer;
+import com.example.demo.service.ProducerService;
 import com.example.demo.service.TechnologyService;
 import com.example.demo.service.TransferService;
 
