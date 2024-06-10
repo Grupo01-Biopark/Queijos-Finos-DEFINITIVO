@@ -9,10 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import com.example.demo.dtos.ProducerDto;
-import com.example.demo.entity.Address;
-import com.example.demo.entity.Certificate;
-import com.example.demo.entity.PhoneNumber;
-import com.example.demo.entity.Producer;
+import com.example.demo.entity.*;
 import com.example.demo.repository.ProducerRepository;
 import com.example.demo.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,28 +74,30 @@ public class ProducerController {
         // Formatando as datas para o padrão esperado
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        Contract contract = new Contract();
+
         if (producerDto.getSignatureDate() != null && !producerDto.getSignatureDate().isEmpty()) {
             LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
             Date signatureDate = Date.from(signatureDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            producer.setSignatureDate(signatureDate);
+            contract.setSignatureDate(signatureDate);
         } else {
-            producer.setSignatureDate(null);
+            contract.setSignatureDate(null);
         }
 
         if (producerDto.getExpirationDate() != null && !producerDto.getExpirationDate().isEmpty()) {
             LocalDate expirationDateParsed = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
             Date expirationDate = Date.from(expirationDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            producer.setExpirationDate(expirationDate);
+            contract.setExpirationDate(expirationDate);
         } else {
-            producer.setExpirationDate(null);
+            contract.setExpirationDate(null);
         }
 
         if (producerDto.getStatusDate() != null && !producerDto.getStatusDate().isEmpty()) {
             LocalDate statusDateParsed = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
             Date statusDate = Date.from(statusDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            producer.setStatusDate(statusDate);
+            contract.setStatusDate(statusDate);
         } else {
-            producer.setStatusDate(null);
+            contract.setStatusDate(null);
         }
 
         Certificate certificate = new Certificate();
@@ -179,12 +178,13 @@ public class ProducerController {
         phoneNumbers.add(phone2);
 
         producer.setPhoneNumbers(phoneNumbers);
+        producer.setContract(contract);
+        contract.setProducer(producer);
 
         producerService.updateProducer(producer);
 
         return new RedirectView("/editProducer/"+ producerId);
     }
-
 
     @GetMapping("/editProducer/{producerId}")
     public ModelAndView editProducer(@PathVariable Long producerId) {
@@ -198,14 +198,13 @@ public class ProducerController {
         producerDto.setSocialReason(producer.getSocialReason());
         producerDto.setEmail(producer.getEmail());
 
-        // Formatando as datas para string
-        String signatureDateStr = formatDate(producer.getSignatureDate());
+        String signatureDateStr = formatDate(producer.getContract().getSignatureDate());
         producerDto.setSignatureDate(signatureDateStr);
 
-        String expirationDateStr = formatDate(producer.getExpirationDate());
+        String expirationDateStr = formatDate(producer.getContract().getExpirationDate());
         producerDto.setExpirationDate(expirationDateStr);
 
-        String statusDateStr = formatDate(producer.getStatusDate());
+        String statusDateStr = formatDate(producer.getContract().getStatusDate());
         producerDto.setStatusDate(statusDateStr);
 
         String simPoaStr = formatDate(producer.getCertificates().getSimPoa());
@@ -280,10 +279,12 @@ public class ProducerController {
 
             producer.setEmail(producerDto.getEmail());
 
-            // Parsing dates with null checks
-            producer.setSignatureDate(parseDate(producerDto.getSignatureDate(), dateFormat));
-            producer.setExpirationDate(parseDate(producerDto.getExpirationDate(), dateFormat));
-            producer.setStatusDate(parseDate(producerDto.getStatusDate(), dateFormat));
+            Contract contract = new Contract();
+
+            contract.setSignatureDate(parseDate(producerDto.getSignatureDate(), dateFormat));
+            contract.setExpirationDate(parseDate(producerDto.getExpirationDate(), dateFormat));
+            contract.setStatusDate(parseDate(producerDto.getStatusDate(), dateFormat));
+            contract.setStatus(producerDto.getStatus());
 
             Certificate certificate = new Certificate();
             certificate.setSimPoa(parseDate(producerDto.getSimPoa(), dateFormat));
@@ -313,6 +314,8 @@ public class ProducerController {
             producer.setPhoneNumbers(phones);
             producer.setAddress(address);
             producer.setCertificates(certificate);
+            producer.setContract(contract);
+            contract.setProducer(producer);
             producerService.addProducer(producer);
 
         } catch (DataIntegrityViolationException e) {

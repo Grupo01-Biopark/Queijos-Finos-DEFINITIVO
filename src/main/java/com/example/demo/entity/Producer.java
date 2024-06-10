@@ -18,7 +18,6 @@ public class Producer {
     private String cnpj;
     private String socialReason;
     private String email;
-    private String status;
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -44,15 +43,6 @@ public class Producer {
         return true;
     }
 
-    @Temporal(TemporalType.DATE)
-    private Date signatureDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date expirationDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date statusDate;
-
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhoneNumber> phoneNumbers = new ArrayList<>();
     @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -63,6 +53,17 @@ public class Producer {
     private List<Document> documents = new ArrayList<>();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transfer> transfers = new ArrayList<>();
+
+    @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Contract contract = new Contract();
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
 
     public List<Transfer> getTransfers() {
         return transfers;
@@ -142,38 +143,6 @@ public class Producer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(Date signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Date getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(Date statusDate) {
-        this.statusDate = statusDate;
     }
 
     public List<PhoneNumber> getPhoneNumbers() {
