@@ -24,17 +24,32 @@
     </section>
 
     <main class="gridContainerBody">
+
         <nav class="navBarLeft">
             <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
-                    <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
-                    <li class="listSelect" id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
-                    <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
+                    <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt=""> Produtores</a></li>
+                    <li id="tecnologiesLink"><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt="">  Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
                 </ul>
             </section>
         </nav>
+
+        <!--      ALTERIREI A NAV BAR DEXEI AQUI CASO PRECISE  
+            <nav class="navBarLeft">
+                <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
+                <section class="listLinksNav">
+                    <ul class="listLinks">
+                        <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                        <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                        <li class="listSelect" id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                        <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
+                    </ul>
+                </section>
+            </nav>
+        -->
         <section class="sectionPrincipal flexContainercolum">
 
             <nav class="navBarHeader">
@@ -80,8 +95,8 @@
     
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                        <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
-                                alt="Salvar Transferência">Salvar</button>
+                        <button class="buttons buttonSave" type="submit"><img th:src="@{/images/icons/icons8-done.svg}" 
+                                alt=""> Salvar</button>
                     </div>
                 </form>
             </section>

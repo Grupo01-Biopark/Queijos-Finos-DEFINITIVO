@@ -1,14 +1,16 @@
-:root{
-
-    --backgroudNavBar: #132F3E;
+:root {
+    --backgroudNavBar: #ffffff; 
+    --backgroudNavBarHead: #132F3E;
+    --hoverNavBarLink: #2a4858; /* Cor de fundo ao passar o mouse nos links */
+    --activeNavBarLink: #132F3E; /* Cor de fundo do link ativo */
     --backgorudBottonAdd: #30363D;
-    --backgroundBottonAddHover:#373b41;
+    --backgroundBottonAddHover: #373b41;
     --backgroudBottonSave: #06744D;
-    --backgroudBottonSaveHover:#02412b;
-    --backgroundBottonCancelHover:#ff0000;
-    --backgroundBottonExitHover:#c20808;
-    --backgroundBottonCancelPopup : #1865FA;
-    --backgroundBottonCancelPopupHover : #1a4bac;
+    --backgroudBottonSaveHover: #02412b;
+    --backgroundBottonCancelHover: #ff0000;
+    --backgroundBottonExitHover: #c20808;
+    --backgroundBottonCancelPopup: #1865FA;
+    --backgroundBottonCancelPopupHover: #1a4bac;
     --backgroudLListItem: #EBEBEB;
     --colorAdmim: #0BCA87;
 }

@@ -4,8 +4,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    /* padding: 1rem; */
     border-right: 2px solid #000000;
+    background-color: var(--backgroudNavBar);
+    padding-top: 20px;
 }
 
 .logo {
@@ -20,15 +21,27 @@
 
 .listLinksNav {
     width: 100%;
-    
+    margin-top: 20px;
 }
 
-.listLinks li a{
+.listLinks {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.listLinks li {
+    width: 100%;
+}
+
+.listLinks li a {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 1rem;
     font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .listLinks li img {
@@ -36,15 +49,12 @@
     padding-right: 10px;
 }
 
-.listSelect a{
-    background-color: var(--backgroudNavBar);
-    color: white; 
+.listLinks li a:hover {
+    background-color: var(--hoverNavBarLink);
+    color: white;
 }
 
-
-
-.listSelect:hover{
-    cursor: pointer;
-} 
-
-
+.listSelect a {
+    background-color: var(--activeNavBarLink);
+    color: white; 
+}
