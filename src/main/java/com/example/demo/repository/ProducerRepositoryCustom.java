@@ -41,6 +41,34 @@ public class ProducerRepositoryCustom{
         return producerInfoList;
     }
    
+    public List<Map<String, Object>> getProducerInfoDashboard(Long id) {
+        StringBuilder jpqlBuilder = new StringBuilder();
+    
+        jpqlBuilder.append("SELECT p.id, p.name, p.socialReason, p.cpf, p.cnpj, ph.phone ")
+                   .append("FROM Producer p ")
+                   .append("INNER JOIN p.phoneNumbers ph ")
+                   .append("WHERE p.id = :id");
+    
+        TypedQuery<Object[]> query = entityManager.createQuery(jpqlBuilder.toString(), Object[].class);
+        query.setParameter("id", id); // Adicionando o parâmetro ID à consulta
+    
+        List<Object[]> results = query.getResultList();
+    
+        List<Map<String, Object>> producerInfoDashboard = new ArrayList<>();
+        for (Object[] result : results) {
+            Map<String, Object> producerInfo = new HashMap<>();
+            producerInfo.put("id", result[0]);
+            producerInfo.put("name", result[1]);
+            producerInfo.put("socialReason", result[2]);
+            producerInfo.put("cpf", result[3]);
+            producerInfo.put("cnpj", result[4]);
+            producerInfo.put("phone", result[5]);
+            producerInfoDashboard.add(producerInfo);
+        }
+    
+        return producerInfoDashboard;
+    }
+    
 
     public List<Map<String, Object>> getProducerInfoFilter(ProducerFilterDto producerFilterDto) {
         StringBuilder jpqlBuilder = new StringBuilder();
