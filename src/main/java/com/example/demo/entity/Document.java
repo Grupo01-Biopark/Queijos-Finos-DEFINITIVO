@@ -86,10 +86,10 @@ public class Document {
 		this.producer = producer;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(category, date, dateSystem, file, id, producer, title);
-	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(category, date, dateSystem, file, id, producer, title);
+//	}
 
 	@Override
 	public boolean equals(Object obj) {

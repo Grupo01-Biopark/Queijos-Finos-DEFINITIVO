@@ -2,6 +2,10 @@ const openFormButton = document.getElementById("buttonAdd");
 const closeFormButton = document.getElementById("buttonCancel");
 const sectionForm = document.getElementById("sectionForm");
 
+const pathname = window.location.pathname;
+const pathnameSplit = pathname.split("/");
+const id = pathnameSplit[2]
+
 const formValues = {
     technology: {
         action: "/tecnologias/cadastrar",
@@ -9,7 +13,7 @@ const formValues = {
         title: "Nova tecnologia"
     },
     transfer: {
-        action: "/transfer/register",
+        action: "/transfer/register/"+id,
         method: "post",
         title: "Transferencia"
     },
@@ -18,16 +22,14 @@ const formValues = {
         method: "post",
         title: "Novo usuário"
     },
-    
     Document: {
-        action: "/Documentos/cadastrar",
+        action: "/documents/register/"+id,
         method: "post",
         title: "Novo Documento"
     }
 };
 
-
-openFormButton.addEventListener("click", () => {  
+openFormButton.addEventListener("click", () => {
     const page = openFormButton.getAttribute("data-page");
     const formValue = formValues[page] || formValues.user;
     opemForm(formValue);

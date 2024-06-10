@@ -10,49 +10,52 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
     <title>Gerenciamento de Transferências</title>
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
-    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
-    <link rel="stylesheet" href="style/styleTransfer.css">
+    <link rel="stylesheet" th:href="@{/style/reset.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
+    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
+    <link rel="stylesheet" th:href="@{/style/styleTransfer.css}">
 </head>
-
 <body>
-
-    <!-- SEÇÃO DE FUNCIONAMENTO DOS POPUPS -->
-
     <section class="sectionPopup">
         <section th:if="${condition}" th:insert="popups/savePopup"></section>
-        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+<!--        <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>-->
         <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>
     </section>
-
-    <!-- SEÇÃO LEFTBAR -->
 
     <main class="gridContainerBody">
 
         <nav class="navBarLeft">
-            <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+            <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img src="images/icons/Vector.svg" alt="Acessar Dashboard"> Dashboard</li>
-                    <li class="listSelect"><img src="images/icons/producerVetorWhite.svg" alt="Acessar Produtores">
-                        Produtores</li>
-                    <li><img src="images/icons/cheeseVetor.svg" alt="Acessar Tecnologias"> Cadastro Tecnologias
-                    </li>
-                    <li><img src="images/icons/configVetor.svg" alt="Acessar Configurações">Configurações</li>
+                    <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt=""> Produtores</a></li>
+                    <li id="tecnologiesLink"><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt="">  Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
                 </ul>
             </section>
         </nav>
 
-        <!-- SEÇÃO NAVBAR -->
-
+        <!--      ALTERIREI A NAV BAR DEXEI AQUI CASO PRECISE  
+            <nav class="navBarLeft">
+                <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
+                <section class="listLinksNav">
+                    <ul class="listLinks">
+                        <li id="dashboardLink"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
+                        <li id="producersLink"><img th:src="@{/images/icons/producerVetor.svg}" alt=""> Produtores</li>
+                        <li class="listSelect" id="tecnologiesLink"><img th:src="@{/images/icons/cheeseVetor.svg}" alt=""> Cadastor Tecnologias</li>
+                        <li id="configurationLink"><img th:src="@{/images/icons/configVetor.svg}" alt="">Configurações</li>
+                    </ul>
+                </section>
+            </nav>
+        -->
         <section class="sectionPrincipal flexContainercolum">
 
             <nav class="navBarHeader">
                 <ul class="navBarHeaderList">
-                    <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
-                    <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                    <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
+                    <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>
                 </ul>
 
                 <ul class="navBarHeaderList navBarHeaderListLow">
@@ -60,16 +63,12 @@
                     <li>administrador</li>
                 </ul>
             </nav>
-
-            <!-- SEÇÃO DO FORMULÁRIO PARA ASSOCIAR TECNOLOGIAS -->
-
             <section id="sectionForm" class="sectionForms sectionList" th:if="${transfer}">
                 <h4 class="titleForm"></h4>
-    
                 <form th:object="${transfer}" id="transferForm">
                     <input type="hidden" th:field="*{id}">
                     <div class="topIpunts">
-                        <label for="tecnologies">Tecnologia:</label>
+                        <label for="tecnologia">Tecnologia:</label>
                         <select th:field="*{technology.id}" id="tecnologia" name="tecnologia" th:required="true">
                             <option value=""
                                 th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
@@ -96,13 +95,11 @@
     
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                        <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
-                                alt="Salvar Transferência">Salvar</button>
+                        <button class="buttons buttonSave" type="submit"><img th:src="@{/images/icons/icons8-done.svg}" 
+                                alt=""> Salvar</button>
                     </div>
                 </form>
             </section>
-
-            <!-- SEÇÃO PARA LISTAGEM DE TECNOLOGIAS ATRIBUIDAS AO PRODUTOR -->
 
             <section class="sectionList">
                 <section class="flexContainerRowBetween sectionListHeader">
@@ -128,22 +125,20 @@
                             <td th:text="${transfer.startDate}"></td>
                             <td th:text="${transfer.completionDate}"></td>
                             <td>
-                                <button class="editButton"><img src="images/icons/iconEdit.svg"
+                                <button class="editButton"><img th:src="@{/images/icons/iconEdit.svg}"
                                         alt="Botão de editar transferência"></button>
                                 <button type="button" class="delete-btn" th:data-id='${transfer.id}'>
-                                    <img src="images/icons/iconDelete.svg" alt="Botão de deletar transferência">
+                                    <img th:src="@{/images/icons/iconDelete.svg}" alt="Botão de deletar transferência">
                                 </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
-
-
-            <script src="script/opemCloseForm.js"></script>
-            <script src="script/editTransfer.js"></script>
-
-
+            <script th:src="@{/script/opemCloseForm.js}"></script>
+            <script th:src="@{/script/editTransfer.js}"></script>
+            <script th:src="@{/script/closePopup.js}"></script>
+            <script th:src="@{/script/navbarRedirect.js}"></script>
 </body>
 
 </html>

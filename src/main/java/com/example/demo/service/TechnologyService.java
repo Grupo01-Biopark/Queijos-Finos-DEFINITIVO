@@ -62,12 +62,12 @@ public class TechnologyService {
         return technologies != null ? technologies : Collections.emptyList();
     }
 
- 
+
     public void changeTechnologyStatus(Long id) {
-        
+
         Technology technology = technologyRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Tecnologia não encontrada com ID: " + id));
-        
+                .orElseThrow(() -> new EntityNotFoundException("Tecnologia não encontrada com ID: " + id));
+
         technology.setActiveItem(!technology.getActiveItem());
 
         technologyRepository.save(technology);
@@ -78,17 +78,17 @@ public class TechnologyService {
     }
 
     public Map<Long, Map<String, Object>> generateReportForAllTechnologies() {
-       
+
         Query query = entityManager.createNativeQuery(
-            "SELECT t.id, t.name, tt.tipo_status_production, COUNT(*) " +
-                "FROM tb_technology t " +
-                "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
-                "WHERE t.active_item is true " +
-                "GROUP BY t.id, t.name, tt.tipo_status_production"
+                "SELECT t.id, t.name, tt.tipo_status_production, COUNT(*) " +
+                        "FROM tb_technology t " +
+                        "LEFT JOIN tb_transfer tt ON t.id = tt.technology_id " +
+                        "WHERE t.active_item is true " +
+                        "GROUP BY t.id, t.name, tt.tipo_status_production"
         );
-        
+
         List<Object[]> results = query.getResultList();
-        
+
         Map<Long, Map<String, Object>> report = new HashMap<>();
         results.forEach(row -> {
             Long technologyId = ((Number) row[0]).longValue();
@@ -97,20 +97,20 @@ public class TechnologyService {
             TipoStatusProduction status = (statusByte != null) ? TipoStatusProduction.values()[statusByte] : null;
             String statusName = (status != null) ? status.name() : null;
             Long count = ((Number) row[3]).longValue();
-        
+
             report.computeIfAbsent(technologyId, id -> new HashMap<>())
                     .put("technologyName", technologyName);
             report.get(technologyId).put(statusName, count);
         });
-        
+
         return report;
     }
 
-     public List<String> getAllActiveTechnologyNames() {
+    public List<String> getAllActiveTechnologyNames() {
         List<Technology> activeTechnologies = technologyRepository.findAllByActiveItemTrue();
         return activeTechnologies.stream()
                 .map(Technology::getName) // Extrai apenas o nome da tecnologia
                 .collect(Collectors.toList()); // Coleta os nomes em uma lista
     }
- 
+
 }

@@ -32,10 +32,10 @@
             <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
-                    <li><img src="images/icons/producerVetor.svg" alt=""> Produtores</li>
-                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
-                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                    <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                    <li><a href="/producers"><img src="images/icons/producerVetor.svg" alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a></li>
+                    <li  class="listSelect"><a href="/users"><img src="images/icons/configVetorWhite.svg" alt=""> Configurações</a></li>
                 </ul>
             </section>
         </nav>
@@ -63,7 +63,6 @@
                     <input id="id" name="id" th:field="*{id}" type="number" style="display: none;" value="1">
 
                     <div class="flexContainercolum">
-
                         
                             <label for="nome">Nome:</label>
                             <input id="nameUser" name="nameUser" type="text" placeholder="Digite o nome"

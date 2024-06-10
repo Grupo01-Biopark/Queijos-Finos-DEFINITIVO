@@ -1,15 +1,16 @@
-/* variaveis css cores */
-:root{
-
-    --backgroudNavBar: #132F3E;
+:root {
+    --backgroudNavBar: #ffffff; 
+    --backgroudNavBarHead: #132F3E;
+    --hoverNavBarLink: #2a4858; /* Cor de fundo ao passar o mouse nos links */
+    --activeNavBarLink: #132F3E; /* Cor de fundo do link ativo */
     --backgorudBottonAdd: #30363D;
-    --backgroundBottonAddHover:#373b41;
+    --backgroundBottonAddHover: #373b41;
     --backgroudBottonSave: #06744D;
-    --backgroudBottonSaveHover:#02412b;
-    --backgroundBottonCancelHover:#ff0000;
-    --backgroundBottonExitHover:#c20808;
-    --backgroundBottonCancelPopup : #1865FA;
-    --backgroundBottonCancelPopupHover : #1a4bac;
+    --backgroudBottonSaveHover: #02412b;
+    --backgroundBottonCancelHover: #ff0000;
+    --backgroundBottonExitHover: #c20808;
+    --backgroundBottonCancelPopup: #1865FA;
+    --backgroundBottonCancelPopupHover: #1a4bac;
     --backgroudLListItem: #EBEBEB;
     --colorAdmim: #0BCA87;
 }
@@ -29,7 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .flexContainerRowBetween{
@@ -43,15 +44,21 @@
 
 .buttons{
     font-size: 1rem;
-    padding: 5px 10px;
+    padding: 10px 18px;
     border-radius: 5px;
     margin-bottom: 5px;
     color: white;
     cursor: pointer;
 }
 
+
+
 .buttonAdd{
     background-color: var(--backgorudBottonAdd);  
+}
+
+.button-link{
+    color: white;
 }
 
 .buttonAdd:hover{
@@ -83,6 +90,30 @@
     color: white;
 }
 
+/* configurações seção principal */
+
+.sectionPrincipal{
+    width: 100%;
+    
+}
+
+.sectionList{
+    width: 98%;
+    margin-bottom: 20px;
+    padding: 10px 20px 5px;
+    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+
+
+.sectionListHeader p{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+
 /* configuracoes tabelas */
 
 .table{
@@ -91,7 +122,8 @@
     border-collapse: separate;
     border-spacing: 0 5px;
     text-align: left;
-    font-weight: 500;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 
 .table thead, tr, th{
@@ -100,7 +132,15 @@
 
 .table td{
     padding-left: 10px;
+    justify-content: flex-start;
+    
 }
+
+.imageTable{
+    width: 1,5rem;
+    padding-right: 1rem;
+}
+
 .table tbody tr{  
     background-color: var(--backgroudLListItem);
 

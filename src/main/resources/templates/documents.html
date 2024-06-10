@@ -1,0 +1,138 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">-->
+<!--    <title>Documentos do Produtor</title>-->
+<!--    <link rel="stylesheet" th:href="@{/style/reset.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/style/style.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/style/StyleAddDocument.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/style/StyleAddDocument.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<section class="sectionPopup">-->
+<!--    <section th:if="${condition}" th:insert="popups/savePopup"></section>-->
+<!--    <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>-->
+<!--    <section th:insert="popups/alertPopupForm" id="popupAlertForm" class="teste" style="display: none"></section>-->
+<!--</section>-->
+
+<!--<main class="gridContainerBody">-->
+<!--    <nav class="navBarLeft">-->
+<!--        <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>-->
+<!--        <section class="listLinksNav">-->
+<!--            <ul class="listLinks">-->
+<!--                <li><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>-->
+<!--                <li><img th:src="@{/images/icons/producerVetor.svg}" alt=""><a href="/producers">Produtores</a></li>-->
+<!--                <li class="listSelect"><img th:src="@{/images/icons/cheeseVetorWhite.svg}" alt=""> Cadastro de Tecnologia</li>-->
+<!--                <li><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</li>-->
+<!--            </ul>-->
+<!--        </section>-->
+<!--    </nav>-->
+
+<!--    <section class="sectionPrincipal Containercolum">-->
+<!--        <nav class="navBarHeader">-->
+<!--            <ul class="navBarHeaderList">-->
+<!--                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>-->
+<!--                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>-->
+<!--            </ul>-->
+
+<!--            <ul class="navBarHeaderList navBarHeaderListLow">-->
+<!--                <li>DOCUMENTOS DO PRODUTOR</li>-->
+<!--                <li>Administrador</li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+
+<!--        <section id="sectionForm" class="sectionForms sectionList">-->
+<!--            <h4 class="titleForm"></h4>-->
+<!--            <form th:action="@{/Documentos/cadastrar}" th:object="${document}" enctype="multipart/form-data" method="post">-->
+<!--                <div class="row">-->
+<!--                    <div class="row-element-25">-->
+<!--                        <label for="title">Documento:</label>-->
+<!--                        <input type="text" id="title" name="title" placeholder="Nome do Documento" required>-->
+<!--                    </div>-->
+<!--                    <div class="row-element-25">-->
+<!--                        <label for="dateSystem">Data de upload:</label>-->
+<!--                        <input type="date" id="dateSystem" name="dateSystem">-->
+<!--                    </div>-->
+
+<!--                    <div class="row-element-25">-->
+<!--                        <label for="category">Tipo de Documento:</label>-->
+<!--                        <select id="category" name="category">-->
+<!--                            <option value="" disabled selected>Selecione o tipo de documento</option>-->
+<!--                            <option value="contratos">Contratos</option>-->
+<!--                            <option value="laudos_internos">Laudos Internos</option>-->
+<!--                            <option value="laudos_externos">Laudos Externos</option>-->
+<!--                            <option value="certificados">Certificados</option>-->
+<!--                            <option value="documentos_gerais">Documentos Gerais</option>-->
+<!--                            <option value="outros">Outros</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="row-element-25">-->
+<!--                        <label for="date">Data de Vencimento:</label>-->
+<!--                        <input type="date" id="date" name="date">-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <label for="file">Adicionar Documentos:</label>-->
+<!--                <input type="file" id="file" name="document" required>-->
+
+<!--                <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>-->
+<!--                <button id="buttonSave" class="buttons buttonSave" type="submit">Salvar</button>-->
+<!--            </form>-->
+<!--        </section>-->
+
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>Nome:</th>-->
+<!--                <td>-->
+<!--                    <select id="TipoDocumento" name="TipoDocumento">-->
+<!--                        <option value="" disabled selected>Selecione o tipo de documento</option>-->
+<!--                        <option value="contratos">Contratos</option>-->
+<!--                        <option value="laudos_internos">Laudos Internos</option>-->
+<!--                        <option value="laudos_externos">Laudos Externos</option>-->
+<!--                        <option value="certificados">Certificados</option>-->
+<!--                        <option value="documentos_gerais">Documentos Gerais</option>-->
+<!--                        <option value="outros">Outros</option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <th>Data de Upload:</th>-->
+<!--                <th>Data de Vencimento:</th>-->
+<!--                <td>-->
+<!--                    <button id="buttonAdd" data-page="Document" class="buttons buttonAdd">&#43; Adicionar</button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="document : ${documents}">-->
+<!--                <td th:text="${document.title}"></td>-->
+<!--                <td th:text="${document.category}"></td>-->
+<!--                <td th:text="${document.dateSystem}"></td>-->
+<!--                <td th:text="${document.date}"></td>-->
+<!--                <td>-->
+<!--                    <a href="style/">-->
+<!--                        <button type="button">-->
+<!--                            <img src="images/icons/iconEdit.svg" alt="Edit">-->
+<!--                        </button>-->
+<!--                    </a>-->
+<!--                    <button type="button" class="delete-btn" th:data-id='${document.id}'>-->
+<!--                        <img src="images/icons/iconDelete.svg" alt="">-->
+<!--                    </button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </section>-->
+<!--</main>-->
+
+<!--<script th:src="@{/script/opemCloseForm.js}"></script>-->
+<!--<script th:src="@{/script/deleteDocument.js}"></script>-->
+<!--</body>-->
+<!--</html>-->

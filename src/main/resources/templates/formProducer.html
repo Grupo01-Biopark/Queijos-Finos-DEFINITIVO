@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="PT-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Cadastro de Usuários</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
+    <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
+    <link rel="stylesheet" href="style/styleEditProducer.css">
+</head>
+
+<body>
+
+<main class="gridContainerBody">
+    <nav class="navBarLeft">
+        <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
+        <section class="listLinksNav">
+            <ul class="listLinks">
+                <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                <li class="listSelect"><a href="/producers"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</a></li>
+                <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a></li>
+                <li><a href="/users"><img src="images/icons/configVetor.svg" alt=""> Configurações</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <section class="sectionPrincipal flexContainercolum">
+        <nav class="navBarHeader">
+            <ul class="navBarHeaderList">
+                <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+            </ul>
+
+            <ul class="navBarHeaderList navBarHeaderListLow">
+                <li>configurar usuário</li>
+                <li>administrador</li>
+            </ul>
+        </nav>
+        <div class="contentEditProducer">
+            <div class="containerButtonsInfoProducer">
+                <div class="containerButtons">
+                    <button id="dadosButton" class="buttonsInfoProducer">
+                        Dados
+                    </button>
+                    <button id="documentsButton" class="buttonsInfoProducer">
+                        Documentos
+                    </button>
+                    <button id="transferenceButton" class="buttonsInfoProducer">
+                        Transferencia
+                    </button>
+                </div>
+            </div>
+            <form th:action="@{/formProducer/producer}" method="post" class="producer-form">
+                <div class="campos-container">
+                    <div class="campos-form">
+                        <div>
+                            <label for="name">Nome completo</label>
+                            <input name="name" id="name">
+                        </div>
+                        <div>
+                            <label for="cpf">CPF</label>
+                            <input id="cpf" name="cpf">
+                        </div>
+                        <div>
+                            <label for="phone1">Telefone 1</label>
+                            <input id="phone1" name="phone1">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cnpj">CNPJ</label>
+                            <input id="cnpj" name="cnpj">
+                        </div>
+                        <div>
+                            <label for="socialReason">Razao Social</label>
+                            <input id="socialReason" name="socialReason">
+                        </div>
+                        <div>
+                            <label for="phone2">Telefone 2</label>
+                            <input id="phone2" name="phone2">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input id="cep" name="cep">
+                        </div>
+                        <div>
+                            <label for="street">Logradouro</label>
+                            <input id="street" name="street">
+                        </div>
+                        <div>
+                            <label for="number">Numero</label>
+                            <input id="number" name="number">
+                        </div>
+                    </div>
+                    <div class="campos-form">
+                        <div>
+                            <label for="neighborhood">Vila/Bairro</label>
+                            <input id="neighborhood" name="neighborhood">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" name="email">
+                        </div>
+                        <div>
+                            <label for="state">UF</label>
+                            <input id="state" name="state">
+                        </div>
+                        <div>
+                            <label for="city">Cidade</label>
+                            <input id="city" name="city">
+                        </div>
+                    </div>
+                </div>
+                <div class="certifications-info">
+                    <div class="certifications">
+                        <h3>Certificações</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="simPoa">SIM/POA</label>
+                            <input id="simPoa" name="simPoa" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="susaf">SUSAF</label>
+                            <input id="susaf" name="susaf" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="sisbi">SISBI</label>
+                            <input id="sisbi" name="sisbi" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="seloArte">SELO ARTE</label>
+                            <input id="seloArte" name="seloArte" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="cif">CIF</label>
+                            <input id="cif" name="cif" type="date">
+                        </div>
+                    </div>
+                    <div class="contract-info">
+                        <h3>Informações sobre contrato</h3>
+                        <div class="campoCertificationInfos">
+                            <label for="signatureDate">Assinatura de Convenio de Cooperação Técnica</label>
+                            <input id="signatureDate" name="signatureDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="expirationDate">Vencimento de contrato</label>
+                            <input id="expirationDate" name="expirationDate" type="date">
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="status">Situação no projeto</label>
+                            <select id="status" name="status">
+                                <option id="Ativo">Ativo</option>
+                                <option id="Ativo em complementação">Ativo em complementação</option>
+                                <option id="Desistente">Desistente</option>
+                            </select>
+                        </div>
+                        <div class="campoCertificationInfos">
+                            <label for="statusDate">Data Situação</label>
+                            <input id="statusDate" name="statusDate" type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="observation-container">
+                    <h3>Observaçãooooo</h3>
+                    <input id="observation" name="observation">
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<script src="script/opemForm.js"></script>
+<script src="script/validatePassword.js" ></script>
+<script src="script/deleteUser.js">
+
+
+</script>
+
+</body>
+
+
+</html>

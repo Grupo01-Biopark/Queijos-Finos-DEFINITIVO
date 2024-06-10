@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.entity.Document;
+import com.example.demo.entity.Producer;
+import com.example.demo.repository.ProducerRepository;
 import com.example.demo.service.DocumentService;
 
 @RestController
@@ -38,24 +41,37 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    @GetMapping("/Documentos")
-    public ModelAndView iniciarTela() {
+    @Autowired
+    private ProducerRepository producerRepository;
+
+    @GetMapping("/documents/{producerId}")
+    public ModelAndView iniciarTela(@PathVariable Long producerId) {
         ModelAndView modelAndView = new ModelAndView("GerenciadorDocumentos");
         modelAndView.addObject("document", new Document());
-        modelAndView.addObject("documents", getAllDocuments());
+        modelAndView.addObject("producer", producerRepository.findById(producerId));
+        modelAndView.addObject("documents", getAllDocuments(producerId));
         return modelAndView;
     }
 
-    @PostMapping("/Documentos/cadastrar")
-    public RedirectView createDocument(@RequestParam("category") String category,
-                                       @RequestParam("file") MultipartFile file,
-                                       @RequestParam("title") String title,
-                                       @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date date,
-                                       @RequestParam("dateSystem") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date dateSystem,
-                                       RedirectAttributes attributes) {
+    @PostMapping("/documents/register/{producerId}")
+    public RedirectView createDocument( @PathVariable Long producerId,
+                                        @RequestParam("category") String category,
+                                        @RequestParam("file") MultipartFile file,
+                                        @RequestParam("title") String title,
+                                        @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date date,
+                                        @RequestParam("dateSystem") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date dateSystem,
+                                        RedirectAttributes attributes) {
         Document document = new Document();
+        System.out.println("-----------------------");
+        System.out.println("categoria: "+ category);
+        System.out.println("-----------------------");
         document.setCategory(category);
+        System.out.println("produtor id caralho-------"+ producerId);
         document.setTitle(title);
+        Producer producer = producerRepository.findById(producerId).get();
+        System.out.println(producer);
+        document.setProducer(producer);
+
 
         logger.info("Received date: {}", date);
         logger.info("Received dateSystem: {}", dateSystem);
@@ -95,12 +111,12 @@ public class DocumentController {
             attributes.addFlashAttribute("mensagem", "Erro inesperado: " + e.getMessage());
         }
 
-        return new RedirectView("/Documentos");
+        return new RedirectView("/documents/"+ producerId);
     }
 
     @GetMapping("/Documentos/lista")
-    public List<Document> getAllDocuments() {
-        return documentService.getListDocument();
+    public List<Document> getAllDocuments(Long producerId) {
+        return documentService.getListDocument(producerId);
     }
 
     @DeleteMapping("/Documentos/{documentId}")
