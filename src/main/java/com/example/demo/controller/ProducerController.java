@@ -71,10 +71,13 @@ public class ProducerController {
         producer.setSocialReason(producerDto.getSocialReason());
         producer.setEmail(producerDto.getEmail());
 
+        System.out.println("teste"+ producerDto.getStatus());
+
         // Formatando as datas para o padrão esperado
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         Contract contract = new Contract();
+        contract.setStatus(producerDto.getStatus());
 
         if (producerDto.getSignatureDate() != null && !producerDto.getSignatureDate().isEmpty()) {
             LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
@@ -222,6 +225,9 @@ public class ProducerController {
         String cifStr = formatDate(producer.getCertificates().getCif());
         producerDto.setCif(cifStr);
 
+        producerDto.setStatus(producer.getContract().getStatus());
+        System.out.println("teste status: "+ producer.getContract().getStatus());
+        System.out.println("teste status: "+ producerDto.getStatus());
         producerDto.setObservation(producer.getObservation());
 
         Address address = producer.getAddress();
@@ -269,6 +275,8 @@ public class ProducerController {
             PhoneNumber phone1 = new PhoneNumber();
             PhoneNumber phone2 = new PhoneNumber();
 
+            System.out.println("teste"+ producerDto.getStatus());
+
             producer.setName(producerDto.getName());
             producer.setCpf(producerDto.getCpf());
             producer.setCnpj(producerDto.getCnpj());
@@ -280,11 +288,10 @@ public class ProducerController {
             producer.setEmail(producerDto.getEmail());
 
             Contract contract = new Contract();
-
+            contract.setStatus(producerDto.getStatus());
             contract.setSignatureDate(parseDate(producerDto.getSignatureDate(), dateFormat));
             contract.setExpirationDate(parseDate(producerDto.getExpirationDate(), dateFormat));
             contract.setStatusDate(parseDate(producerDto.getStatusDate(), dateFormat));
-            contract.setStatus(producerDto.getStatus());
 
             Certificate certificate = new Certificate();
             certificate.setSimPoa(parseDate(producerDto.getSimPoa(), dateFormat));
