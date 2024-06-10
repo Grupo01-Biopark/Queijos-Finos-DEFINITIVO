@@ -1,5 +1,5 @@
-/* variaveis css cores */
 :root{
+
     --backgroudNavBar: #132F3E;
     --backgorudBottonAdd: #30363D;
     --backgroundBottonAddHover:#373b41;
@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .flexContainerRowBetween{
@@ -37,17 +38,25 @@
     justify-content: space-between;
 }
 
+/* configuracao botoes */
+
 .buttons{
     font-size: 1rem;
-    padding: 5px 10px;
+    padding: 10px 18px;
     border-radius: 5px;
     margin-bottom: 5px;
     color: white;
     cursor: pointer;
 }
 
+
+
 .buttonAdd{
     background-color: var(--backgorudBottonAdd);  
+}
+
+.button-link{
+    color: white;
 }
 
 .buttonAdd:hover{
@@ -79,6 +88,30 @@
     color: white;
 }
 
+/* configurações seção principal */
+
+.sectionPrincipal{
+    width: 100%;
+    
+}
+
+.sectionList{
+    width: 98%;
+    margin-bottom: 20px;
+    padding: 10px 20px 5px;
+    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+
+
+.sectionListHeader p{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+
 /* configuracoes tabelas */
 
 .table{
@@ -87,7 +120,8 @@
     border-collapse: separate;
     border-spacing: 0 5px;
     text-align: left;
-    font-weight: 500;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 
 .table thead, tr, th{
@@ -96,7 +130,15 @@
 
 .table td{
     padding-left: 10px;
+    justify-content: flex-start;
+    
 }
+
+.imageTable{
+    width: 1,5rem;
+    padding-right: 1rem;
+}
+
 .table tbody tr{  
     background-color: var(--backgroudLListItem);
 

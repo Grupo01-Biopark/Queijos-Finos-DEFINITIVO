@@ -9,6 +9,7 @@
 }
 
 .logo {
+    margin-top: 20px;
     display: block;
     text-align: center;
 }
@@ -22,7 +23,7 @@
     
 }
 
-.listLinks li {
+.listLinks li a{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -35,10 +36,12 @@
     padding-right: 10px;
 }
 
-.listSelect{
+.listSelect a{
     background-color: var(--backgroudNavBar);
     color: white; 
 }
+
+
 
 .listSelect:hover{
     cursor: pointer;

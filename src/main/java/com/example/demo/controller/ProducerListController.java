@@ -8,17 +8,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.dtos.ProducerFilterDto;
-import com.example.demo.service.ProducerService;
+import com.example.demo.service.ProducerListService;
 import com.example.demo.service.TechnologyService;
 
 @Controller
 public class ProducerListController {
 
-    private final ProducerService producerService;
+    private final ProducerListService producerListService;
     private final TechnologyService technologyService;
 
-    public ProducerListController(ProducerService producerService, TechnologyService technologyService) {
-        this.producerService = producerService;
+    public ProducerListController(ProducerListService producerListService, TechnologyService technologyService) {
+        this.producerListService = producerListService;
         this.technologyService = technologyService;
     }
 
@@ -26,10 +26,10 @@ public class ProducerListController {
     public ModelAndView listProducersView(@ModelAttribute("producerFilterDto") ProducerFilterDto producerFilterDto) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("producer/producers");
+        modelAndView.setViewName("producers");
         modelAndView.addObject("technologies", technologyService.getListTechnology());
         modelAndView.addObject("producerFilterDto", new ProducerFilterDto());
-        modelAndView.addObject("producers", producerService.getProducerInfo());
+        modelAndView.addObject("producers", producerListService.getProducerInfo());
         return modelAndView;
     }
 
@@ -37,9 +37,9 @@ public class ProducerListController {
     public RedirectView filterProducerView(@ModelAttribute("producerFilterDto") ProducerFilterDto producerFilterDto,
             RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("isFilter", "true");
-        redirectAttributes.addFlashAttribute("producersFilter", producerService.getProducerInfoFilter(producerFilterDto));
+        redirectAttributes.addFlashAttribute("producersFilter", producerListService.getProducerInfoFilter(producerFilterDto));
 
-        return new RedirectView("/producer");
+        return new RedirectView("/producers");
     }
 
 }

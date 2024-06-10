@@ -28,10 +28,10 @@
             <section class="logo"><img src="images/logo/logoCerto .png" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img src="images/icons/Vector.svg" alt=""> Dashboard</li>
-                    <li class="listSelect"><img src="images/icons/producerWhite.svg" alt=""> Produtores</li>
-                    <li><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</li>
-                    <li><img src="images/icons/configVetor.svg" alt="">Configurações</li>
+                    <li><a href="/dashboardProducer"><img src="images/icons/Vector.svg" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img src="images/icons/producerVetorWhite.svg" alt=""> Produtores</a></li>
+                    <li><a href="/tecnologias"><img src="images/icons/cheeseVetor.svg" alt=""> Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img src="images/icons/configVetor.svg" alt=""> Configurações</a></li>
                 </ul>
             </section>
         </nav>
@@ -103,7 +103,7 @@
 
                 <section class="flexContainerRowBetween sectionListHeader">
                     <p>Produtores</p>
-                    <button id="buttonAdd" class="buttons buttonAdd">&#43; Adicionar</button>
+                    <button id="buttonAdd" class="buttons buttonAdd"><a class="button-link" href="/formProducer">&#43; Adicionar</a></button>
                 </section>
 
                 <table class="table">
@@ -120,9 +120,9 @@
                                     src="images/icons/producerVetor.svg" alt="Imagem do Produtor">
                                 <span th:text="${producer.nameProducer}">Nome do Produtor</span>
                             </td>
-                            <td th:text="${producer.dueDate}">Contrato</td>
-                            <td th:text="${producer.tipoStatusProduction}">Status de Produção</td>
-                            <td><a></a><img src="images/icons/ToViewVector.svg" alt=""></a></td>
+                            <td th:class="${producer.class == 'active' ? 'date-active' : 'date-expired'}"  th:text="${producer.expirationDate}">Contrato</td>
+                            <td th:text="${producer.status}">Status de Produção</td>
+                            <td><a></a><img src="images/icons/toView.svg" alt=""></a></td>
                         </tr>
                     </tbody>
                 </table>
