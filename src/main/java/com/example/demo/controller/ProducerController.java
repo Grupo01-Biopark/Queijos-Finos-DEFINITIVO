@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import com.example.demo.dtos.ProducerDto;
 import com.example.demo.entity.Address;
+import com.example.demo.entity.Certificate;
 import com.example.demo.entity.PhoneNumber;
 import com.example.demo.entity.Producer;
 import com.example.demo.repository.ProducerRepository;
@@ -76,37 +77,74 @@ public class ProducerController {
         // Formatando as datas para o padrão esperado
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
-        Date signatureDate = Date.from(signatureDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSignatureDate(signatureDate);
+        if (producerDto.getSignatureDate() != null && !producerDto.getSignatureDate().isEmpty()) {
+            LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
+            Date signatureDate = Date.from(signatureDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            producer.setSignatureDate(signatureDate);
+        } else {
+            producer.setSignatureDate(null);
+        }
 
-        LocalDate expirationDateParsed = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
-        Date expirationDate = Date.from(expirationDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setExpirationDate(expirationDate);
+        if (producerDto.getExpirationDate() != null && !producerDto.getExpirationDate().isEmpty()) {
+            LocalDate expirationDateParsed = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
+            Date expirationDate = Date.from(expirationDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            producer.setExpirationDate(expirationDate);
+        } else {
+            producer.setExpirationDate(null);
+        }
 
-        LocalDate statusDateParsed = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-        Date statusDate = Date.from(statusDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setStatusDate(statusDate);
+        if (producerDto.getStatusDate() != null && !producerDto.getStatusDate().isEmpty()) {
+            LocalDate statusDateParsed = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            Date statusDate = Date.from(statusDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            producer.setStatusDate(statusDate);
+        } else {
+            producer.setStatusDate(null);
+        }
 
-        LocalDate simPoaDateParsed = LocalDate.parse(producerDto.getSimPoa(), dateFormat);
-        Date simPoaDate = Date.from(simPoaDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSimPoa(simPoaDate);
+        Certificate certificate = new Certificate();
 
-        LocalDate susafDateParsed = LocalDate.parse(producerDto.getSusaf(), dateFormat);
-        Date susafDate = Date.from(susafDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSusaf(susafDate);
+        if (producerDto.getSimPoa() != null && !producerDto.getSimPoa().isEmpty()) {
+            LocalDate simPoaDateParsed = LocalDate.parse(producerDto.getSimPoa(), dateFormat);
+            Date simPoaDate = Date.from(simPoaDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            certificate.setSimPoa(simPoaDate);
+        } else {
+            certificate.setSimPoa(null);
+        }
 
-        LocalDate sisbiDateParsed = LocalDate.parse(producerDto.getSisbi(), dateFormat);
-        Date sisbiDate = Date.from(sisbiDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSisbi(sisbiDate);
+        if (producerDto.getSusaf() != null && !producerDto.getSusaf().isEmpty()) {
+            LocalDate susafDateParsed = LocalDate.parse(producerDto.getSusaf(), dateFormat);
+            Date susafDate = Date.from(susafDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            certificate.setSusaf(susafDate);
+        } else {
+            certificate.setSusaf(null);
+        }
 
-        LocalDate seloArteDateParsed = LocalDate.parse(producerDto.getSeloArte(), dateFormat);
-        Date seloArteDate = Date.from(seloArteDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSeloArte(seloArteDate);
+        if (producerDto.getSisbi() != null && !producerDto.getSisbi().isEmpty()) {
+            LocalDate sisbiDateParsed = LocalDate.parse(producerDto.getSisbi(), dateFormat);
+            Date sisbiDate = Date.from(sisbiDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            certificate.setSisbi(sisbiDate);
+        } else {
+            certificate.setSisbi(null);
+        }
 
-        LocalDate cifDateParsed = LocalDate.parse(producerDto.getCif(), dateFormat);
-        Date cifDate = Date.from(cifDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setCif(cifDate);
+        if (producerDto.getSeloArte() != null && !producerDto.getSeloArte().isEmpty()) {
+            LocalDate seloArteDateParsed = LocalDate.parse(producerDto.getSeloArte(), dateFormat);
+            Date seloArteDate = Date.from(seloArteDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            certificate.setSeloArte(seloArteDate);
+        } else {
+            certificate.setSeloArte(null);
+        }
+
+        if (producerDto.getCif() != null && !producerDto.getCif().isEmpty()) {
+            LocalDate cifDateParsed = LocalDate.parse(producerDto.getCif(), dateFormat);
+            Date cifDate = Date.from(cifDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            certificate.setCif(cifDate);
+        } else {
+            certificate.setCif(null);
+        }
+
+        certificate.setProducer(producer);
+        producer.setCertificates(certificate);
 
 
         producer.setObservation(producerDto.getObservation());
@@ -121,6 +159,7 @@ public class ProducerController {
         address.setCep(producerDto.getCep());
         address.setCity(producerDto.getCity());
         address.setProducer(producer);
+        address.setNumber(producerDto.getNumber());
         producer.setAddress(address);
 
         List<PhoneNumber> phoneNumbers = producer.getPhoneNumbers();
@@ -169,19 +208,19 @@ public class ProducerController {
         String statusDateStr = formatDate(producer.getStatusDate());
         producerDto.setStatusDate(statusDateStr);
 
-        String simPoaStr = formatDate(producer.getSimPoa());
+        String simPoaStr = formatDate(producer.getCertificates().getSimPoa());
         producerDto.setSimPoa(simPoaStr);
 
-        String susafStr = formatDate(producer.getSusaf());
+        String susafStr = formatDate(producer.getCertificates().getSusaf());
         producerDto.setSusaf(susafStr);
 
-        String sisbiStr = formatDate(producer.getSisbi());
+        String sisbiStr = formatDate(producer.getCertificates().getSisbi());
         producerDto.setSisbi(sisbiStr);
 
-        String seloArteStr = formatDate(producer.getSeloArte());
+        String seloArteStr = formatDate(producer.getCertificates().getSeloArte());
         producerDto.setSeloArte(seloArteStr);
 
-        String cifStr = formatDate(producer.getCif());
+        String cifStr = formatDate(producer.getCertificates().getCif());
         producerDto.setCif(cifStr);
 
         producerDto.setObservation(producer.getObservation());
@@ -193,6 +232,7 @@ public class ProducerController {
             producerDto.setState(address.getState());
             producerDto.setCep(address.getCep());
             producerDto.setCity(address.getCity());
+            producerDto.setNumber(address.getNumber());
         }
 
         List<PhoneNumber> phoneNumbers = producer.getPhoneNumbers();
@@ -234,58 +274,24 @@ public class ProducerController {
             producer.setCpf(producerDto.getCpf());
             producer.setCnpj(producerDto.getCnpj());
             producer.setSocialReason(producerDto.getSocialReason());
+            producer.setObservation(producerDto.getObservation());
 
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             producer.setEmail(producerDto.getEmail());
 
-            LocalDate signatureDate = null;
-            if (!producerDto.getSignatureDate().isEmpty()) {
-                signatureDate = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
-            }
-            producer.setSignatureDate(signatureDate != null ? java.sql.Date.valueOf(signatureDate) : null);
+            // Parsing dates with null checks
+            producer.setSignatureDate(parseDate(producerDto.getSignatureDate(), dateFormat));
+            producer.setExpirationDate(parseDate(producerDto.getExpirationDate(), dateFormat));
+            producer.setStatusDate(parseDate(producerDto.getStatusDate(), dateFormat));
 
-            LocalDate expirationDate = null;
-            if (!producerDto.getExpirationDate().isEmpty()) {
-                expirationDate = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
-            }
-            producer.setExpirationDate(expirationDate != null ? java.sql.Date.valueOf(expirationDate) : null);
-
-            LocalDate statusDate = null;
-            if (!producerDto.getStatusDate().isEmpty()) {
-                statusDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setStatusDate(statusDate != null ? java.sql.Date.valueOf(statusDate) : null);
-
-            LocalDate simPoa = null;
-            if (!producerDto.getSimPoa().isEmpty()) {
-                simPoa = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setSimPoa(simPoa != null ? java.sql.Date.valueOf(simPoa) : null);
-
-            LocalDate susafDate = null;
-            if (!producerDto.getSusaf().isEmpty()) {
-                susafDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setSusaf(susafDate != null ? java.sql.Date.valueOf(susafDate) : null);
-
-            LocalDate dataSisbi = null;
-            if (!producerDto.getSisbi().isEmpty()) {
-                dataSisbi = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setSisbi(dataSisbi != null ? java.sql.Date.valueOf(dataSisbi) : null);
-
-            LocalDate dataSeloArte = null;
-            if (!producerDto.getSeloArte().isEmpty()) {
-                dataSeloArte = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setSeloArte(dataSeloArte != null ? java.sql.Date.valueOf(dataSeloArte) : null);
-
-            LocalDate dateCif = null;
-            if (!producerDto.getCif().isEmpty()) {
-                dateCif = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setCif(dateCif != null ? java.sql.Date.valueOf(dateCif) : null);
+            Certificate certificate = new Certificate();
+            certificate.setSimPoa(parseDate(producerDto.getSimPoa(), dateFormat));
+            certificate.setSusaf(parseDate(producerDto.getSusaf(), dateFormat));
+            certificate.setSisbi(parseDate(producerDto.getSisbi(), dateFormat));
+            certificate.setSeloArte(parseDate(producerDto.getSeloArte(), dateFormat));
+            certificate.setCif(parseDate(producerDto.getCif(), dateFormat));
+            certificate.setProducer(producer);
 
             address.setStreet(producerDto.getStreet());
             address.setNeighborhood(producerDto.getNeighborhood());
@@ -293,9 +299,8 @@ public class ProducerController {
             address.setCep(producerDto.getCep());
             address.setCity(producerDto.getCity());
             address.setProducer(producer);
+            address.setNumber(producerDto.getNumber());
 
-            System.out.println(producerDto.getPhone1());
-            System.out.println(producerDto.getPhone2());
             phone1.setPhone(producerDto.getPhone1());
             phone2.setPhone(producerDto.getPhone2());
             phone1.setProducer(producer);
@@ -307,12 +312,21 @@ public class ProducerController {
 
             producer.setPhoneNumbers(phones);
             producer.setAddress(address);
+            producer.setCertificates(certificate);
             producerService.addProducer(producer);
 
         } catch (DataIntegrityViolationException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return new RedirectView("/producers");
+    }
+
+    private java.sql.Date parseDate(String dateString, DateTimeFormatter dateFormat) {
+        if (dateString != null && !dateString.isEmpty()) {
+            LocalDate date = LocalDate.parse(dateString, dateFormat);
+            return java.sql.Date.valueOf(date);
+        }
+        return null;
     }
 
     public List<Producer> getAllProducers() {

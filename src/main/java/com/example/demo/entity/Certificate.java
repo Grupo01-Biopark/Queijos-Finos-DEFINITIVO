@@ -1,14 +1,8 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_certificate")
@@ -17,13 +11,23 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String issuingBody;
-    private String description;
-    private Date  issuanceDate;
+    @Temporal(TemporalType.DATE)
+    private java.util.Date simPoa;
+
+    @Temporal(TemporalType.DATE)
+    private java.util.Date susaf;
+
+    @Temporal(TemporalType.DATE)
+    private java.util.Date sisbi;
+
+    @Temporal(TemporalType.DATE)
+    private java.util.Date seloArte;
+
+    @Temporal(TemporalType.DATE)
+    private java.util.Date cif;
     @ManyToOne
     @JoinColumn(name = "producer_id")
     private Producer producer;
-
 
     public Long getId() {
         return id;
@@ -33,28 +37,44 @@ public class Certificate {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public Date getSimPoa() {
+        return simPoa;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSimPoa(Date simPoa) {
+        this.simPoa = simPoa;
     }
 
-    public String getIssuingBody() {
-        return issuingBody;
+    public Date getSusaf() {
+        return susaf;
     }
 
-    public void setIssuingBody(String issuingBody) {
-        this.issuingBody = issuingBody;
+    public void setSusaf(Date susaf) {
+        this.susaf = susaf;
     }
 
-    public Date getIssuanceDate() {
-        return issuanceDate;
+    public Date getSisbi() {
+        return sisbi;
     }
 
-    public void setIssuanceDate(Date issuanceDate) {
-        this.issuanceDate = issuanceDate;
+    public void setSisbi(Date sisbi) {
+        this.sisbi = sisbi;
+    }
+
+    public Date getSeloArte() {
+        return seloArte;
+    }
+
+    public void setSeloArte(Date seloArte) {
+        this.seloArte = seloArte;
+    }
+
+    public Date getCif() {
+        return cif;
+    }
+
+    public void setCif(Date cif) {
+        this.cif = cif;
     }
 
     public Producer getProducer() {

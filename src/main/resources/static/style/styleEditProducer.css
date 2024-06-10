@@ -208,3 +208,16 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.button-submit{
+    display: flex;
+    justify-content: end;
+}
+
+.button-submit button{
+    background-color: #036513;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+
+}
