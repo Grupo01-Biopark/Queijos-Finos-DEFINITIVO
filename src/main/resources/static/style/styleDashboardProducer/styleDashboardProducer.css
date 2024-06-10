@@ -1,23 +1,6 @@
-:root{
-    --backgroudNavBar: #132F3E;
-    --backgorudBottonAdd: #30363D;
-    --backgroundBottonAddHover:#373b41;
-    --backgroudBottonSave: #06744D;
-    --backgroudBottonSaveHover:#02412b;
-    --backgroundBottonCancelHover:#ff0000;
-    --backgroundBottonExitHover:#c20808;
-    --backgroundBottonCancelPopup : #1865FA;
-    --backgroundBottonCancelPopupHover : #1a4bac;
-    --backgroudLListItem: #EBEBEB;
-    --colorAdmim: #0BCA87;
-}
 
-*{
-    font-family: "Poppins", sans-serif;
-}
-
-body{
-    overflow-x: hidden;
+.section-grafic{
+    width: 100%;
 }
 
 .gridContainerBody{

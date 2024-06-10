@@ -28,16 +28,16 @@
     </section>
 
     <main class="gridContainerBody">
+
+
         <nav class="navBarLeft">
             <section class="logo"><img th:src="@{/images/logo/logoCerto .png}" alt="logo queijos finos"></section>
             <section class="listLinksNav">
                 <ul class="listLinks">
-                    <li><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</li>
-                    <li><img th:src="@{/images/icons/producerVetor.svg}" alt=""><a href="/producers">Produtores</a></li>
-                    <li class="listSelect">
-                        <img th:src="@{/images/icons/cheeseVetorWhite.svg}" alt=""> Cadastro de Tecnologia
-                    </li>
-                    <li><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</li>
+                    <li><a href="/dashboardProducer"><img th:src="@{/images/icons/Vector.svg}" alt=""> Dashboard</a></li>
+                    <li class="listSelect"><a href="/producers"><img th:src="@{/images/icons/producerVetorWhite.svg}" alt=""> Produtores</a></li>
+                    <li id="tecnologiesLink"><a href="/tecnologias"><img th:src="@{/images/icons/cheeseVetor.svg}" alt="">  Cadastor Tecnologias</a></li>
+                    <li><a href="/users"><img th:src="@{/images/icons/configVetor.svg}" alt=""> Configurações</a></li>
                 </ul>
             </section>
         </nav>

@@ -52,6 +52,7 @@ list-style: none;
 /* Remove hyperlinks underline */
 a {
 text-decoration: none;
+color: black;
 }
 
 /* Remove default button styles */
