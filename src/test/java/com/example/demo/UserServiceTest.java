@@ -62,7 +62,7 @@ public class UserServiceTest {
 
         //Ação
         when(userRepository.findAll()).thenReturn(mockUsers);
-        List<User> result = Arrays.asList(newUser1, newUser2);
+        List<User> result = userService.getListUser();
 
         //Verificação
         assertEquals(2, result.size());
