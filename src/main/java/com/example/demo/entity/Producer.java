@@ -18,6 +18,7 @@ public class Producer {
     private String cnpj;
     private String socialReason;
     private String email;
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -45,8 +46,8 @@ public class Producer {
 
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhoneNumber> phoneNumbers = new ArrayList<>();
-    @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Certificate certificates = new Certificate();
+    @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Certificate> certificates = new ArrayList<>();
     @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Address address = new Address();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -153,11 +154,11 @@ public class Producer {
         this.phoneNumbers = phoneNumbers;
     }
 
-    public Certificate getCertificates() {
+    public List<Certificate> getCertificates() {
         return certificates;
     }
 
-    public void setCertificates(Certificate certificates) {
+    public void setCertificates(List<Certificate> certificates) {
         this.certificates = certificates;
     }
 }

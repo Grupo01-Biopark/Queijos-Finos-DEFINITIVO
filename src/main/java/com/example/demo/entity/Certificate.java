@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.enums.TipoCertificado;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,23 +13,29 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.DATE)
-    private java.util.Date simPoa;
 
-    @Temporal(TemporalType.DATE)
-    private java.util.Date susaf;
+    private TipoCertificado tipoCertificado;
+    private LocalDate data;
 
-    @Temporal(TemporalType.DATE)
-    private java.util.Date sisbi;
-
-    @Temporal(TemporalType.DATE)
-    private java.util.Date seloArte;
-
-    @Temporal(TemporalType.DATE)
-    private java.util.Date cif;
     @ManyToOne
     @JoinColumn(name = "producer_id")
     private Producer producer;
+
+    public TipoCertificado getTipoCertificado() {
+        return tipoCertificado;
+    }
+
+    public void setTipoCertificado(TipoCertificado tipoCertificado) {
+        this.tipoCertificado = tipoCertificado;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 
     public Long getId() {
         return id;
@@ -35,46 +43,6 @@ public class Certificate {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getSimPoa() {
-        return simPoa;
-    }
-
-    public void setSimPoa(Date simPoa) {
-        this.simPoa = simPoa;
-    }
-
-    public Date getSusaf() {
-        return susaf;
-    }
-
-    public void setSusaf(Date susaf) {
-        this.susaf = susaf;
-    }
-
-    public Date getSisbi() {
-        return sisbi;
-    }
-
-    public void setSisbi(Date sisbi) {
-        this.sisbi = sisbi;
-    }
-
-    public Date getSeloArte() {
-        return seloArte;
-    }
-
-    public void setSeloArte(Date seloArte) {
-        this.seloArte = seloArte;
-    }
-
-    public Date getCif() {
-        return cif;
-    }
-
-    public void setCif(Date cif) {
-        this.cif = cif;
     }
 
     public Producer getProducer() {

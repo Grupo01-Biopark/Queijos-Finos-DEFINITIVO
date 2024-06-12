@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,14 +12,12 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.DATE)
-    private Date signatureDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date expirationDate;
+    private LocalDate signatureDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date statusDate;
+    private LocalDate expirationDate;
+
+    private LocalDate statusDate;
 
     private String status;
     @ManyToOne
@@ -32,29 +31,6 @@ public class Contract {
         this.id = id;
     }
 
-    public Date getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(Date signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Date getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(Date statusDate) {
-        this.statusDate = statusDate;
-    }
 
     public String getStatus() {
         return status;
@@ -70,6 +46,30 @@ public class Contract {
 
     public void setProducer(Producer producer) {
         this.producer = producer;
+    }
+
+    public LocalDate getSignatureDate() {
+        return signatureDate;
+    }
+
+    public void setSignatureDate(LocalDate signatureDate) {
+        this.signatureDate = signatureDate;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public LocalDate getStatusDate() {
+        return statusDate;
+    }
+
+    public void setStatusDate(LocalDate statusDate) {
+        this.statusDate = statusDate;
     }
 
     @Override
