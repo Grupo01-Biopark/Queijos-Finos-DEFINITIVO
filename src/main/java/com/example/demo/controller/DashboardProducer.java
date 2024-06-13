@@ -19,7 +19,7 @@ public class DashboardProducer {
     @Autowired
     TechnologyService technologyService;
 
-    @GetMapping("/dashboardProducer")
+    @GetMapping("/dashboard")
     public ModelAndView dashboardProducer() {
         ModelAndView dashboardProducer = new ModelAndView();
         dashboardProducer.setViewName("producerDashboards/producerDashboards");

@@ -1,6 +1,7 @@
 .navBarHeader{
  background-color: var(--backgroudNavBarHead);   
  width: 100%;
+ margin-bottom: 20px;
 }
 
 .navBarHeaderList{
