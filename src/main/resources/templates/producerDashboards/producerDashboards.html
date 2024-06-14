@@ -76,7 +76,7 @@
         </section>
     </main>
 
-    <script src="../../script/DashboardProducer/graphicsDashboardProducer.js"></script>
+    <!-- <script src="../../script/DashboardProducer/graphicsDashboardProducer.js"></script> -->
 
     <script th:inline="javascript">
 
@@ -84,16 +84,16 @@
         var complementationCount = /*[[${complementationCount}]]*/ 0;
         var withdrawalCount = /*[[${withdrawalCount}]]*/ 0;
         var disconnectedCount = /*[[${disconnectedCount}]]*/ 0;
-
         var arrayAllCount = [producingCount, complementationCount, withdrawalCount, disconnectedCount];
-
-        console.log("Producing Count: ", producingCount);
-        console.log("Complementation Count: ", complementationCount);
-        console.log("Withdrawal Count: ", withdrawalCount);
-        console.log("Disconnected Count: ", disconnectedCount);
-
+    
+        console.log("Dados para o gráfico de Status de Produção:");
+        console.log("Produzindo:", producingCount);
+        console.log("Complementação:", complementationCount);
+        console.log("Desistentes:", withdrawalCount);
+        console.log("Desligados:", disconnectedCount);
+    
         const ProductionStatus = document.getElementById('graphicProductionStatus');
-
+    
         const config1 = {
             type: 'doughnut',
             data: {
@@ -118,15 +118,21 @@
                 }
             }
         };
-
+    
         new Chart(ProductionStatus, config1);
-
+    
         document.addEventListener('DOMContentLoaded', function () {
             var activeTechnologyNames = /*[[${activeTechnologyNames}]]*/[];
             var producingCounts = /*[[${producingCounts}]]*/[];
             var complementationCounts = /*[[${complementationCounts}]]*/[];
             var withdrawalCounts = /*[[${withdrawalCounts}]]*/[];
-
+    
+            console.log("Dados para o gráfico de Tecnologias:");
+            console.log("Nomes das tecnologias:", activeTechnologyNames);
+            console.log("Produzindo:", producingCounts);
+            console.log("Complementação:", complementationCounts);
+            console.log("Desistentes:", withdrawalCounts);
+    
             const technologiesCanvas = document.getElementById('technologies');
             const technologiesChart = new Chart(technologiesCanvas, {
                 type: 'bar',
@@ -183,7 +189,70 @@
                 }
             });
         });
+    
+        var SIMPOACount = /*[[${SIMPOACount}]]*/ 0;
+        var SUSAFCount = /*[[${SUSAFCount}]]*/ 0;
+        var SISBICount = /*[[${SISBICount}]]*/ 0;
+        var SELOARTECount = /*[[${SELOARTECount}]]*/ 0;
+        var CIFCount = /*[[${CIFCount}]]*/ 0;
+        
+        var ArrayCountCertificate = [SIMPOACount, SUSAFCount, SISBICount, SELOARTECount, CIFCount];
+    
+        console.log("Dados para o gráfico de Certificações Conquistadas:");
+        console.log("SIM/POA:", SIMPOACount);
+        console.log("SUSAF:", SUSAFCount);
+        console.log("SISBI:", SISBICount);
+        console.log("SELO ARTE:", SELOARTECount);
+        console.log("SIF:", CIFCount);
+    
+        const certificationsAchieveds = document.getElementById('graphicCertificationsAchieveds');
+    
+        new Chart(certificationsAchieveds, {
+            type: 'bar',
+            data: {
+                labels: ['Sim/POA', 'SUSAF', 'SISBI', 'SELO ARTE', 'SIF'],
+                datasets: [{
+                    maxBarThickness: 100,
+                    label: ' ',
+                    data: ArrayCountCertificate, //ARRAY ID-1 E ID-4 COM PROBLEMA
+                    backgroundColor: ['rgba(75, 192, 192, 0.6)'],
+                    borderColor: ['rgba(75, 192, 192, 10)'], 
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 16
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            lineWidth: 1
+                        },
+                        beginAtZero: true
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 16
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            lineWidth: 1
+                        }
+                    }
+                }
+            }
+        });
+    
     </script>
+    
 </body>
 
 </html>

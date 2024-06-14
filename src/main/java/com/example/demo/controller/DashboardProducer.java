@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.service.CertificateService;
 import com.example.demo.service.TechnologyService;
 import com.example.demo.service.TransferService;
 
@@ -16,8 +18,12 @@ public class DashboardProducer {
 
     @Autowired
     TransferService transferService;
+
     @Autowired
     TechnologyService technologyService;
+
+    @Autowired
+    CertificateService certificateService;
 
     @GetMapping("/dashboardProducer")
     public ModelAndView dashboardProducer() {
@@ -55,6 +61,18 @@ public class DashboardProducer {
         dashboardProducer.addObject("complementationCounts", complementationCounts);
         dashboardProducer.addObject("withdrawalCounts", withdrawalCounts);
         dashboardProducer.addObject("disconnectedCounts", disconnectedCounts);
+
+        //METODO DE CONSULTA PARA O TERCEIRO GRAFICO
+        long SIMPOACount = certificateService.countCertificadoSIMPOA();
+        long SUSAFCount = certificateService.countCertificadoSUSAF();
+        long SISBICount = certificateService.countCertificadoSISBI();
+        long SELOARTECount = certificateService.countCertificadoSELOARTE();
+        long CIFCount = certificateService.countCertificadoCIF();
+        dashboardProducer.addObject("SIMPOACount", SIMPOACount);
+        dashboardProducer.addObject("SUSAFCount", SUSAFCount);
+        dashboardProducer.addObject("SISBICount", SISBICount);
+        dashboardProducer.addObject("SELOARTECount", SELOARTECount);
+        dashboardProducer.addObject("CIFCount", CIFCount);        
 
         return dashboardProducer;
     }
