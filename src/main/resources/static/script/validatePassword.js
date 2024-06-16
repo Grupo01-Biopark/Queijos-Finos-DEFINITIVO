@@ -4,7 +4,7 @@ document.getElementById("password").addEventListener("input", () => {
 
     // Verifica se a senha atende aos critérios e exibe ou oculta o feedback
     const isValid = password.length >= 8 && /[A-Z]/.test(password) && /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
-    feedbackPassword.textContent = isValid ? "A senha atende aos requisitos" : "A senha deve ter pelo menos 8 caracteres, conter pelo menos uma letra maiúscula e um caractere especial";
+    feedbackPassword.textContent = isValid ? "A senha atende aos requisitos." : "Senha invalida.";
     feedbackPassword.style.color = isValid ? "green" : "red";
 });
 
@@ -18,6 +18,6 @@ document.getElementById("confirmPassword").addEventListener("input", () => {
 
     // Verifica se as senhas coincidem e exibe ou oculta o feedback
     buttonSave.disabled = isValid ? true : false;
-    feedbackConfirmPassword.textContent = isValid ? "As senhas devem ser iguais" : "As senhas conferem";
+    feedbackConfirmPassword.textContent = isValid ? "A confirmação da senha deve ser igual à senha." : "As senhas conferem.";
     feedbackConfirmPassword.style.color = isValid ? "red" : "green";
 });

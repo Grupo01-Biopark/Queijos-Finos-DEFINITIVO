@@ -29,7 +29,7 @@ public class ProducerListController {
         modelAndView.setViewName("producers");
         modelAndView.addObject("technologies", technologyService.getListTechnology());
         modelAndView.addObject("producerFilterDto", new ProducerFilterDto());
-        modelAndView.addObject("producers", producerListService.getProducerInfo());
+        /*modelAndView.addObject("producers", producerListService.getProducerInfo());*/
         return modelAndView;
     }
 
