@@ -1,24 +1,29 @@
 .navBarHeader{
- background-color: var(--backgroudNavBarHead);   
- width: 100%;
- margin-bottom: 20px;
-}
-
-.navBarHeaderList{
+    background-color: var(--backgroudNavBarHead);   
+    width: 100%;
+    height: 20%;
+    max-height: 90px;
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    margin-top: 0; /* Remover qualquer espaço acima da seção principal */
-}
-
+    flex-direction: column;
+    justify-content: end;
+  
+   }
+   
+   .navBarHeaderList{
+       display: flex;
+       flex-direction: row;
+       justify-content: flex-end;
+       align-items: center;
+       padding: 10px 20px;
+       margin-top: 0; /* Remover qualquer espaço acima da seção principal */
+   }
+   
 .navBarHeader li img{
     display: none;
     padding-left: 20px;
-    cursor: pointer;
+    cursor: pointer;
 }
-
 .navBarHeaderListLow{
     justify-content: space-between;
     color: white;
