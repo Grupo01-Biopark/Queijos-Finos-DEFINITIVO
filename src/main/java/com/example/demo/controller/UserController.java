@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,6 +36,7 @@ public class UserController {
 
     @GetMapping("/users")
     public ModelAndView viewUsersAndView() {
+        
         ModelAndView modelAndView = new ModelAndView("cadastroUsuario");
         modelAndView.addObject("user", new User());
         modelAndView.addObject("users", getAllUsers());
@@ -43,12 +45,18 @@ public class UserController {
 
     @PostMapping("/users/register")
     public RedirectView createUser(@ModelAttribute("user") User user, RedirectAttributes attributes) {
+        
+        
         try {
             userService.createUser(user);
             attributes.addFlashAttribute("condition", "true");
         } catch (DataIntegrityViolationException e) {
-            attributes.addFlashAttribute("mensagem", "Email já cadastrado no sistema: " + e.getMessage());
+            attributes.addFlashAttribute("mensagem", "Email já cadastrado no sistema");
+            attributes.addFlashAttribute("user2", user);
+
+            System.out.println(user.getNameUser());
         }
+
         return new RedirectView("/users");
     }
 
@@ -66,7 +74,9 @@ public class UserController {
             userService.updateUser(user);
             attributes.addFlashAttribute("condition", "true");
         } catch (DataIntegrityViolationException e) {
-            attributes.addFlashAttribute("mensagem", "Email ja cadastardo no sistema "+e.getMessage());
+            attributes.addFlashAttribute("mensagem", "Email ja cadastardo no sistema ");
+            attributes.addFlashAttribute("user", user);
+            
         }
 
         return new RedirectView("/users");

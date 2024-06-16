@@ -59,61 +59,47 @@
             <section id="sectionForm" class="sectionForms sectionList">
 
                 <h4 class="titleForm title-form">novo usuário</h4>
-
-                <form th:object="${user}"  class="form-container">
+                
+                <form th:object="${user}" class="form-container">
 
                     <input id="id" name="id" th:field="*{id}" type="number" style="display: none;" value="1">
-
+            
                     <div class="form-group">
-
                         <label for="nome">Nome:</label>
                         <input id="nameUser" name="nameUser" type="text" placeholder="Digite o nome"
                             th:field="*{nameUser}" th:required="true">
-
-
-
+            
                         <label for="password">Senha:</label>
                         <input id="password" name="password" type="password" placeholder="Digite a senha"
                             th:field="*{password}" th:required="true">
-                        <span id="feedbackPassword"></span>
-
-                        
-                            <label for="perfil">Perfil Usuário:</label>
-                            <select id="tipoUserPermission" name="tipoUserPermission" th:field="*{tipoUserPermission}"
-                                th:required="true">
-                                <option value="ADMINISTRATOR">Administrador</option>
-                                <option value="OPERATOR">Operador</option>
-                                <option value="OBSERVER">Observador</option>
-                            </select>
-                        
+                        <span class="erro-mensage" id="feedbackPassword"></span>
+            
+                        <label for="perfil">Perfil Usuário:</label>
+                        <select id="tipoUserPermission" name="tipoUserPermission" th:field="*{tipoUserPermission}"
+                            th:required="true">
+                            <option value="ADMINISTRATOR">Administrador</option>
+                            <option value="OPERATOR">Operador</option>
+                            <option value="OBSERVER">Observador</option>
+                        </select>
                     </div>
-
+            
                     <div class="form-group">
-
                         <label for="email">Email:</label>
                         <input id="email" name="email" type="email" placeholder="ex: exemplo@emal.com"
                             th:field="*{email}" th:required="true">
-
-
-
+                        <span class="erro-mensage erro-mensage-email" th:if="${mensagem}" th:text="${mensagem}"></span>
+            
                         <label for="confirmPassword">Confirme a senha:</label>
-                        <input id="confirmPassword" name="confirmPassword" type="password"
-                            placeholder="confirme a senha" th:required="true">
-                        <span id="feedbackConfirmPassword"></span>
-
-
+                        <input id="confirmPassword" name="confirmPassword" type="password" placeholder="confirme a senha" th:required="true">
+                        <span class="erro-mensage" id="feedbackConfirmPassword"></span>
+            
                         <div class="formButtons flexContainerRowBetween">
                             <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                            <button id="buttonSave" class="buttons buttonSave" type="submit"><img
-                                    src="images/icons/icons8-done.svg" alt="">Salvar</button>
+                            <button id="buttonSave" class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
                         </div>
-
                     </div>
-
-
-
                 </form>
-
+                
             </section>
 
 
@@ -157,6 +143,23 @@
 
     </main>
     <script src="script/editUser.js"></script>
+   
+    <script class="userteste" th:if="${user2}" th:data-user="${#strings.escapeJavaScript(${user2})}"></script>
+   <script>
+        console.log('eue')
+        
+        let user2Data = document.querySelector('.userteste');
+        let userData = user2Data.dataset.user;
+
+        if(user2Data){
+            console.log('tetete');
+        }
+
+        console.log(userData.nameUser);
+        
+    </script>
+    
+    
 
 
     <script src="script/opemCloseForm.js"></script>
