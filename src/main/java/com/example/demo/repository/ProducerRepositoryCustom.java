@@ -40,15 +40,14 @@ public class ProducerRepositoryCustom {
     }
    
     public List<Map<String, Object>> getProducerInfoDashboard(Long id) {
-        StringBuilder jpqlBuilder = new StringBuilder();
+        String jpql = "SELECT p.id, p.name, p.socialReason, p.cpf, p.cnpj, ph.phone, p.observation, a.cep, a.neighborhood, a.street, a.city, a.state, a.number " +
+                      "FROM Producer p " +
+                      "INNER JOIN p.phoneNumbers ph " +
+                      "LEFT JOIN p.address a " +
+                      "WHERE p.id = :id";
     
-        jpqlBuilder.append("SELECT p.id, p.name, p.socialReason, p.cpf, p.cnpj, ph.phone ")
-                   .append("FROM Producer p ")
-                   .append("INNER JOIN p.phoneNumbers ph ")
-                   .append("WHERE p.id = :id");
-    
-        TypedQuery<Object[]> query = entityManager.createQuery(jpqlBuilder.toString(), Object[].class);
-        query.setParameter("id", id); // Adicionando o parâmetro ID à consulta
+        TypedQuery<Object[]> query = entityManager.createQuery(jpql, Object[].class);
+        query.setParameter("id", id); 
     
         List<Object[]> results = query.getResultList();
     
@@ -61,11 +60,19 @@ public class ProducerRepositoryCustom {
             producerInfo.put("cpf", result[3]);
             producerInfo.put("cnpj", result[4]);
             producerInfo.put("phone", result[5]);
+            producerInfo.put("observation", result[6]);
+            producerInfo.put("cep", result[7]);
+            producerInfo.put("neighborhood", result[8]);
+            producerInfo.put("street", result[9]);
+            producerInfo.put("city", result[10]);
+            producerInfo.put("state", result[11]);
+            producerInfo.put("number", result[12]);
             producerInfoDashboard.add(producerInfo);
         }
     
         return producerInfoDashboard;
     }
+    
     
 
     public List<Map<String, Object>> getProducerInfoFilter(ProducerFilterDto producerFilterDto) {
