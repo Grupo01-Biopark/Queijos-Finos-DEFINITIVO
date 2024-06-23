@@ -21,8 +21,10 @@
 
 .date-active{
     color: green;
+    text-transform: capitalize;
 }
 
 .date-expired{
     color: red;
+    text-transform: capitalize;
 }
