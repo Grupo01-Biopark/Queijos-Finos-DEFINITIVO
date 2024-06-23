@@ -1,3 +1,16 @@
+.navBarHeader{
+    background-color: var(--backgroudNavBarHead);   
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  
+   }
+
+.navBarHeaderList{
+    padding-top: 26px;
+}
 
 .section-grafic{
     width: 100%;
@@ -70,4 +83,8 @@
     display: inline-block;
     align-items: center;
     justify-content: center; /* Centraliza horizontalmente */
+}
+
+body{
+overflow-x: hidden;
 }

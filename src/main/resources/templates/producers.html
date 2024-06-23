@@ -53,14 +53,17 @@
             <section style="display: block;" id="sectionForm" class="sectionForms sectionList">
 
                 <h4 class="title-form">Buscar por:</h4>
+                
                 <form th:action="@{/filterProducer}" method="GET" th:object="${producerFilterDto}"
                     class="form-container">
                     <div class="form-group">
                         <label for="name-producer">Nome do Produtor:</label>
                         <input type="text" id="name-producer" name="nameProducer">
+                        
                         <label for="city">Cidade:</label>
                         <input type="text" id="city" name="city">
-                        <label for="technology-name">Tecnologia:</label>
+                       
+                        <label for="technology-name">Tecnologia:</label>                      
                         <select id="technology-name" name="technologyName">
                             <option value=""
                                 th:text="(${technologies} != null and ${technologies.size()} > 0) ? 'Selecione uma tecnologia' : 'Nenhuma tecnologia cadastrada'">
@@ -70,15 +73,17 @@
                             </option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="production-status">Status de Produção:</label>
-                        <select id="production-status" name="tipoStatusProduction">
+                        <select id="production-status" name="status">
                             <option value="">Selecione...</option>
-                            <option value="PRODUCING">PRODUCING</option>
-                            <option value="COMPLEMENTATION">COMPLEMENTATION</option>
+                            <option id="Ativo">Ativo</option>
+                            <option id="Ativo em complementação">Ativo em complementação</option>
+                            <option id="Desistente">Desistente</option>
                         </select>
                         <label for="certificate-type">Tipo de Certificado:</label>
-                        <select id="certificate-type" name="tipoCertificate">
+                        <select id="certificate-type" name="tipoCertificado">
                             <option value="">Selecione...</option>
                             <option value="SUSAF">SUSAF</option>
                             <option value="SISBI">SISBI</option>

@@ -9,9 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import com.example.demo.dtos.ProducerDto;
-import com.example.demo.entity.Address;
-import com.example.demo.entity.PhoneNumber;
-import com.example.demo.entity.Producer;
+import com.example.demo.entity.*;
+import com.example.demo.entity.enums.TipoCertificado;
 import com.example.demo.repository.ProducerRepository;
 import com.example.demo.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +62,7 @@ public class ProducerController {
     public RedirectView updateProducer(
             @PathVariable Long producerId,
             @ModelAttribute ProducerDto producerDto
-    ){
+    ) {
         Producer producer = producerRepository.findById(producerId)
                 .orElseThrow(() -> new NoSuchElementException("Producer not found with id: " + producerId));
 
@@ -73,41 +72,50 @@ public class ProducerController {
         producer.setSocialReason(producerDto.getSocialReason());
         producer.setEmail(producerDto.getEmail());
 
-        // Formatando as datas para o padrão esperado
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Contract contract = producer.getContract();
+        contract.setStatus(producerDto.getStatus());
+        contract.setSignatureDate(producerDto.getSignatureDate());
+        contract.setExpirationDate(producerDto.getExpirationDate());
+        contract.setStatusDate(producerDto.getStatusDate());
 
-        LocalDate signatureDateParsed = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
-        Date signatureDate = Date.from(signatureDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSignatureDate(signatureDate);
+        List<Certificate> certificates = producer.getCertificates();
+        certificates.clear();
 
-        LocalDate expirationDateParsed = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
-        Date expirationDate = Date.from(expirationDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setExpirationDate(expirationDate);
-
-        LocalDate statusDateParsed = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-        Date statusDate = Date.from(statusDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setStatusDate(statusDate);
-
-        LocalDate simPoaDateParsed = LocalDate.parse(producerDto.getSimPoa(), dateFormat);
-        Date simPoaDate = Date.from(simPoaDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSimPoa(simPoaDate);
-
-        LocalDate susafDateParsed = LocalDate.parse(producerDto.getSusaf(), dateFormat);
-        Date susafDate = Date.from(susafDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSusaf(susafDate);
-
-        LocalDate sisbiDateParsed = LocalDate.parse(producerDto.getSisbi(), dateFormat);
-        Date sisbiDate = Date.from(sisbiDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSisbi(sisbiDate);
-
-        LocalDate seloArteDateParsed = LocalDate.parse(producerDto.getSeloArte(), dateFormat);
-        Date seloArteDate = Date.from(seloArteDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setSeloArte(seloArteDate);
-
-        LocalDate cifDateParsed = LocalDate.parse(producerDto.getCif(), dateFormat);
-        Date cifDate = Date.from(cifDateParsed.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        producer.setCif(cifDate);
-
+        if (producerDto.getSimPoa() != null) {
+            Certificate certificate = new Certificate();
+            certificate.setData(producerDto.getSimPoa());
+            certificate.setTipoCertificado(TipoCertificado.SIMPOA);
+            certificate.setProducer(producer);
+            certificates.add(certificate);
+        }
+        if (producerDto.getSusaf() != null) {
+            Certificate certificate = new Certificate();
+            certificate.setData(producerDto.getSusaf());
+            certificate.setTipoCertificado(TipoCertificado.SUSAF);
+            certificate.setProducer(producer);
+            certificates.add(certificate);
+        }
+        if (producerDto.getSisbi() != null) {
+            Certificate certificate = new Certificate();
+            certificate.setData(producerDto.getSisbi());
+            certificate.setTipoCertificado(TipoCertificado.SISBI);
+            certificate.setProducer(producer);
+            certificates.add(certificate);
+        }
+        if (producerDto.getSeloArte() != null) {
+            Certificate certificate = new Certificate();
+            certificate.setData(producerDto.getSeloArte());
+            certificate.setTipoCertificado(TipoCertificado.SELOARTE);
+            certificate.setProducer(producer);
+            certificates.add(certificate);
+        }
+        if (producerDto.getCif() != null) {
+            Certificate certificate = new Certificate();
+            certificate.setData(producerDto.getCif());
+            certificate.setTipoCertificado(TipoCertificado.CIF);
+            certificate.setProducer(producer);
+            certificates.add(certificate);
+        }
 
         producer.setObservation(producerDto.getObservation());
 
@@ -121,6 +129,7 @@ public class ProducerController {
         address.setCep(producerDto.getCep());
         address.setCity(producerDto.getCity());
         address.setProducer(producer);
+        address.setNumber(producerDto.getNumber());
         producer.setAddress(address);
 
         List<PhoneNumber> phoneNumbers = producer.getPhoneNumbers();
@@ -140,12 +149,14 @@ public class ProducerController {
         phoneNumbers.add(phone2);
 
         producer.setPhoneNumbers(phoneNumbers);
+        producer.setContract(contract);
+        contract.setProducer(producer);
+        producer.setCertificates(certificates);
 
         producerService.updateProducer(producer);
 
-        return new RedirectView("/editProducer/"+ producerId);
+        return new RedirectView("/editProducer/" + producerId);
     }
-
 
     @GetMapping("/editProducer/{producerId}")
     public ModelAndView editProducer(@PathVariable Long producerId) {
@@ -159,31 +170,61 @@ public class ProducerController {
         producerDto.setSocialReason(producer.getSocialReason());
         producerDto.setEmail(producer.getEmail());
 
-        // Formatando as datas para string
-        String signatureDateStr = formatDate(producer.getSignatureDate());
-        producerDto.setSignatureDate(signatureDateStr);
+        producerDto.setSignatureDate(producer.getContract().getSignatureDate());
+        producerDto.setExpirationDate(producer.getContract().getExpirationDate());
+        producerDto.setStatusDate(producer.getContract().getStatusDate());
 
-        String expirationDateStr = formatDate(producer.getExpirationDate());
-        producerDto.setExpirationDate(expirationDateStr);
+        List<Certificate> certificates = producer.getCertificates();
 
-        String statusDateStr = formatDate(producer.getStatusDate());
-        producerDto.setStatusDate(statusDateStr);
-
-        String simPoaStr = formatDate(producer.getSimPoa());
+        LocalDate simPoaStr = null;
+        for (Certificate certificate : certificates) {
+            if (certificate.getTipoCertificado() == TipoCertificado.SIMPOA) {
+                simPoaStr = certificate.getData();
+                break;
+            }
+        }
         producerDto.setSimPoa(simPoaStr);
 
-        String susafStr = formatDate(producer.getSusaf());
+        LocalDate susafStr = null;
+        for (Certificate certificate : certificates) {
+            if (certificate.getTipoCertificado() == TipoCertificado.SUSAF) {
+                susafStr = certificate.getData();
+                break;
+            }
+        }
         producerDto.setSusaf(susafStr);
 
-        String sisbiStr = formatDate(producer.getSisbi());
+        LocalDate sisbiStr = null;
+        for (Certificate certificate : certificates) {
+            if (certificate.getTipoCertificado() == TipoCertificado.SISBI) {
+                sisbiStr = certificate.getData();
+                break;
+            }
+        }
         producerDto.setSisbi(sisbiStr);
 
-        String seloArteStr = formatDate(producer.getSeloArte());
+        LocalDate seloArteStr = null;
+        for (Certificate certificate : certificates) {
+            if (certificate.getTipoCertificado() == TipoCertificado.SELOARTE) {
+                seloArteStr = certificate.getData();
+                break;
+            }
+        }
         producerDto.setSeloArte(seloArteStr);
 
-        String cifStr = formatDate(producer.getCif());
+        LocalDate cifStr = null;
+        for (Certificate certificate : certificates) {
+            if (certificate.getTipoCertificado() == TipoCertificado.CIF) {
+                cifStr = certificate.getData();
+                break;
+            }
+        }
         producerDto.setCif(cifStr);
 
+
+        producerDto.setStatus(producer.getContract().getStatus());
+        System.out.println("teste status: "+ producer.getContract().getStatus());
+        System.out.println("teste status: "+ producerDto.getStatus());
         producerDto.setObservation(producer.getObservation());
 
         Address address = producer.getAddress();
@@ -193,6 +234,7 @@ public class ProducerController {
             producerDto.setState(address.getState());
             producerDto.setCep(address.getCep());
             producerDto.setCity(address.getCity());
+            producerDto.setNumber(address.getNumber());
         }
 
         List<PhoneNumber> phoneNumbers = producer.getPhoneNumbers();
@@ -230,62 +272,72 @@ public class ProducerController {
             PhoneNumber phone1 = new PhoneNumber();
             PhoneNumber phone2 = new PhoneNumber();
 
+            System.out.println("teste"+ producerDto.getStatus());
+
             producer.setName(producerDto.getName());
             producer.setCpf(producerDto.getCpf());
             producer.setCnpj(producerDto.getCnpj());
             producer.setSocialReason(producerDto.getSocialReason());
+            producer.setObservation(producerDto.getObservation());
 
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             producer.setEmail(producerDto.getEmail());
 
-            LocalDate signatureDate = null;
-            if (!producerDto.getSignatureDate().isEmpty()) {
-                signatureDate = LocalDate.parse(producerDto.getSignatureDate(), dateFormat);
-            }
-            producer.setSignatureDate(signatureDate != null ? java.sql.Date.valueOf(signatureDate) : null);
+            List<Certificate> certificates = new ArrayList<>();
 
-            LocalDate expirationDate = null;
-            if (!producerDto.getExpirationDate().isEmpty()) {
-                expirationDate = LocalDate.parse(producerDto.getExpirationDate(), dateFormat);
-            }
-            producer.setExpirationDate(expirationDate != null ? java.sql.Date.valueOf(expirationDate) : null);
+            Contract contract = new Contract();
+            contract.setStatus(producerDto.getStatus());
+            contract.setSignatureDate(producerDto.getSignatureDate());
+            contract.setExpirationDate(producerDto.getExpirationDate());
+            contract.setStatusDate(producerDto.getStatusDate());
 
-            LocalDate statusDate = null;
-            if (!producerDto.getStatusDate().isEmpty()) {
-                statusDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setStatusDate(statusDate != null ? java.sql.Date.valueOf(statusDate) : null);
+            System.out.println("teste"+producerDto.getSimPoa());
+            System.out.println(producerDto.getCif());
+            System.out.println(producerDto.getSeloArte());
 
-            LocalDate simPoa = null;
-            if (!producerDto.getSimPoa().isEmpty()) {
-                simPoa = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            if(producerDto.getSimPoa() != null){
+                Certificate certificate1 = new Certificate();
+                certificate1.setTipoCertificado(TipoCertificado.SIMPOA);
+                certificate1.setData(producerDto.getSimPoa());
+                certificates.add(certificate1);
+                certificate1.setProducer(producer);
+                certificates.add(certificate1);
             }
-            producer.setSimPoa(simPoa != null ? java.sql.Date.valueOf(simPoa) : null);
+            if(producerDto.getSusaf() != null){
+                Certificate certificate2 = new Certificate();
+                certificate2.setTipoCertificado(TipoCertificado.SUSAF);
+                certificate2.setData(producerDto.getSusaf());
+                certificates.add(certificate2);
+                certificate2.setProducer(producer);
+                certificates.add(certificate2);
+            }
+            if(producerDto.getSisbi() != null){
+                Certificate certificate3 = new Certificate();
+                certificate3.setTipoCertificado(TipoCertificado.SISBI);
+                certificate3.setData(producerDto.getSisbi());
+                certificates.add(certificate3);
+                certificate3.setProducer(producer);
+                certificates.add(certificate3);
 
-            LocalDate susafDate = null;
-            if (!producerDto.getSusaf().isEmpty()) {
-                susafDate = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
             }
-            producer.setSusaf(susafDate != null ? java.sql.Date.valueOf(susafDate) : null);
+            if(producerDto.getSeloArte() != null){
+                Certificate certificate4 = new Certificate();
+                certificate4.setTipoCertificado(TipoCertificado.SELOARTE);
+                certificate4.setData(producerDto.getSeloArte());
+                certificates.add(certificate4);
+                certificate4.setProducer(producer);
+                certificates.add(certificate4);
 
-            LocalDate dataSisbi = null;
-            if (!producerDto.getSisbi().isEmpty()) {
-                dataSisbi = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
             }
-            producer.setSisbi(dataSisbi != null ? java.sql.Date.valueOf(dataSisbi) : null);
-
-            LocalDate dataSeloArte = null;
-            if (!producerDto.getSeloArte().isEmpty()) {
-                dataSeloArte = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
+            if(producerDto.getCif() != null){
+                Certificate certificate5 = new Certificate();
+                certificate5.setTipoCertificado(TipoCertificado.CIF);
+                certificate5.setData(producerDto.getCif());
+                certificates.add(certificate5);
+                certificate5.setProducer(producer);
+                certificates.add(certificate5);
             }
-            producer.setSeloArte(dataSeloArte != null ? java.sql.Date.valueOf(dataSeloArte) : null);
-
-            LocalDate dateCif = null;
-            if (!producerDto.getCif().isEmpty()) {
-                dateCif = LocalDate.parse(producerDto.getStatusDate(), dateFormat);
-            }
-            producer.setCif(dateCif != null ? java.sql.Date.valueOf(dateCif) : null);
 
             address.setStreet(producerDto.getStreet());
             address.setNeighborhood(producerDto.getNeighborhood());
@@ -293,9 +345,8 @@ public class ProducerController {
             address.setCep(producerDto.getCep());
             address.setCity(producerDto.getCity());
             address.setProducer(producer);
+            address.setNumber(producerDto.getNumber());
 
-            System.out.println(producerDto.getPhone1());
-            System.out.println(producerDto.getPhone2());
             phone1.setPhone(producerDto.getPhone1());
             phone2.setPhone(producerDto.getPhone2());
             phone1.setProducer(producer);
@@ -307,12 +358,23 @@ public class ProducerController {
 
             producer.setPhoneNumbers(phones);
             producer.setAddress(address);
+            producer.setContract(contract);
+            contract.setProducer(producer);
+            producer.setCertificates(certificates);
             producerService.addProducer(producer);
 
         } catch (DataIntegrityViolationException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return new RedirectView("/producers");
+    }
+
+    private java.sql.Date parseDate(String dateString, DateTimeFormatter dateFormat) {
+        if (dateString != null && !dateString.isEmpty()) {
+            LocalDate date = LocalDate.parse(dateString, dateFormat);
+            return java.sql.Date.valueOf(date);
+        }
+        return null;
     }
 
     public List<Producer> getAllProducers() {

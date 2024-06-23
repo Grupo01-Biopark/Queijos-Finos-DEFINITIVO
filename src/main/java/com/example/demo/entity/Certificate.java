@@ -1,14 +1,10 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import com.example.demo.entity.enums.TipoCertificado;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_certificate")
@@ -17,13 +13,29 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String issuingBody;
-    private String description;
-    private Date  issuanceDate;
+
+    private TipoCertificado tipoCertificado;
+    private LocalDate data;
+
     @ManyToOne
     @JoinColumn(name = "producer_id")
     private Producer producer;
 
+    public TipoCertificado getTipoCertificado() {
+        return tipoCertificado;
+    }
+
+    public void setTipoCertificado(TipoCertificado tipoCertificado) {
+        this.tipoCertificado = tipoCertificado;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 
     public Long getId() {
         return id;
@@ -31,30 +43,6 @@ public class Certificate {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIssuingBody() {
-        return issuingBody;
-    }
-
-    public void setIssuingBody(String issuingBody) {
-        this.issuingBody = issuingBody;
-    }
-
-    public Date getIssuanceDate() {
-        return issuanceDate;
-    }
-
-    public void setIssuanceDate(Date issuanceDate) {
-        this.issuanceDate = issuanceDate;
     }
 
     public Producer getProducer() {

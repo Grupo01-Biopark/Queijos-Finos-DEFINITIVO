@@ -1,39 +1,11 @@
-.sectionPrincipal{
-    width: 100%;
-    justify-content: flex-start; /* não remover */
-}
-
-.sectionList{
-    width: 98%;
-    margin-top: 20px;
-    padding: 10px 20px 5px;
-    box-shadow: 1px 4px 5px 0px rgba(0,0,0,0.75);
-}
-
-
-.sectionListHeader p{
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
 .formButtons{
     justify-content: flex-end;
 }
 
 .formButtons button{
-    margin: 10px 0 10px 20px;
+    margin: 0px 0 10px 20px;
 }
 
-.sectionForms{
-     display: none; 
-}
-
-.sectionFormsEdit{
-    display: none;
-}
-
-
-.sectionForms form input{
-    width: 30%;
-
+.form-group input{
+    max-width: 450px;
 }

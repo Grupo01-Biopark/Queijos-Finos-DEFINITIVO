@@ -1,7 +1,8 @@
 package com.example.demo.dtos;
 
-//import com.example.demo.entity.enums.TipoCertificate;
-import com.example.demo.entity.enums.TipoStatusProduction;
+import com.example.demo.entity.enums.TipoCertificado;
+//import com.example.demo.entity.enums.TipoCertificado;
+
 /* TUDO QUE ESTIVER COMMITADADO ESTA SENDO UTILIZADO EM OUTRA VERSÃO */
 
 public class ProducerFilterDto {
@@ -9,8 +10,8 @@ public class ProducerFilterDto {
     private String nameProducer;
     private String city;
     private String technologyName;
-    // private TipoCertificate tipoCertificate; 
-    private TipoStatusProduction tipoStatusProduction;
+    private TipoCertificado tipoCertificado; 
+    private String status;
 
     public String getNameProducer() {
         return nameProducer;
@@ -36,34 +37,34 @@ public class ProducerFilterDto {
         this.technologyName = technologyName;
     }
 
-    /*
-     * public TipoCertificate gettipoCertificate() {
-     * return tipoCertificate;
-     * }
-     * 
-     * public void settipoCertificate(TipoCertificate tipoCertificate) {
-     * this.tipoCertificate = tipoCertificate;
-     * }
-     */
+  
+      public TipoCertificado gettipoCertificate() {
+      return tipoCertificado;
+      }
+     
+      public void settipoCertificate(TipoCertificado tipoCertificado) {
+      this.tipoCertificado = tipoCertificado;
+      }
+     
 
-    public TipoStatusProduction getTipoStatusProduction() {
-        return tipoStatusProduction;
+    public String getStatus() {
+        return status;
     }
 
-    public void setTipoStatusProduction(TipoStatusProduction tipoStatusProduction) {
-        this.tipoStatusProduction = tipoStatusProduction;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public ProducerFilterDto() {
     }
 
     public ProducerFilterDto(String nameProducer, String city, String technologyName,
-            TipoStatusProduction tipoStatusProduction) {
+            String status, TipoCertificado tipoCertificado) {
         this.nameProducer = nameProducer;
         this.city = city;
         this.technologyName = technologyName;
-        // this.tipoCertificate = tipoCertificate;
-        this.tipoStatusProduction = tipoStatusProduction;
+        this.tipoCertificado = tipoCertificado;
+        this.status = status;
     }
 
 }

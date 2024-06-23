@@ -55,17 +55,18 @@
             </nav>
 
             <section id="sectionForm" class="sectionForms sectionList">
-                <h4 class="titleForm">TECNOLOGIAS</h4>
+                <h4 class="titleForm title-form">TECNOLOGIAS</h4>
 
 
                 <form th:object="${technology}">
 
                     <input type="number" name="id" th:field="*{id}" style="display: none;">
 
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" th:field="*{name}"
-                        placeholder="Digite o nome da tecnologia" th:required="true">
-
+                    <div class="form-group ">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" th:field="*{name}"
+                            placeholder="Digite o nome da tecnologia" th:required="true">
+                    </div>
                     <div class="formButtons flexContainerRowBetween">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
                         <button class="buttons buttonSave" type="submit"><img src="images/icons/icons8-done.svg"
@@ -94,7 +95,7 @@
                     <tbody>
                         <tr th:each="entry : ${report}">
 
-                            <td th:text="${entry.value['technologyName']}"></td> <!-- Nome da tecnologia -->
+                            <td class="highlight-name"  th:text="${entry.value['technologyName']}"></td> <!-- Nome da tecnologia -->
                             <td th:text="${entry.value['PRODUCING'] != null ? entry.value['PRODUCING'] : 0}"></td>
                             <td
                                 th:text="${entry.value['COMPLEMENTATION'] != null ? entry.value['COMPLEMENTATION'] : 0}">

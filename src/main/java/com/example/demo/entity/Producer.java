@@ -1,10 +1,16 @@
 package com.example.demo.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_producer")
@@ -18,7 +24,7 @@ public class Producer {
     private String cnpj;
     private String socialReason;
     private String email;
-    private String status;
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -44,30 +50,6 @@ public class Producer {
         return true;
     }
 
-    @Temporal(TemporalType.DATE)
-    private Date signatureDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date expirationDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date statusDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date simPoa;
-
-    @Temporal(TemporalType.DATE)
-    private Date susaf;
-
-    @Temporal(TemporalType.DATE)
-    private Date sisbi;
-
-    @Temporal(TemporalType.DATE)
-    private Date seloArte;
-
-    @Temporal(TemporalType.DATE)
-    private Date cif;
-
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhoneNumber> phoneNumbers = new ArrayList<>();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -78,6 +60,17 @@ public class Producer {
     private List<Document> documents = new ArrayList<>();
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transfer> transfers = new ArrayList<>();
+
+    @OneToOne(mappedBy = "producer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Contract contract = new Contract();
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
 
     public List<Transfer> getTransfers() {
         return transfers;
@@ -157,78 +150,6 @@ public class Producer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(Date signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Date getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(Date statusDate) {
-        this.statusDate = statusDate;
-    }
-
-    public Date getSimPoa() {
-        return simPoa;
-    }
-
-    public void setSimPoa(Date simPoa) {
-        this.simPoa = simPoa;
-    }
-
-    public Date getSusaf() {
-        return susaf;
-    }
-
-    public void setSusaf(Date susaf) {
-        this.susaf = susaf;
-    }
-
-    public Date getSisbi() {
-        return sisbi;
-    }
-
-    public void setSisbi(Date sisbi) {
-        this.sisbi = sisbi;
-    }
-
-    public Date getSeloArte() {
-        return seloArte;
-    }
-
-    public void setSeloArte(Date seloArte) {
-        this.seloArte = seloArte;
-    }
-
-    public Date getCif() {
-        return cif;
-    }
-
-    public void setCif(Date cif) {
-        this.cif = cif;
     }
 
     public List<PhoneNumber> getPhoneNumbers() {

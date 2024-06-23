@@ -1,5 +1,7 @@
 package com.example.demo.dtos;
 
+import java.time.LocalDate;
+
 public class ProducerDto {
     private String name;
     private String cpf;
@@ -14,15 +16,15 @@ public class ProducerDto {
     private String state;
     private String city;
     private String email;
-    private String signatureDate;
-    private String expirationDate;
+    private LocalDate signatureDate;
+    private LocalDate expirationDate;
     private String status;
-    private String statusDate;
-    private String simPoa;
-    private String susaf;
-    private String sisbi;
-    private String seloArte;
-    private String cif;
+    private LocalDate statusDate;
+    private LocalDate simPoa;
+    private LocalDate susaf;
+    private LocalDate sisbi;
+    private LocalDate seloArte;
+    private LocalDate cif;
     private String observation;
 
     public String getObservation() {
@@ -129,14 +131,6 @@ public class ProducerDto {
         this.city = city;
     }
 
-    public String getSignatureDate() {
-        return signatureDate;
-    }
-
-    public void setSignatureDate(String signatureDate) {
-        this.signatureDate = signatureDate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -145,13 +139,6 @@ public class ProducerDto {
         this.email = email;
     }
 
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
 
     public String getStatus() {
         return status;
@@ -161,51 +148,67 @@ public class ProducerDto {
         this.status = status;
     }
 
-    public String getStatusDate() {
+    public LocalDate getSignatureDate() {
+        return signatureDate;
+    }
+
+    public void setSignatureDate(LocalDate signatureDate) {
+        this.signatureDate = signatureDate;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public LocalDate getStatusDate() {
         return statusDate;
     }
 
-    public void setStatusDate(String statusDate) {
+    public void setStatusDate(LocalDate statusDate) {
         this.statusDate = statusDate;
     }
 
-    public String getSimPoa() {
+    public LocalDate getSimPoa() {
         return simPoa;
     }
 
-    public void setSimPoa(String simPoa) {
+    public void setSimPoa(LocalDate simPoa) {
         this.simPoa = simPoa;
     }
 
-    public String getSusaf() {
+    public LocalDate getSusaf() {
         return susaf;
     }
 
-    public void setSusaf(String susaf) {
+    public void setSusaf(LocalDate susaf) {
         this.susaf = susaf;
     }
 
-    public String getSisbi() {
+    public LocalDate getSisbi() {
         return sisbi;
     }
 
-    public void setSisbi(String sisbi) {
+    public void setSisbi(LocalDate sisbi) {
         this.sisbi = sisbi;
     }
 
-    public String getSeloArte() {
+    public LocalDate getSeloArte() {
         return seloArte;
     }
 
-    public void setSeloArte(String seloArte) {
+    public void setSeloArte(LocalDate seloArte) {
         this.seloArte = seloArte;
     }
 
-    public String getCif() {
+    public LocalDate getCif() {
         return cif;
     }
 
-    public void setCif(String cif) {
+    public void setCif(LocalDate cif) {
         this.cif = cif;
     }
 }

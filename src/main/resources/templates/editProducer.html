@@ -167,10 +167,10 @@
                         </div>
                         <div class="campoCertificationInfos">
                             <label for="status">Situação no projeto</label>
-                            <select th:value="${producerDto.status}" id="status" name="status">
-                                <option id="Ativo">Ativo</option>
-                                <option id="Ativo em complementação">Ativo em complementação</option>
-                                <option id="Desistente">Desistente</option>
+                            <select id="status" name="status">
+                                <option th:value="'Ativo'" th:text="'Ativo'" th:selected="${producerDto.status == 'Ativo'}">Ativo</option>
+                                <option th:value="'Ativo em complementação'" th:text="'Ativo em complementação'" th:selected="${producerDto.status == 'Ativo em complementação'}">Ativo em complementação</option>
+                                <option th:value="'Desistente'" th:text="'Desistente'" th:selected="${producerDto.status == 'Desistente'}">Desistente</option>
                             </select>
                         </div>
                         <div class="campoCertificationInfos">
@@ -183,7 +183,7 @@
                     <h3>Observaçãooooo</h3>
                     <input th:value="${producerDto.observation}" id="observation" name="observation">
                 </div>
-                <div>
+                <div class="button-submit">
                     <button type="submit">Submit</button>
                 </div>
             </form>
