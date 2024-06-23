@@ -127,7 +127,7 @@
                             </td>
                             <td th:class="${producer.class == 'active' ? 'date-active' : 'date-expired'}"  th:text="${producer.expirationDate}">Contrato</td>
                             <td th:text="${producer.status}">Status de Produção</td>
-                            <td><a></a><img src="images/icons/toView.svg" alt=""></a></td>
+                            <td><a th:href="@{/dashboardProducerDate/{producerId}(producerId=${producer.id})}"><img src="images/icons/toView.svg" alt=""></a></td>
                         </tr>
                     </tbody>
                 </table>
