@@ -24,40 +24,51 @@ public class ProducerListService {
         List<Map<String, Object>> producerInfoList = producerRepositoryCustom.getProducerInfo();
         
         for (Map<String, Object> producerInfo : producerInfoList) {
-            boolean contractExpiryWithin30Days = checkContractExpiry(producerInfo);
-            System.out.println("teste supremo" + contractExpiryWithin30Days);
-            if (contractExpiryWithin30Days) {
+            int contractStatus = checkContractExpiry(producerInfo);
+            
+            if (contractStatus == -1) {
+                producerInfo.put("expirationDate", "contrato expirado");
+                producerInfo.put("class", "expired");
+            } else if (contractStatus == 1) {
                 producerInfo.put("expirationDate", "próximo ao vencimento");
                 producerInfo.put("class", "expiry");
-            }else{
+            } else if (contractStatus == 0) {
                 producerInfo.put("expirationDate", "contrato ativo");
                 producerInfo.put("class", "active");
+            } else if (contractStatus == -2) {
+                producerInfo.put("expirationDate", "data inválida");
+                producerInfo.put("class", "invalid-date");
             }
         }
     
         return producerInfoList;
     }
     
-    public List<Map<String, Object>> getProducerInfoFilter(ProducerFilterDto producerFilterDto){
-
+    public List<Map<String, Object>> getProducerInfoFilter(ProducerFilterDto producerFilterDto) {
         List<Map<String, Object>> producerInfoList = producerRepositoryCustom.getProducerInfoFilter(producerFilterDto);
         
         for (Map<String, Object> producerInfo : producerInfoList) {
-            boolean contractExpiryWithin30Days = checkContractExpiry(producerInfo);
-            System.out.println("teste supremo" + contractExpiryWithin30Days);
-            if (contractExpiryWithin30Days) {
+            int contractStatus = checkContractExpiry(producerInfo);
+            
+            if (contractStatus == -1) {
+                producerInfo.put("expirationDate", "contrato expirado");
+                producerInfo.put("class", "expired");
+            } else if (contractStatus == 1) {
                 producerInfo.put("expirationDate", "próximo ao vencimento");
                 producerInfo.put("class", "expiry");
-            }else{
+            } else if (contractStatus == 0) {
                 producerInfo.put("expirationDate", "contrato ativo");
                 producerInfo.put("class", "active");
+            } else if (contractStatus == -2) {
+                producerInfo.put("expirationDate", "data inválida");
+                producerInfo.put("class", "invalid-date");
             }
         }
     
         return producerInfoList;
     }
 
-    public boolean checkContractExpiry(Map<String, Object> producerInfo) {
+    public int checkContractExpiry(Map<String, Object> producerInfo) {
         Object expirationDateObj = producerInfo.get("expirationDate"); 
     
         try {
@@ -65,14 +76,17 @@ public class ProducerListService {
             LocalDate currentDate = LocalDate.now();
       
             long differenceInDays = ChronoUnit.DAYS.between(currentDate, expirationDate);
-            System.out.println("differença em dias " + differenceInDays);
-            
-            return differenceInDays >= 0 && differenceInDays <= 30;
+            if (differenceInDays < 0) {
+                return -1; // Contrato expirado
+            } else if (differenceInDays <= 30) {
+                return 1; // Contrato próximo ao vencimento
+            } else {
+                return 0; // Contrato ativo
+            }
         } catch (DateTimeParseException e) {
             // Handle invalid date format
             e.printStackTrace();
-            return false;
+            return -2; // Data inválida
         }
     }
-    
 }
