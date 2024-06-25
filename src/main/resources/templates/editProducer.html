@@ -13,6 +13,8 @@
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
     <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+
 </head>
 
 <body>
@@ -55,19 +57,11 @@
             </ul>
         </nav>
         <div class="contentEditProducer">
-            <div class="containerButtonsInfoProducer">
-                <div class="containerButtons">
-                    <button id="dadosButton" class="buttonsInfoProducer">
-                        Dados
-                    </button>
-                    <button id="documentsButton" class="buttonsInfoProducer">
-                        Documentos
-                    </button>
-                    <button id="transferenceButton" class="buttonsInfoProducer">
-                        Transferencia
-                    </button>
-                </div>
-            </div>
+            <section class="section-button flexContainerRowBetween">
+                <button id="editButton">Editar Dados</button>
+                <button id="documentsButton">Documentos</button>
+                <button id="transferenceButton">Transferencia</button>
+            </section>
             <form th:action="@{/editProducer/update/{producerId}(producerId=${producer.id})}" th:object="${producerDto}" method="post" class="producer-form">
                 <div class="campos-container">
                     <div class="campos-form">
@@ -190,30 +184,7 @@
         </div>
     </section>
 </main>
-<script>
-    const pathname = window.location.pathname;
-
-    const pathnameSplit = pathname.split("/");
-    const id = pathnameSplit[2]
-
-    const redirectUrlDocuments = "/documents/" + id;
-    const redirectUrlTransference = "/transfer/" + id;
-
-    const documentsButton = document.querySelector("#documentsButton");
-    console.log(documentsButton)
-    const transferenceButton = document.querySelector("#transferenceButton");
-
-    documentsButton.addEventListener("click", ()=> {
-        console.log("aaaaa")
-        window.location.replace(redirectUrlDocuments)
-    })
-
-    transferenceButton.addEventListener("click", ()=>{
-        window.location.replace(redirectUrlTransference)
-    })
-</script>
-
-<script th:src="@{/script/opemForm.js}"></script>
+<script th:src="@{/script/navRedirectProducer.js}"></script>
 <script th:src="@{/script/validatePassword.js}"></script>
 <script th:src="@{/script/deleteUser.js}"></script>
 <script th:src="@{/script/navbarRedirect.js}"></script>

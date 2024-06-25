@@ -17,8 +17,9 @@
         <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
         <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
         <link rel="stylesheet" th:href="@{/style/StyleAddDocument.css}">
+        <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+        <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
     </head>
-
 
     <body>
     <section class="sectionPopup" >
@@ -28,7 +29,6 @@
     </section>
 
     <main class="gridContainerBody">
-
 
         <nav class="navBarLeft">
             <section class="logo"><img th:src="@{/images/logo/logoCerto.png}" alt="logo queijos finos"></section>
@@ -53,6 +53,11 @@
                     <li>Administrador</li>
                 </ul>
             </nav>
+            <section class="section-button flexContainerRowBetween">
+                <button id="editButton">Editar Dados</button>
+                <button id="documentsButton">Documentos</button>
+                <button id="transferenceButton">Transferencia</button>
+            </section>
             <section id="sectionForm" class="sectionForms sectionList">
                 <h4 class="titleForm"></h4>
                 <form id="form" th:action="@{/documents/register/${producer.id}}" th:object="${document}" enctype="multipart/form-data" method="post">
@@ -139,6 +144,7 @@
             </table>
 
         </section>
+        <script th:src="@{/script/navRedirectProducer.js}"></script>
         <script th:src="@{/script/downloadDocument.js}"></script>
         <script th:src="@{/script/opemCloseForm.js}"></script>
         <script th:src="@{/script/deleteDocument.js}"></script>

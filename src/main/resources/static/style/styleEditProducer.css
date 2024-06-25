@@ -133,16 +133,15 @@
     justify-content: center;
     gap: 10px;
     padding: 10px 20px;
-    background-color: black;
+    background-color: #036513;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .buttonSave:hover {
-    background-color: #333;
+    background-color: #036512;
 }
 
 .buttonSave img {
@@ -200,10 +199,12 @@
 
 .contentEditProducer{
     width: 100%;
+    margin-top: 10px;
 }
 
 .containerButtonsInfoProducer{
     display: flex;
+    width: 90%;
     margin-inline: 10px;
     margin-top: 20px;
     margin-bottom: 20px;

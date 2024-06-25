@@ -7,16 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <title>Cadastro de Usuários</title>
+    <title>Cadastro de Produtor</title>
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/styleEditProducer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-
 <main class="gridContainerBody">
     <nav class="navBarLeft">
         <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
@@ -38,84 +38,71 @@
             </ul>
 
             <ul class="navBarHeaderList navBarHeaderListLow">
-                <li>configurar usuário</li>
+                <li>CADASTRO DE PRODUTOR</li>
                 <li>administrador</li>
             </ul>
         </nav>
         <div class="contentEditProducer">
-            <div class="containerButtonsInfoProducer">
-                <div class="containerButtons">
-                    <button id="dadosButton" class="buttonsInfoProducer">
-                        Dados
-                    </button>
-                    <button id="documentsButton" class="buttonsInfoProducer">
-                        Documentos
-                    </button>
-                    <button id="transferenceButton" class="buttonsInfoProducer">
-                        Transferencia
-                    </button>
-                </div>
-            </div>
             <form th:action="@{/formProducer/producer}" method="post" class="producer-form">
                 <div class="campos-container">
                     <div class="campos-form">
                         <div>
                             <label for="name">Nome completo</label>
-                            <input name="name" id="name">
+                            <input required name="name" id="name">
                         </div>
                         <div>
                             <label for="cpf">CPF</label>
-                            <input id="cpf" name="cpf">
+                            <input required id="cpf" name="cpf">
                         </div>
                         <div>
                             <label for="phone1">Telefone 1</label>
-                            <input id="phone1" name="phone1">
+                            <input required id="phone1" name="phone1">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="cnpj">CNPJ</label>
-                            <input id="cnpj" name="cnpj">
+                            <input required id="cnpj" name="cnpj">
                         </div>
                         <div>
                             <label for="socialReason">Razao Social</label>
-                            <input id="socialReason" name="socialReason">
+                            <input required id="socialReason" name="socialReason">
                         </div>
                         <div>
                             <label for="phone2">Telefone 2</label>
-                            <input id="phone2" name="phone2">
+                            <input required id="phone2" name="phone2">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="cep">CEP</label>
-                            <input id="cep" name="cep">
+                            <input required id="cep" name="cep">
                         </div>
                         <div>
                             <label for="street">Logradouro</label>
-                            <input id="street" name="street">
+                            <input required id="street" name="street">
                         </div>
                         <div>
                             <label for="number">Numero</label>
-                            <input id="number" name="number">
+                            <input required id="number" name="number">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="neighborhood">Vila/Bairro</label>
-                            <input id="neighborhood" name="neighborhood">
+                            <input required id="neighborhood" name="neighborhood">
                         </div>
                         <div>
                             <label for="email">Email</label>
-                            <input id="email" name="email">
+                            <input required id="email" name="email">
                         </div>
                         <div>
                             <label for="state">UF</label>
-                            <input id="state" name="state">
+                            <input required id="state" name="state">
                         </div>
                         <div>
                             <label for="city">Cidade</label>
-                            <input id="city" name="city">
+                            <input required id="city" name="city">
                         </div>
                     </div>
                 </div>
@@ -169,22 +156,64 @@
                 </div>
                 <div class="observation-container">
                     <h3>Observaçãooooo</h3>
-                    <input id="observation" name="observation">
+                    <textarea id="observation" name="observation"></textarea>
                 </div>
-                <div class="button-submit">
-                    <button type="submit">Submit</button>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content:end; gap: 10px;">
+                    <button data-toggle="modal" data-target="#close" id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                    <button data-toggle="modal" class="buttons buttonSave" type="submit" data-target="#submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="close" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div style="display:flex; width: 100%; justify-content: end;">
+                                <button style="margin-right: 5px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 30px; margin-left: 30px; margin-right: 30px; text-align: center;">
+                                <img style="width: 120px;" src="images/icons/ponto-de-interrogacao.png">
+                                Deseja sair sem salvar? Os dados alterados serão perdidos
+                            </div>
+                            <div class="modal-footer" style="display: flex; justify-content: center;">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button id="sairSemSalvar" type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Salvo com sucesso!</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
     </section>
 </main>
 
-<script src="script/opemForm.js"></script>
-<script src="script/validatePassword.js" ></script>
-<script src="script/deleteUser.js">
-
-
+<script>
+    const sairSemSalvar = document.getElementById("sairSemSalvar");
+    sairSemSalvar.addEventListener("click", ()=>{
+        window.location.replace("/producers")
+    })
 </script>
+<script src="script/validatePassword.js" ></script>
+<script src="script/deleteUser.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
 
 </body>
 

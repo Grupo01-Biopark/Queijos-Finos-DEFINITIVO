@@ -15,6 +15,8 @@
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
     <link rel="stylesheet" th:href="@{/style/styleTransfer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
 </head>
 <body>
     <section class="sectionPopup">
@@ -50,8 +52,8 @@
                 </section>
             </nav>
         -->
-        <section class="sectionPrincipal flexContainercolum">
 
+        <section class="sectionPrincipal flexContainercolum">
             <nav class="navBarHeader">
                 <ul class="navBarHeaderList">
                     <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
@@ -63,6 +65,13 @@
                     <li>administrador</li>
                 </ul>
             </nav>
+            <div style="width: 100%;">
+                <section class="section-button flexContainerRowBetween">
+                    <button id="editButton">Editar Dados</button>
+                    <button id="documentsButton">Documentos</button>
+                    <button id="transferenceButton">Transferencia</button>
+                </section>
+            </div>
             <section id="sectionForm" class="sectionForms sectionList" th:if="${transfer}">
                 <h4 class="titleForm"></h4>
                 <form th:object="${transfer}" id="transferForm">
@@ -135,6 +144,7 @@
                     </tbody>
                 </table>
             </section>
+            <script th:src="@{/script/navRedirectProducer.js}"></script>
             <script th:src="@{/script/opemCloseForm.js}"></script>
             <script th:src="@{/script/editTransfer.js}"></script>
             <script th:src="@{/script/closePopup.js}"></script>
