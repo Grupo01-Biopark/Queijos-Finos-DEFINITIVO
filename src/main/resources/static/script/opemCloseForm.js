@@ -2,9 +2,12 @@ const openFormButton = document.getElementById("buttonAdd");
 const closeFormButton = document.getElementById("buttonCancel");
 const sectionForm = document.getElementById("sectionForm");
 
-const pathname = window.location.pathname;
-const pathnameSplit = pathname.split("/");
-const id = pathnameSplit[2]
+console.log("aaa");
+console.log(closeFormButton)
+
+const pathname1 = window.location.pathname;
+const pathnameSplit1 = pathname1.split("/");
+const id1 = pathnameSplit1[2]
 
 const formValues = {
     technology: {
@@ -13,7 +16,7 @@ const formValues = {
         title: "Nova tecnologia"
     },
     transfer: {
-        action: "/transfer/register/"+id,
+        action: "/transfer/register/"+id1,
         method: "post",
         title: "Transferencia"
     },
@@ -23,33 +26,36 @@ const formValues = {
         title: "Novo usuário"
     },
     Document: {
-        action: "/documents/register/"+id,
+        action: "/documents/register/"+id1,
         method: "post",
         title: "Novo Documento"
     }
 };
 
-openFormButton.addEventListener("click", () => {
-    const page = openFormButton.getAttribute("data-page");
-    const formValue = formValues[page] || formValues.user;
-    opemForm(formValue);
-});
-
-
 closeFormButton.addEventListener("click", () => {
+    console.log("aaaaaa")
     const sectionForm = document.getElementById("sectionForm");
     const alertPopupForm = document.getElementById("popupAlertForm");
     const sectionPopup = document.querySelector(".sectionPopup");
-    
+
     sectionPopup.style.display = "block";
-    alertPopupForm.style.display = "block";
-    
+
+    if(alertPopupForm){
+        alertPopupForm.style.display = "block";
+    }
+
     const exitButton = document.getElementById("buttonPopupAlertExit").addEventListener("click", () => {
         sectionForm.style.display = "none";
         openFormButton.style.display = "block";
         alertPopupForm.style.display = "none";
         clearFormFields();
     });
+});
+
+openFormButton.addEventListener("click", () => {
+    const page = openFormButton.getAttribute("data-page");
+    const formValue = formValues[page] || formValues.user;
+    opemForm(formValue);
 });
 
 function opemForm(formValues){

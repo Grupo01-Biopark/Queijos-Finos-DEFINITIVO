@@ -19,6 +19,10 @@
     margin-left: 10px;
 }
 
+.section-button button:hover{
+    cursor: pointer;
+}
+
 .section-button button a{
     color: black;
 }

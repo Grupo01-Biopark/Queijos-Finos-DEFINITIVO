@@ -14,10 +14,14 @@
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
     <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
     <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
 
 </head>
 
 <body>
+<section class="sectionPopup">
+    <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+</section>
 <main class="gridContainerBody">
 
     <nav class="navBarLeft">
@@ -47,18 +51,18 @@
     <section class="sectionPrincipal flexContainercolum">
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
-                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações}"></li>
-                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações}"></li>
+                <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
+                <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
             </ul>
 
             <ul class="navBarHeaderList navBarHeaderListLow">
-                <li>configurar usuário</li>
-                <li>administrador</li>
+                <li>Editar dados do produtor</li>
+                <li>Administrador</li>
             </ul>
         </nav>
         <div class="contentEditProducer">
             <section class="section-button flexContainerRowBetween">
-                <button id="editButton">Editar Dados</button>
+                <button id="editButton" style="background-color: var(--backgroudNavBarHead); color: white;">Editar Dados</button>
                 <button id="documentsButton">Documentos</button>
                 <button id="transferenceButton">Transferencia</button>
             </section>
@@ -174,16 +178,42 @@
                     </div>
                 </div>
                 <div class="observation-container">
-                    <h3>Observaçãooooo</h3>
+                    <h3>Observação</h3>
                     <input th:value="${producerDto.observation}" id="observation" name="observation">
                 </div>
-                <div class="button-submit">
-                    <button type="submit">Submit</button>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content:end; gap: 10px;">
+                    <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                    <button class="buttons buttonSave" type="submit" data-target="#submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
                 </div>
             </form>
         </div>
     </section>
 </main>
+<script>
+    const closeFormButton = document.getElementById("buttonCancel");
+
+closeFormButton.addEventListener("click", () => {
+console.log("aaaaaa")
+
+const popupAlertDelet = document.querySelector(".popupAlertDelet");
+const sectionPopup = document.querySelector(".sectionPopup");
+const popup = document.getElementById("popup");
+
+console.log(sectionPopup)
+console.log(popupAlertDelet)
+
+sectionPopup.style.display = "block";
+popupAlertDelet.style.display = "block";
+popup.style.display = "flex";
+});
+
+
+    const buttonBack = document.getElementById("buttonPopupAlertDelet");
+
+    buttonBack.addEventListener("click", ()=>{
+        window.location.replace("/producers");
+    })
+</script>
 <script th:src="@{/script/navRedirectProducer.js}"></script>
 <script th:src="@{/script/validatePassword.js}"></script>
 <script th:src="@{/script/deleteUser.js}"></script>

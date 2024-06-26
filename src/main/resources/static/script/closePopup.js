@@ -6,8 +6,13 @@ function closePopups(){
     const popupDelet = document.querySelector(".popupAlertDelet");
 
     sectionPopup.style.display = "none";
-    popupForm.style.display = "none";
+    if(popupForm){
+        popupForm.style.display = "none";
+
+    }
     popupDelet.style.display = "none";
+
+
 }
 
     

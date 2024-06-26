@@ -17,6 +17,8 @@
     <link rel="stylesheet" th:href="@{/style/styleTransfer.css}">
     <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
     <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+
 </head>
 <body>
     <section class="sectionPopup">
@@ -69,7 +71,7 @@
                 <section class="section-button flexContainerRowBetween">
                     <button id="editButton">Editar Dados</button>
                     <button id="documentsButton">Documentos</button>
-                    <button id="transferenceButton">Transferencia</button>
+                    <button id="transferenceButton" style="background-color: var(--backgroudNavBarHead); color: white;">Transferencia</button>
                 </section>
             </div>
             <section id="sectionForm" class="sectionForms sectionList" th:if="${transfer}">
