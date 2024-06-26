@@ -28,7 +28,7 @@
 </head>
 <body>
 <section class="sectionPopup">
-    <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+    <section th:insert="popups/alertPopupForm" class="popupAlertDelet" style="display: none;"></section>
 </section>
 <main class="gridContainerBody">
     <nav class="navBarLeft">
@@ -235,7 +235,7 @@
     popupAlertDelet.style.display = "block";
     popup.style.display = "flex";
 
-    const buttonBack = document.getElementById("buttonPopupAlertDelet");
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
 
     buttonBack.addEventListener("click", ()=>{
         window.location.replace("/producers");

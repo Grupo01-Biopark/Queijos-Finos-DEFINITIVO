@@ -20,7 +20,8 @@
 
 <body>
 <section class="sectionPopup">
-    <section th:insert="popups/alertPopupDelet" class="popupAlertDelet" style="display: none;"></section>
+    <section th:insert="popups/alertPopupDeletProducer" class="popupAlertDelet" style="display: none;" ></section>
+    <section th:insert="popups/alertPopupForm" class="popupAlert" style="display: none;"></section>
 </section>
 <main class="gridContainerBody">
 
@@ -181,9 +182,14 @@
                     <h3>Observação</h3>
                     <input th:value="${producerDto.observation}" id="observation" name="observation">
                 </div>
-                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content:end; gap: 10px;">
-                    <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                    <button class="buttons buttonSave" type="submit" data-target="#submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <button type="button" id="buttonDelet" class="buttons buttonCancel"><img style="width: 20px;" th:src="@{/images/icons/trash.png}">Deletar Registro</button>
+                    </div>
+                    <div style="display:flex; gap: 10px;">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave" type="submit" data-target="#submit"><img th:src="@{/images/icons/icons8-done.svg}" alt="">Salvar</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -195,23 +201,52 @@
 closeFormButton.addEventListener("click", () => {
 console.log("aaaaaa")
 
-const popupAlertDelet = document.querySelector(".popupAlertDelet");
+const popupAlert = document.querySelector(".popupAlert");
 const sectionPopup = document.querySelector(".sectionPopup");
-const popup = document.getElementById("popup");
-
-console.log(sectionPopup)
-console.log(popupAlertDelet)
+const popup = document.getElementById("popupAlertForm");
 
 sectionPopup.style.display = "block";
-popupAlertDelet.style.display = "block";
+popupAlert.style.display = "block";
 popup.style.display = "flex";
 });
 
+const buttonDelet = document.getElementById("buttonDelet")
 
-    const buttonBack = document.getElementById("buttonPopupAlertDelet");
+buttonDelet.addEventListener("click", ()=>{
+
+const popupDelet = document.querySelector(".popupAlertDelet")
+const sectionPopup = document.querySelector(".sectionPopup");
+const sectionPopupDelet = document.getElementById("popupDeletProducer");
+
+console.log(popupDelet)
+console.log(sectionPopup)
+console.log(sectionPopupDelet)
+popupDelet.style.display = "block";
+sectionPopup.style.display = "block";
+sectionPopupDelet.style.display = "flex"
+})
+
+
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
 
     buttonBack.addEventListener("click", ()=>{
         window.location.replace("/producers");
+    })
+
+    const buttonDeleteProducer = document.querySelector("#buttonDeleteProducer")
+    buttonDeleteProducer.addEventListener("click", ()=> {
+        const Id =
+        fetch('producers/' + Id, {
+                        method: 'GET'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = '/producers';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao executar a requisição:', error);
+                        });
     })
 </script>
 <script th:src="@{/script/navRedirectProducer.js}"></script>
