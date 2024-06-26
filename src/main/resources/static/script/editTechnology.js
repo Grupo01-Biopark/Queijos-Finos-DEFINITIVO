@@ -33,7 +33,7 @@ function openFormEdit() {
     const formAction = sectionForm.querySelector("form");
 
     formAction.setAttribute("method", "post");
-    //formAction.setAttribute("action", "/technology/updateTechnology");
+    formAction.setAttribute("action", "/technology/updateTechnology");
     titleForm.textContent = "Atualizar Tecnologia";
 
     sectionForm.style.display = "block";
