@@ -52,8 +52,8 @@
     <section class="sectionPrincipal flexContainercolum">
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
-                <li><img src="images/icons/notificationvetor.svg" alt="icone de notificações"></li>
-                <li><img src="images/icons/configVetorWhite.svg" alt="icone de configurações"></li>
+                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
+                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>
             </ul>
 
             <ul class="navBarHeaderList navBarHeaderListLow">
@@ -184,11 +184,11 @@
                 </div>
                 <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content: space-between; gap: 10px;">
                     <div>
-                        <button type="button" id="buttonDelet" class="buttons buttonCancel"><img style="width: 20px;" th:src="@{/images/icons/trash.png}">Deletar Registro</button>
+                        <button type="button" id="buttonDelet" style="display:flex; text-align: center; gap: 5px;" class="buttons buttonCancel"><img style="width: 20px;" th:src="@{/images/icons/trash.png}">Deletar Registro</button>
                     </div>
                     <div style="display:flex; gap: 10px;">
                         <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
-                        <button class="buttons buttonSave" type="submit" data-target="#submit"><img th:src="@{/images/icons/icons8-done.svg}" alt="">Salvar</button>
+                        <button class="buttons buttonSave"  type="submit" data-target="#submit"><img th:src="@{/images/icons/icons8-done.svg}" alt="">Salvar</button>
                     </div>
                 </div>
             </form>
@@ -235,8 +235,12 @@ sectionPopupDelet.style.display = "flex"
 
     const buttonDeleteProducer = document.querySelector("#buttonDeleteProducer")
     buttonDeleteProducer.addEventListener("click", ()=> {
-        const Id =
-        fetch('producers/' + Id, {
+        const pathname2 = window.location.pathname;
+        const pathnameSplit2 = pathname2.split("/");
+        const id2 = pathnameSplit2[2]
+
+        const Id = id2
+        fetch('/producers/' + Id, {
                         method: 'GET'
                     })
                         .then(response => {
