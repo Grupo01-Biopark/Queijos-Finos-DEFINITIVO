@@ -13,9 +13,16 @@
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarLeft.css}">
     <link rel="stylesheet" th:href="@{/style/navBar/styleNavBarHeader.css}">
     <link rel="stylesheet" th:href="@{/style/styleEditProducer.css}">
+    <link rel="stylesheet" th:href="@{/style/styleDashboardProducerData.css}">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
+
 </head>
 
 <body>
+<section class="sectionPopup">
+    <section th:insert="popups/alertPopupDeletProducer" class="popupAlertDelet" style="display: none;" ></section>
+    <section th:insert="popups/alertPopupForm" class="popupAlert" style="display: none;"></section>
+</section>
 <main class="gridContainerBody">
 
     <nav class="navBarLeft">
@@ -45,29 +52,21 @@
     <section class="sectionPrincipal flexContainercolum">
         <nav class="navBarHeader">
             <ul class="navBarHeaderList">
-                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações}"></li>
-                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações}"></li>
+                <li><img th:src="@{/images/icons/notificationvetor.svg}" alt="icone de notificações"></li>
+                <li><img th:src="@{/images/icons/configVetorWhite.svg}" alt="icone de configurações"></li>
             </ul>
 
             <ul class="navBarHeaderList navBarHeaderListLow">
-                <li>configurar usuário</li>
-                <li>administrador</li>
+                <li>Editar dados do produtor</li>
+                <li>Administrador</li>
             </ul>
         </nav>
         <div class="contentEditProducer">
-            <div class="containerButtonsInfoProducer">
-                <div class="containerButtons">
-                    <button id="dadosButton" class="buttonsInfoProducer">
-                        Dados
-                    </button>
-                    <button id="documentsButton" class="buttonsInfoProducer">
-                        Documentos
-                    </button>
-                    <button id="transferenceButton" class="buttonsInfoProducer">
-                        Transferencia
-                    </button>
-                </div>
-            </div>
+            <section class="section-button flexContainerRowBetween">
+                <button id="editButton" style="background-color: var(--backgroudNavBarHead); color: white;">Editar Dados</button>
+                <button id="documentsButton">Documentos</button>
+                <button id="transferenceButton">Transferencia</button>
+            </section>
             <form th:action="@{/editProducer/update/{producerId}(producerId=${producer.id})}" th:object="${producerDto}" method="post" class="producer-form">
                 <div class="campos-container">
                     <div class="campos-form">
@@ -180,40 +179,81 @@
                     </div>
                 </div>
                 <div class="observation-container">
-                    <h3>Observaçãooooo</h3>
+                    <h3>Observação</h3>
                     <input th:value="${producerDto.observation}" id="observation" name="observation">
                 </div>
-                <div class="button-submit">
-                    <button type="submit">Submit</button>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <button type="button" id="buttonDelet" style="display:flex; text-align: center; gap: 5px;" class="buttons buttonCancel"><img style="width: 20px;" th:src="@{/images/icons/trash.png}">Deletar Registro</button>
+                    </div>
+                    <div style="display:flex; gap: 10px;">
+                        <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                        <button class="buttons buttonSave"  type="submit" data-target="#submit"><img th:src="@{/images/icons/icons8-done.svg}" alt="">Salvar</button>
+                    </div>
                 </div>
             </form>
         </div>
     </section>
 </main>
 <script>
-    const pathname = window.location.pathname;
+    const closeFormButton = document.getElementById("buttonCancel");
 
-    const pathnameSplit = pathname.split("/");
-    const id = pathnameSplit[2]
+closeFormButton.addEventListener("click", () => {
+console.log("aaaaaa")
 
-    const redirectUrlDocuments = "/documents/" + id;
-    const redirectUrlTransference = "/transfer/" + id;
+const popupAlert = document.querySelector(".popupAlert");
+const sectionPopup = document.querySelector(".sectionPopup");
+const popup = document.getElementById("popupAlertForm");
 
-    const documentsButton = document.querySelector("#documentsButton");
-    console.log(documentsButton)
-    const transferenceButton = document.querySelector("#transferenceButton");
+sectionPopup.style.display = "block";
+popupAlert.style.display = "block";
+popup.style.display = "flex";
+});
 
-    documentsButton.addEventListener("click", ()=> {
-        console.log("aaaaa")
-        window.location.replace(redirectUrlDocuments)
+const buttonDelet = document.getElementById("buttonDelet")
+
+buttonDelet.addEventListener("click", ()=>{
+
+const popupDelet = document.querySelector(".popupAlertDelet")
+const sectionPopup = document.querySelector(".sectionPopup");
+const sectionPopupDelet = document.getElementById("popupDeletProducer");
+
+console.log(popupDelet)
+console.log(sectionPopup)
+console.log(sectionPopupDelet)
+popupDelet.style.display = "block";
+sectionPopup.style.display = "block";
+sectionPopupDelet.style.display = "flex"
+})
+
+
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
+
+    buttonBack.addEventListener("click", ()=>{
+        window.location.replace("/producers");
     })
 
-    transferenceButton.addEventListener("click", ()=>{
-        window.location.replace(redirectUrlTransference)
+    const buttonDeleteProducer = document.querySelector("#buttonDeleteProducer")
+    buttonDeleteProducer.addEventListener("click", ()=> {
+        const pathname2 = window.location.pathname;
+        const pathnameSplit2 = pathname2.split("/");
+        const id2 = pathnameSplit2[2]
+
+        const Id = id2
+        fetch('/producers/' + Id, {
+                        method: 'GET'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = '/producers';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao executar a requisição:', error);
+                        });
     })
 </script>
-
-<script th:src="@{/script/opemForm.js}"></script>
+<script th:src="@{/script/navRedirectProducer.js}"></script>
 <script th:src="@{/script/validatePassword.js}"></script>
 <script th:src="@{/script/deleteUser.js}"></script>
 <script th:src="@{/script/navbarRedirect.js}"></script>

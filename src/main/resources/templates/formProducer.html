@@ -7,16 +7,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <title>Cadastro de Usuários</title>
+    <title>Cadastro de Produtor</title>
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarLeft.css">
     <link rel="stylesheet" href="style/navBar/styleNavBarHeader.css">
     <link rel="stylesheet" href="style/styleEditProducer.css">
+    <link rel="stylesheet" href="style/popups/stylePopups.css">
 </head>
+<style>
+    .listLinks a {
+        text-decoration: none;
+    }
 
+    .listLinks a {
+        text-decoration: none;
+    }
+</style>
+</head>
 <body>
-
+<section class="sectionPopup">
+    <section th:insert="popups/alertPopupForm" class="popupAlertDelet" style="display: none;"></section>
+</section>
 <main class="gridContainerBody">
     <nav class="navBarLeft">
         <section class="logo"><img src="images/logo/logoCerto.png" alt="logo queijos finos"></section>
@@ -38,84 +51,71 @@
             </ul>
 
             <ul class="navBarHeaderList navBarHeaderListLow">
-                <li>configurar usuário</li>
+                <li>CADASTRO DE PRODUTOR</li>
                 <li>administrador</li>
             </ul>
         </nav>
         <div class="contentEditProducer">
-            <div class="containerButtonsInfoProducer">
-                <div class="containerButtons">
-                    <button id="dadosButton" class="buttonsInfoProducer">
-                        Dados
-                    </button>
-                    <button id="documentsButton" class="buttonsInfoProducer">
-                        Documentos
-                    </button>
-                    <button id="transferenceButton" class="buttonsInfoProducer">
-                        Transferencia
-                    </button>
-                </div>
-            </div>
             <form th:action="@{/formProducer/producer}" method="post" class="producer-form">
                 <div class="campos-container">
                     <div class="campos-form">
                         <div>
                             <label for="name">Nome completo</label>
-                            <input name="name" id="name">
+                            <input required name="name" id="name">
                         </div>
                         <div>
                             <label for="cpf">CPF</label>
-                            <input id="cpf" name="cpf">
+                            <input required id="cpf" name="cpf">
                         </div>
                         <div>
                             <label for="phone1">Telefone 1</label>
-                            <input id="phone1" name="phone1">
+                            <input required id="phone1" name="phone1">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="cnpj">CNPJ</label>
-                            <input id="cnpj" name="cnpj">
+                            <input required id="cnpj" name="cnpj">
                         </div>
                         <div>
                             <label for="socialReason">Razao Social</label>
-                            <input id="socialReason" name="socialReason">
+                            <input required id="socialReason" name="socialReason">
                         </div>
                         <div>
                             <label for="phone2">Telefone 2</label>
-                            <input id="phone2" name="phone2">
+                            <input required id="phone2" name="phone2">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="cep">CEP</label>
-                            <input id="cep" name="cep">
+                            <input required id="cep" name="cep">
                         </div>
                         <div>
                             <label for="street">Logradouro</label>
-                            <input id="street" name="street">
+                            <input required id="street" name="street">
                         </div>
                         <div>
                             <label for="number">Numero</label>
-                            <input id="number" name="number">
+                            <input required id="number" name="number">
                         </div>
                     </div>
                     <div class="campos-form">
                         <div>
                             <label for="neighborhood">Vila/Bairro</label>
-                            <input id="neighborhood" name="neighborhood">
+                            <input required id="neighborhood" name="neighborhood">
                         </div>
                         <div>
                             <label for="email">Email</label>
-                            <input id="email" name="email">
+                            <input required id="email" name="email">
                         </div>
                         <div>
                             <label for="state">UF</label>
-                            <input id="state" name="state">
+                            <input required id="state" name="state">
                         </div>
                         <div>
                             <label for="city">Cidade</label>
-                            <input id="city" name="city">
+                            <input required id="city" name="city">
                         </div>
                     </div>
                 </div>
@@ -168,24 +168,82 @@
                     </div>
                 </div>
                 <div class="observation-container">
-                    <h3>Observaçãooooo</h3>
-                    <input id="observation" name="observation">
+                    <h3>Observação</h3>
+                    <textarea id="observation" name="observation"></textarea>
                 </div>
-                <div class="button-submit">
-                    <button type="submit">Submit</button>
+                <div class="formButtons flexContainerRowBetween" style="display:flex; justify-content:end; gap: 10px;">
+                    <button id="buttonCancel" class="buttons buttonCancel" type="button">X Cancelar</button>
+                    <button class="buttons buttonSave" type="submit" data-target="#submit"><img src="images/icons/icons8-done.svg" alt="">Salvar</button>
                 </div>
+
+                <!-- Modal para sair sem salvar -->
+<!--                <div class="modal fade" id="close" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog" role="document">-->
+<!--                        <div class="popupSave" style="width: 100%;">-->
+<!--                            <div class="modal-header">-->
+<!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                    <span aria-hidden="true">&times;</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body text-center">-->
+<!--                                <img src="images/icons/iconInterrogation.svg" alt="icone salvar" style="width: 120px;">-->
+<!--                                <p>Deseja sair sem salvar? Os Documentos alterados serão perdidos</p>-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer d-flex justify-content-center">-->
+<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
+<!--                                <button type="button" id="buttonPopupAlertExit" class="btn btn-primary" data-dismiss="modal">Sair</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <!-- Modal para sucesso ao salvar -->
+<!--                <div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                    <div class="modal-dialog" role="document">-->
+<!--                        <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                                <h5 class="modal-title" id="exampleModalLabel">Salvo com sucesso!</h5>-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok!</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </form>
         </div>
     </section>
 </main>
+<!--const sairSemSalvar = document.getElementById("sairSemSalvar");-->
+<!--sairSemSalvar.addEventListener("click", ()=>{-->
+<!--window.location.replace("/producers")-->
+<!--})-->
+<script>
+    const closeFormButton = document.getElementById("buttonCancel");
 
-<script src="script/opemForm.js"></script>
-<script src="script/validatePassword.js" ></script>
-<script src="script/deleteUser.js">
+    closeFormButton.addEventListener("click", () => {
+    console.log("aaaaaa")
 
+    const popupAlertDelet = document.querySelector(".popupAlertDelet");
+    const sectionPopup = document.querySelector(".sectionPopup");
+    const popup = document.getElementById("popup");
 
+    console.log(sectionPopup)
+    console.log(popupAlertDelet)
+
+    sectionPopup.style.display = "block";
+    popupAlertDelet.style.display = "block";
+    popup.style.display = "flex";
+
+    const buttonBack = document.getElementById("buttonPopupAlertExit");
+
+    buttonBack.addEventListener("click", ()=>{
+        window.location.replace("/producers");
+    })
+});
 </script>
-
+<script src="script/validatePassword.js" ></script>
+<script src="script/deleteUser.js"></script>
 </body>
 
 

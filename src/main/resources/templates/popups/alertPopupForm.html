@@ -1,11 +1,11 @@
 <head>
-    <link rel="stylesheet" href="style/popups/stylePopups.css">
+    <link rel="stylesheet" th:href="@{/style/popups/stylePopups.css}">
 </head>
 
-<section id="popup" class="sectionPopupSave">
+<section th:fragment="popupAlert" id="popupAlertForm" class="sectionPopupSave">
 
     <div class="popupSave">
-        <img src="images/icons/iconInterrogation.svg" alt="icone salvar">
+        <img th:src="@{/images/icons/iconInterrogation.svg}" alt="icone salvar">
         <p>Deseja sair sem salvar? Os Documentos alterados seram perdidos</p>
         
         <div class="flexContainerRowBetween" >
@@ -14,5 +14,5 @@
         </div>
     </div>
 
-    <script src="script/closePopup.js"></script>
+    <script th:src="@{/script/closePopup.js}"></script>
 </section>

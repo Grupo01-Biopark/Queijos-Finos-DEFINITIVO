@@ -16,6 +16,11 @@
     text-transform: uppercase;
     font-weight: 600;
     margin-top: 10px;
+    margin-left: 10px;
+}
+
+.section-button button:hover{
+    cursor: pointer;
 }
 
 .section-button button a{
