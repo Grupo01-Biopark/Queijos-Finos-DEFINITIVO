@@ -66,7 +66,7 @@ public class DocumentController {
         System.out.println("categoria: "+ category);
         System.out.println("-----------------------");
         document.setCategory(category);
-        System.out.println("produtor id caralho-------"+ producerId);
+        System.out.println("produtor id -------"+ producerId);
         document.setTitle(title);
         Producer producer = producerRepository.findById(producerId).get();
         System.out.println(producer);
@@ -202,5 +202,52 @@ public class DocumentController {
         }
     }
 
+@PostMapping("/documents/updateDocument")
+public RedirectView updateDocument(@RequestParam("id") Long id,
+                                   @RequestParam("category") String category,
+                                   @RequestParam("file") MultipartFile file,
+                                   @RequestParam("title") String title,
+                                   @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date date,
+                                   @RequestParam("dateSystem") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) java.util.Date dateSystem,
+                                   RedirectAttributes attributes) {
+    Document document = documentService.getDocumentById(id);
+    document.setCategory(category);
+    document.setTitle(title);
 
+    if (date != null) {
+        document.setDate(new Date(date.getTime()));
+    } else {
+        logger.warn("Date is null");
+        attributes.addFlashAttribute("mensagem", "A data não pode estar vazia");
+        return new RedirectView("/Documentos");
+    }
+
+    if (dateSystem != null) {
+        document.setDateSystem(new Date(dateSystem.getTime()));
+    } else {
+        logger.warn("DateSystem is null");
+        attributes.addFlashAttribute("mensagem", "A data do sistema não pode estar vazia");
+        return new RedirectView("/Documentos");
+    }
+
+    try {
+        if (!file.isEmpty()) {
+            String fileName = saveUploadedFile(file);
+            document.setFile(fileName);
+        }
+
+        logger.info("Updating document: {}", document);
+        documentService.updateDocument(document);
+
+        attributes.addFlashAttribute("mensagem", "Documento atualizado com sucesso");
+    } catch (IOException e) {
+        logger.error("IO exception while saving file: ", e);
+        attributes.addFlashAttribute("mensagem", "Erro ao salvar o arquivo: " + e.getMessage());
+    } catch (Exception e) {
+        logger.error("Unexpected error: ", e);
+        attributes.addFlashAttribute("mensagem", "Erro inesperado: " + e.getMessage());
+    }
+
+    return new RedirectView("/documents/" + document.getProducer().getId());
+}
 }

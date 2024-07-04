@@ -42,4 +42,10 @@ public class DocumentService {
         return documentRepository.findById(documentId)
                 .orElseThrow(() -> new RuntimeException("Documento não encontrado com o ID: " + documentId));
     }
+    
+    public Document updateDocument(@Valid Document document) {
+        Objects.requireNonNull(document, "Documento invalidado. Verifique os campos obrigatórios.");
+        return documentRepository.save(document);
+    }
+    
 }
